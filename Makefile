@@ -6,7 +6,7 @@
 #    By: quentinbeukelman <quentinbeukelman@stud      +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/12/09 17:42:12 by quentinbeuk   #+#    #+#                  #
-#    Updated: 2024/12/09 18:32:43 by quentinbeuk   ########   odam.nl          #
+#    Updated: 2024/12/10 00:54:10 by hein          ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,5 +68,12 @@ fclean: clean
 	@$(RM) $(NAME_EXECUTABLE)
 
 re: fclean all
+
+
+# ===== Valgrind =====
+valgrind: all
+	@echo "$(BLUE)\nTo create a Valgrind executable, run the following command:\n$(RESET)"
+	@echo "export EXEC_VALGRIND="valgrind --suppressions=MLX42.supp --leak-check=full --show-leak-kinds=all ./miniRT"
+	@echo "$(GREEN)\nRun $$EXEC_VALGRIND <file_name.rt> to execute with Valgrind.\n$(RESET)"
 
 .PHONY: all clean
