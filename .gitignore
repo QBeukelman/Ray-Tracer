@@ -1,0 +1,17 @@
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# program
+miniRT
+
+# static library
+*.a
+
+# vscode folder
+.vscode/
+
+# Kernel Module Compile Results
+.DS_Store
