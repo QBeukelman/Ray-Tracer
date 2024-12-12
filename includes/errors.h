@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:26 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2024/12/10 14:49:17 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2024/12/11 13:08:17 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef enum e_validation
 // ------------------------------------------------------------: error messages
 # define E_ERROR	"Error: "
 # define E_OPEN		"Failed to open file: "
+# define E_MALLOC	"Memory allocation failed in function: "
 
 
 // ------------------------------------------------------------: utils

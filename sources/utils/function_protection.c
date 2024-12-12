@@ -1,21 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   parser.c                                           :+:    :+:            */
+/*   function_protection.c                              :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/12/09 17:46:02 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2024/12/11 20:46:38 by quentinbeuk   ########   odam.nl         */
+/*   Created: 2024/12/11 13:06:48 by quentinbeuk   #+#    #+#                 */
+/*   Updated: 2024/12/11 15:33:18 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-int	ft_parse(char *file_name)
+int		safe_open(char *file_name, int open_flags, ...)
 {
-	// 1. check file extension
+	int	fd;
 
-	read_scene(file_name);
-	return (0);
+	fd = open(file_name, open_flags);
+	if (fd < 0)
+		exit_with_message(E_OPEN, file_name, X_FAILURE);
+	return (fd);
+}
+
+void	*safe_malloc(size_t size, char *func_name)
+{
+	void	*ptr;
+
+	ptr = NULL;
+	ptr = malloc(size);
+	if (ptr == NULL)
+	{
+		free (ptr);
+		exit_with_message(E_MALLOC, func_name, EXIT_FAILURE);
+	}
+	return (ptr);
 }
