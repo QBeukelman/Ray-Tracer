@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2024/12/12 00:25:14 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2024/12/13 13:23:42 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,16 @@ int		read_scene(char *file_name);
 
 // splic_strings.c
 char	**split_string(char *str);
+
+
+// ------------------------------------------------------------: parse/validate
+// validate_objects.c
+t_validation	validate_object(char **tokens, e_object type);
+int				count_tokens(char **tokens);
+
+// validate_ambient_light.c
+t_validation	validate_ambient_light(char **tokens);
+
 
 
 // ------------------------------------------------------------: utils
