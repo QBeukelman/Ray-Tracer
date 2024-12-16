@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   validate_ambient_light.c                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/12/09 17:42:04 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2024/12/10 14:58:08 by quentinbeuk   ########   odam.nl         */
+/*   Created: 2024/12/13 11:21:56 by quentinbeuk   #+#    #+#                 */
+/*   Updated: 2024/12/13 13:34:54 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "../../../includes/minirt.h"
 
-int main(int argc, char **argv)
+t_validation	validate_ambient_light(char **tokens)
 {
-	ft_parse("scenes/scene_00.rt");
-	return (0);
+	if (count_tokens(tokens) != TOKEN_COUNT_A)
+		exit_with_message(E_TOKEN_COUNT, objects_to_name(AMBIENT_LIGHT), X_FAILURE);
+	return (SUCCESS);
 }
