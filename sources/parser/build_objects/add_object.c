@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   validate_objects.c                                 :+:    :+:            */
+/*   add_object.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/13 11:21:02 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2024/12/13 13:23:21 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2024/12/16 19:32:09 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minirt.h"
 
-t_validation	validate_object(char **tokens, e_object type)
+bool	add_object(t_scene *scene, char **tokens, e_object type)
 {
 	switch (type)
 	{
 		case AMBIENT_LIGHT:
-			return (validate_ambient_light(tokens));
+			return (add_ambient_light(scene, tokens));
 		case LIGHT:
 			return (SUCCESS);
 		case CAMERA:
