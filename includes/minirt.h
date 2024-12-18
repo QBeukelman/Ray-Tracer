@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2024/12/13 13:23:42 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2024/12/16 19:31:14 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,24 +29,34 @@
 # define RESET_COLOR "\033[0m"
 
 
+// ------------------------------------------------------------: scene
+typedef struct s_scene
+{
+	struct s_ambi	*ambi;
+} t_scene;
+
+
 // ------------------------------------------------------------: parse
+// build_color.c
+t_color		*parse_color(char *token);
+
+// build_scene.c
+int		build_scene(char *file_name);
+
 // parser.c
 int		ft_parse(char *file_name);
-
-// read_scene.c
-int		read_scene(char *file_name);
 
 // splic_strings.c
 char	**split_string(char *str);
 
 
 // ------------------------------------------------------------: parse/validate
-// validate_objects.c
-t_validation	validate_object(char **tokens, e_object type);
-int				count_tokens(char **tokens);
+// build_objects.c
+bool	add_object(t_scene *scene, char **tokens, e_object type);
+int		count_tokens(char **tokens);
 
-// validate_ambient_light.c
-t_validation	validate_ambient_light(char **tokens);
+// build_ambient_light.c
+bool	add_ambient_light(t_scene *scene, char **tokens);
 
 
 

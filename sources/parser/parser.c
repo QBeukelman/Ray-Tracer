@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:02 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2024/12/11 20:46:38 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2024/12/16 19:34:19 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@ int	ft_parse(char *file_name)
 {
 	// 1. check file extension
 
-	read_scene(file_name);
+	build_scene(file_name);
 	return (0);
 }
