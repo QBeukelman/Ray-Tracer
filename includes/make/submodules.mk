@@ -6,7 +6,7 @@
 #    By: hein <hein@student.codam.nl>                 +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/12/16 20:54:55 by hein          #+#    #+#                  #
-#    Updated: 2024/12/21 00:36:05 by hein          ########   odam.nl          #
+#    Updated: 2024/12/21 01:39:18 by hein          ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ submodules: $(MLX42) $(LIBFT)
 add-mlx42:
 	@if [ ! -d "$(MLX42_DIR)" ]; then \
 		echo "$(BLUE)\nInstalling MLX42 ...\n$(RESET)"; \
-		git submodule add --recurse $(MLX42_URL) $(MLX42_DIR); \
+		git submodule add $(MLX42_URL) $(MLX42_DIR); \
 		echo "$(GREEN)\nInstallation succesful.\n$(RESET)"; \
 	else \
 		echo "$(GREEN)\nMLX42 library found.\n$(RESET)"; \
