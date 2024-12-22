@@ -6,7 +6,7 @@
 #    By: quentinbeukelman <quentinbeukelman@stud      +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/12/09 17:42:12 by quentinbeuk   #+#    #+#                  #
-#    Updated: 2024/12/20 22:33:00 by hein          ########   odam.nl          #
+#    Updated: 2024/12/16 19:38:56 by quentinbeuk   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,9 @@ $(DIR_OBJ)/%.o: $(DIR_SOURCES_PARSER)/%.c | $(DIR_OBJ)
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 $(DIR_OBJ)/%.o: $(DIR_SOURCES_PARSER_VALIDATE)/%.c | $(DIR_OBJ)
+	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
+
+$(DIR_OBJ)/%.o: $(DIR_SOURCES_PARSER_COMP)/%.c | $(DIR_OBJ)
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 $(DIR_OBJ)/%.o: $(DIR_SOURCES_UTILS)/%.c | $(DIR_OBJ)

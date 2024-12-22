@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:26 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2024/12/13 13:29:30 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2024/12/16 17:26:13 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef enum e_validation
 # define E_SPLIT		"Failed to split tokens in line: "
 # define E_INVALID_OBJ	"Invalid scene object with identifier: "
 # define E_TOKEN_COUNT	"Invalid token count for: "
+# define E_INVALID_CLR	"Invalid color format: "
 
 
 // ------------------------------------------------------------: utils

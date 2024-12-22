@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:18 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2024/12/13 13:34:14 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2024/12/16 19:28:46 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,32 @@ typedef enum {
 	CYLINDER,
 	NUM_OBJECTS
 } e_object;
+
+// ------------------------------------------------------------: components
+typedef struct s_color
+{
+	int		r;
+	int		g;
+	int		b;
+} t_color;
+
+typedef struct s_vect
+{
+	float	x;
+	float	y;
+	float	z;
+} t_vect;
+
+
+// ------------------------------------------------------------: objects
+typedef struct s_ambi
+{
+	e_object		type;
+	float			ambi_ratio;
+	t_color			*color;
+} t_ambi;
+
+
 
 // ------------------------------------------------------------: parse
 // scene_objects.c
