@@ -13,16 +13,22 @@
 include includes/make/colors.mk
 include includes/make/files.mk
 
+
 # ===== Names =====
 CC 				= gcc
 CFlags 			= # -Wall -Werror -Wextra
 
 NAME_EXECUTABLE = miniRT
-LIBFT			= includes/libft
 
 INC 			= inc
 DIR_OBJ			= obj
 
+# ===== Submodules =====
+LIBFT			= ./includes/libft/libft.a
+
+MLX42_DIR		= ./includes/MLX42
+MLX42_URL		= https://github.com/codam-coding-college/MLX42.git
+MLX42			= ./includes/MLX42/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm
 
 # ===== OS Specific =====
 UNAME_S := $(shell uname -s)
@@ -37,11 +43,9 @@ endif
 # ===== Rules =====
 all: $(NAME_EXECUTABLE)
 
-$(NAME_EXECUTABLE): $(OBJ)
-	@echo "$(BLUE)\nMaking LIBFT ...\n$(RESET)"
-	@$(MAKE) -C $(LIBFT)
+$(NAME_EXECUTABLE): submodules-checked $(OBJ)
 	@echo "$(BLUE)Making miniRT ...\n$(RESET)"
-	@$(CC) $(CFLAGS) $^ $(LIBFT)/libft.a -o $(NAME_EXECUTABLE)
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME_EXECUTABLE) $(MLX42)
 	@echo "$(GREEN)Compile successful\n$(RESET)"
 
 $(DIR_OBJ)/%.o: $(DIR_SOURCES)/%.c | $(DIR_OBJ)
@@ -66,14 +70,15 @@ $(DIR_OBJ):
 # ===== Clean =====
 clean:
 	@echo "$(BLUE)\nCleaning ...$(RESET)"
-	@$(MAKE) clean -C ./includes/libft/
+	@$(MAKE) clean --no-print-directory -C ./includes/libft/
+	@$(RM) -rf submodules-checked
 	@$(RM) -rf $(DIR_OBJ)
 	@$(RM) -rf $(EXTRA_O)
 	@$(RM) -rf $(OBJS)
 	@echo "$(GREEN)$(BOLD)\nAll clean!\n$(RESET)"
 
 fclean: clean
-	@$(MAKE) fclean -C ./includes/libft/
+	@$(MAKE) fclean --no-print-directory -C ./includes/libft/
 	@$(RM) $(NAME_EXECUTABLE)
 
 re: fclean all
@@ -85,4 +90,6 @@ valgrind: all
 	@echo "export EXEC_VALGRIND="valgrind --suppressions=MLX42.supp --leak-check=full --show-leak-kinds=all ./miniRT"
 	@echo "$(GREEN)\nRun $$EXEC_VALGRIND <file_name.rt> to execute with Valgrind.\n$(RESET)"
 
-.PHONY: all clean
+.PHONY: all clean submodules
+
+include includes/make/submodules.mk
