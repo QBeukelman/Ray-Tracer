@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/16 19:18:55 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2024/12/16 19:30:38 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2024/12/25 22:08:33 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ bool	process_line(t_scene *scene, char *line)
 	return (save_object(scene, tokens, object_type));
 }
 
-int		build_scene(char *file_name)
+t_scene		*build_scene(char *file_name)
 {
 	int			fd;
 	char		*line;
@@ -57,10 +57,5 @@ int		build_scene(char *file_name)
 			process_line(scene, line);
 	}
 	close (fd);
-
-	printf("R: %d\n", scene->ambi->color->r);
-	printf("G: %d\n", scene->ambi->color->g);
-	printf("B: %d\n", scene->ambi->color->b);
-
-	return (0);
+	return (scene);
 }

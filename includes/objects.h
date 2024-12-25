@@ -6,13 +6,13 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:18 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2024/12/16 19:28:46 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2024/12/25 22:33:21 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 # define TOKEN_COUNT_A		3
 # define TOKEN_COUNT_L		
-# define TOKEN_COUNT_C		
+# define TOKEN_COUNT_C		4
 # define TOKEN_COUNT_SP		
 # define TOKEN_COUNT_P		
 # define TOKEN_COUNT_CY		
@@ -50,6 +50,17 @@ typedef struct s_ambi
 	float			ambi_ratio;
 	t_color			*color;
 } t_ambi;
+
+/*
+	fov: field of view
+*/
+typedef struct s_camera
+{
+	e_object		type;
+	struct s_vect	*position;
+	struct s_vect	*orientation;
+	unsigned int	fov;
+} t_camera;
 
 
 

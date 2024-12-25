@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/13 11:21:02 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2024/12/16 19:32:09 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2024/12/26 00:22:23 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ bool	add_object(t_scene *scene, char **tokens, e_object type)
 		case LIGHT:
 			return (SUCCESS);
 		case CAMERA:
-			return (SUCCESS);
+			return (add_camera(scene, tokens));
 		case SPHERE:
 			return (SUCCESS);
 		case PLANE:
@@ -31,6 +31,7 @@ bool	add_object(t_scene *scene, char **tokens, e_object type)
 		default:
 			return (FAILURE);
 	}
+
 }
 
 int		count_tokens(char **tokens)

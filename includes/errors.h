@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:26 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2024/12/16 17:26:13 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2024/12/25 23:37:42 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef enum e_validation
 # define E_INVALID_OBJ	"Invalid scene object with identifier: "
 # define E_TOKEN_COUNT	"Invalid token count for: "
 # define E_INVALID_CLR	"Invalid color format: "
+# define E_INVALID_PT	"Invalid point value format: "
+# define E_INVALID_POS	"Invalid position format: "
 
 
 // ------------------------------------------------------------: utils

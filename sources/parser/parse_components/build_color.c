@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/16 18:19:51 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2024/12/16 19:39:16 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2024/12/25 23:38:15 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,6 @@
 # define RANGE 255
 # define DELIMITER ','
 
-static int	count_char(char *str, char c)
-{
-	int		i;
-	int		count;
-
-	i = 0;
-	count = 0;
-	while (str[i])
-	{
-		if (str[i] == c)
-			count++;
-		i++;
-	}
-	return (count);
-}
-
 static bool validate_color(char *token)
 {
 	int		len;
@@ -42,7 +26,7 @@ static bool validate_color(char *token)
 	len = ft_strlen(token);
 	if (len < MIN_LEN || len > MAX_LEN)
 		exit_with_message(E_INVALID_CLR, token, X_FAILURE);
-	if (count_char(token, ',') != COMMA_COUNT)
+	if (ft_count_char(token, DELIMITER) != COMMA_COUNT)
 		exit_with_message(E_INVALID_CLR, token, X_FAILURE);
 	i = 0;
 	while (token[i])
