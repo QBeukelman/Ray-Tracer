@@ -6,7 +6,7 @@
 #    By: quentinbeukelman <quentinbeukelman@stud      +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/12/09 17:55:12 by quentinbeuk   #+#    #+#                  #
-#    Updated: 2024/12/20 18:04:29 by hein          ########   odam.nl          #
+#    Updated: 2024/12/26 00:24:53 by quentinbeuk   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,11 +20,15 @@ SOURCES_PARSER 				= parser.c \
 
 SOURCES_PARSER_VALIDATE		= add_object.c \
 								build_ambient_light.c \
+								build_camera.c \
 
 SOURCES_PARSER_COMP			= build_color.c \
+								build_point_value.c \
+								build_position.c \
 
 SOURCES_UTILS				= error.c \
 								function_protection.c \
+								print_scene.c \
 
 # ===== Manage Directories =====
 DIR_SOURCES					= sources

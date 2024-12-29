@@ -6,7 +6,7 @@
 #    By: quentinbeukelman <quentinbeukelman@stud      +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/12/09 17:42:12 by quentinbeuk   #+#    #+#                  #
-#    Updated: 2024/12/16 19:38:56 by quentinbeuk   ########   odam.nl          #
+#    Updated: 2024/12/25 19:49:47 by quentinbeuk   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,15 +28,20 @@ LIBFT			= ./includes/libft/libft.a
 
 MLX42_DIR		= ./includes/MLX42
 MLX42_URL		= https://github.com/codam-coding-college/MLX42.git
-MLX42			= ./includes/MLX42/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm
+FRAMEWORKS 		= -framework Cocoa -framework OpenGL -framework IOKit
 
 # ===== OS Specific =====
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
-# Linux
+	MLX42 = ./includes/MLX42/build/libmlx42.a -I include -ldl -lglfw -pthread -lm
+endif
+ifeq ($(OS),Windows_NT)
+    # Windows code here
 endif
 ifeq ($(UNAME_S),Darwin)
-# Mac
+	BREW_PREFIX = /Users/$(USER)/.brew
+    MLX42 = ./includes/MLX42/build/libmlx42.a -L$(BREW_PREFIX)/lib -lglfw $(FRAMEWORKS)
+    CFLAGS = -I$(BREW_PREFIX)/include
 endif
 
 

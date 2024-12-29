@@ -7,6 +7,9 @@
 # program
 miniRT
 
+# MLX
+submodules-checked
+
 # static library
 *.a
 
