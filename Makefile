@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         ::::::::             #
-#    Makefile                                           :+:    :+:             #
-#                                                      +:+                     #
-#    By: quentinbeukelman <quentinbeukelman@stud      +#+                      #
-#                                                    +#+                       #
-#    Created: 2024/12/09 17:42:12 by quentinbeuk   #+#    #+#                  #
-#    Updated: 2024/12/25 19:49:47 by quentinbeuk   ########   odam.nl          #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/12/09 17:42:12 by quentinbeuk       #+#    #+#              #
+#    Updated: 2025/01/10 11:12:01 by qbeukelm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ include includes/make/files.mk
 
 # ===== Names =====
 CC 				= gcc
-CFlags 			= # -Wall -Werror -Wextra
+CFlags 			= -Wall -Werror -Wextra 
 
 NAME_EXECUTABLE = miniRT
 
