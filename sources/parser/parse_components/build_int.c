@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   build_int.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/09 17:46:02 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/01/10 15:13:24 by qbeukelm         ###   ########.fr       */
+/*   Created: 2025/01/10 12:04:52 by qbeukelm          #+#    #+#             */
+/*   Updated: 2025/01/10 12:07:54 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minirt.h"
+#include "../../../includes/minirt.h"
 
-int	ft_parse(char *file_name)
+int		parse_int(char *str, int limit)
 {
-	t_scene		*scene;
+	int		val;
 
-	// ! 1. check file extension
-	scene = build_scene(file_name);
-	print_scene(scene);
-	scene->planes = NULL;
-	free (scene);
-
-	return (0);
+	val = ft_atoi(str);
+	if (val >= 0 && val <= limit)
+		return (val);
+	else
+		exit_with_message(E_OUT_OF_RANGE, str, X_FAILURE);
 }

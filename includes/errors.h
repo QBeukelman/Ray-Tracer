@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   errors.h                                           :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/12/09 17:46:26 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2024/12/25 23:37:42 by quentinbeuk   ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   errors.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/09 17:46:26 by quentinbeuk       #+#    #+#             */
+/*   Updated: 2025/01/10 11:58:32 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef enum e_validation
 # define E_INVALID_CLR	"Invalid color format: "
 # define E_INVALID_PT	"Invalid point value format: "
 # define E_INVALID_POS	"Invalid position format: "
+# define E_OUT_OF_RANGE	"Value out of range: "
 
 
 // ------------------------------------------------------------: utils
