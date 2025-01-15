@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   objects.h                                          :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/12/09 17:46:18 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2024/12/25 22:33:21 by quentinbeuk   ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   objects.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/09 17:46:18 by quentinbeuk       #+#    #+#             */
+/*   Updated: 2025/01/10 13:17:45 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # define TOKEN_COUNT_A		3
-# define TOKEN_COUNT_L		
+# define TOKEN_COUNT_L		3
 # define TOKEN_COUNT_C		4
 # define TOKEN_COUNT_SP		
-# define TOKEN_COUNT_P		
+# define TOKEN_COUNT_P		4
 # define TOKEN_COUNT_CY		
 
 typedef enum {
@@ -61,6 +61,22 @@ typedef struct s_camera
 	struct s_vect	*orientation;
 	unsigned int	fov;
 } t_camera;
+
+typedef struct s_light
+{
+	e_object		type;
+	struct s_vect	*position;
+	float			brightness;
+} t_light;
+
+typedef struct s_plane
+{
+	e_object		type;
+	struct s_vect	*position;
+	struct s_vect	*orientation;
+	struct s_color	*color;
+	struct s_plane	*next;
+} t_plane;
 
 
 

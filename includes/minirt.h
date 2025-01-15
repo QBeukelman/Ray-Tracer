@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   minirt.h                                           :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2024/12/26 00:24:26 by quentinbeuk   ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   minirt.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/09 17:46:23 by quentinbeuk       #+#    #+#             */
+/*   Updated: 2025/01/10 15:09:48 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef struct s_scene
 {
 	struct s_ambi	*ambi;
 	struct s_camera	*camera;
+	struct s_light	*light;
+	struct s_plane	*planes;
 } t_scene;
 
 
@@ -50,7 +52,6 @@ int		ft_parse(char *file_name);
 char	**split_string(char *str);
 
 
-
 // ------------------------------------------------------------: parse/build_objects
 // add_objects.c
 bool	add_object(t_scene *scene, char **tokens, e_object type);
@@ -62,16 +63,25 @@ bool	add_ambient_light(t_scene *scene, char **tokens);
 // build_camera.c
 bool	add_camera(t_scene *scene, char **tokens);
 
+// build_light.c
+bool 	add_light(t_scene *scene, char **tokens);
+
+// build_plane.c
+bool	add_plane(t_scene *scene, char **tokens);
+
 
 // ------------------------------------------------------------: parse/parse_components
 // build_color.c
 t_color		*parse_color(char *token);
 
+// build_int.c
+int		parse_int(char *str, int limit);
+
 // build_point_value.c
 float	parse_point_value(char *token);
 
 // build_position.c
-t_vect	*parse_position(char *token);
+t_vect	*parse_position(char *token, float limit);
 
 
 

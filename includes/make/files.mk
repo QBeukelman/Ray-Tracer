@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         ::::::::             #
-#    files.mk                                           :+:    :+:             #
-#                                                      +:+                     #
-#    By: quentinbeukelman <quentinbeukelman@stud      +#+                      #
-#                                                    +#+                       #
-#    Created: 2024/12/09 17:55:12 by quentinbeuk   #+#    #+#                  #
-#    Updated: 2024/12/26 00:24:53 by quentinbeuk   ########   odam.nl          #
+#                                                         :::      ::::::::    #
+#    files.mk                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/12/09 17:55:12 by quentinbeuk       #+#    #+#              #
+#    Updated: 2025/01/10 13:23:45 by qbeukelm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,11 @@ SOURCES_PARSER 				= parser.c \
 SOURCES_PARSER_VALIDATE		= add_object.c \
 								build_ambient_light.c \
 								build_camera.c \
+								build_light.c \
+								build_plane.c \
 
 SOURCES_PARSER_COMP			= build_color.c \
+								build_int.c \
 								build_point_value.c \
 								build_position.c \
 

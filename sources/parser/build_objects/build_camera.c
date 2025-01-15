@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   build_camera.c                                     :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/12/25 22:22:28 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2024/12/26 00:32:22 by quentinbeuk   ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   build_camera.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/25 22:22:28 by quentinbeuk       #+#    #+#             */
+/*   Updated: 2025/01/10 12:10:30 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ static t_camera		*build_camera(char **tokens)
 
 	camera = safe_malloc(sizeof(t_camera), "build_camera()");
 	camera->type = CAMERA;
-	camera->position = parse_position(tokens[1]);
+	camera->position = parse_position(tokens[1], 0.0);
+	camera->orientation = parse_position(tokens[2], 1.0);
+	camera->fov = parse_int(tokens[3], 180);
 
 	return (camera);
 }

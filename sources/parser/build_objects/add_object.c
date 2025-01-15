@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   add_object.c                                       :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/12/13 11:21:02 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2024/12/26 00:22:23 by quentinbeuk   ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   add_object.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/13 11:21:02 by quentinbeuk       #+#    #+#             */
+/*   Updated: 2025/01/10 13:11:11 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ bool	add_object(t_scene *scene, char **tokens, e_object type)
 		case AMBIENT_LIGHT:
 			return (add_ambient_light(scene, tokens));
 		case LIGHT:
-			return (SUCCESS);
+			return (add_light(scene, tokens));
 		case CAMERA:
 			return (add_camera(scene, tokens));
 		case SPHERE:
 			return (SUCCESS);
 		case PLANE:
-			return (SUCCESS);
+			return (add_plane(scene, tokens));
 		case CYLINDER:
 			return (SUCCESS);
 		default:
