@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:11:34 by qbeukelm          #+#    #+#             */
-/*   Updated: 2025/01/10 15:14:07 by qbeukelm         ###   ########.fr       */
+/*   Updated: 2025/01/17 18:55:01 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,31 +25,26 @@ static t_plane	*build_plane(char **tokens)
 	return (plane);
 }
 
-static bool append_plane(t_scene *scene, t_plane *new_plane)
+static t_plane		*list_last(t_plane *planes)
 {
-	t_plane		*current_plane;
+	while (planes->next != NULL)
+		planes = planes->next;
+	return (planes);
+}
 
-	current_plane = NULL;
+static void append_plane(t_scene *scene, t_plane *new_plane)
+{
+	t_plane		*root;
+	
+	root = scene->planes;
 	if (scene->planes == NULL)
 	{
 		scene->planes = new_plane;
-		return (SUCCESS);
+		return ;
 	}
 	else
-	{
-		current_plane = scene->planes;
-		printf("curr: %p\n", current_plane);
-		while (current_plane)
-		{
-			if (current_plane->next == NULL)
-			{
-				current_plane->next = new_plane;
-				return (SUCCESS);
-			}
-			current_plane = current_plane->next;
-		}
-	}
-	return (FAILURE);
+		list_last(scene->planes)->next = new_plane;
+	scene->planes = root;
 }
 
 bool	add_plane(t_scene *scene, char **tokens)
@@ -61,5 +56,3 @@ bool	add_plane(t_scene *scene, char **tokens)
 	append_plane(scene, build_plane(tokens));
 	return (SUCCESS);
 }
-
-

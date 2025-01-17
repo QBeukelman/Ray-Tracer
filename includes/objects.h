@@ -6,16 +6,16 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 17:46:18 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/01/10 13:17:45 by qbeukelm         ###   ########.fr       */
+/*   Updated: 2025/01/17 19:18:11 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # define TOKEN_COUNT_A		3
 # define TOKEN_COUNT_L		3
 # define TOKEN_COUNT_C		4
-# define TOKEN_COUNT_SP		
+# define TOKEN_COUNT_SP		4
 # define TOKEN_COUNT_P		4
-# define TOKEN_COUNT_CY		
+# define TOKEN_COUNT_CY		6
 
 typedef enum {
 	AMBIENT_LIGHT,
@@ -51,9 +51,6 @@ typedef struct s_ambi
 	t_color			*color;
 } t_ambi;
 
-/*
-	fov: field of view
-*/
 typedef struct s_camera
 {
 	e_object		type;
@@ -77,6 +74,26 @@ typedef struct s_plane
 	struct s_color	*color;
 	struct s_plane	*next;
 } t_plane;
+
+typedef struct s_sphere
+{
+	e_object		type;
+	struct s_vect	*position;
+	double			diameter;
+	struct s_color	*color;
+	struct s_sphere	*next;
+} t_sphere;
+
+typedef struct s_cylinder
+{
+	e_object			type;
+	struct s_vect		*position;
+	struct s_vect		*axis;
+	double				diameter;
+	double 				height;
+	struct s_color		*color;
+	struct s_cylinder	*next;
+} t_cylinder;
 
 
 

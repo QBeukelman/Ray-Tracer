@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 17:46:23 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/01/10 15:09:48 by qbeukelm         ###   ########.fr       */
+/*   Updated: 2025/01/17 19:17:30 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,12 @@
 // ------------------------------------------------------------: scene
 typedef struct s_scene
 {
-	struct s_ambi	*ambi;
-	struct s_camera	*camera;
-	struct s_light	*light;
-	struct s_plane	*planes;
+	struct s_ambi		*ambi;
+	struct s_camera		*camera;
+	struct s_light		*light;
+	struct s_plane		*planes;
+	struct s_sphere		*spheres;
+	struct s_cylinder	*cylinders;
 } t_scene;
 
 
@@ -51,23 +53,29 @@ int		ft_parse(char *file_name);
 // splic_strings.c
 char	**split_string(char *str);
 
-
-// ------------------------------------------------------------: parse/build_objects
 // add_objects.c
 bool	add_object(t_scene *scene, char **tokens, e_object type);
 int		count_tokens(char **tokens);
 
+
+// ------------------------------------------------------------: parse/build_objects
 // build_ambient_light.c
 bool	add_ambient_light(t_scene *scene, char **tokens);
 
 // build_camera.c
 bool	add_camera(t_scene *scene, char **tokens);
 
+// build_cylinder.c
+bool	add_cylinder(t_scene *scene, char **tokens);
+
 // build_light.c
 bool 	add_light(t_scene *scene, char **tokens);
 
 // build_plane.c
 bool	add_plane(t_scene *scene, char **tokens);
+
+// build_sphere.c
+bool	add_sphere(t_scene *scene, char **tokens);
 
 
 // ------------------------------------------------------------: parse/parse_components

@@ -6,11 +6,11 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 11:21:02 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/01/10 13:11:11 by qbeukelm         ###   ########.fr       */
+/*   Updated: 2025/01/17 19:28:15 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/minirt.h"
+#include "../../includes/minirt.h"
 
 bool	add_object(t_scene *scene, char **tokens, e_object type)
 {
@@ -23,11 +23,11 @@ bool	add_object(t_scene *scene, char **tokens, e_object type)
 		case CAMERA:
 			return (add_camera(scene, tokens));
 		case SPHERE:
-			return (SUCCESS);
+			return (add_sphere(scene, tokens));
 		case PLANE:
 			return (add_plane(scene, tokens));
 		case CYLINDER:
-			return (SUCCESS);
+			return (add_cylinder(scene, tokens));
 		default:
 			return (FAILURE);
 	}
