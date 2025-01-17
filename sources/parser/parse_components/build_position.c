@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 23:29:33 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/01/10 12:07:47 by qbeukelm         ###   ########.fr       */
+/*   Updated: 2025/01/17 18:46:47 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,9 @@ static t_vect	*build_position(char **pos_vals, float limit)
 	return (vec);
 }
 
+/*
+	Limit: 0.0 is no limit
+*/
 t_vect	*parse_position(char *token, float limit)
 {
 	char	**position_values;

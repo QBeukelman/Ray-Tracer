@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 22:09:42 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/01/10 15:05:06 by qbeukelm         ###   ########.fr       */
+/*   Updated: 2025/01/17 19:35:12 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 static void print_color(t_color *color)
 {
-	printf("\tCol: \t %d, %d, %d\n", color->r, color->g, color->b);
+	printf("\tCol: \t%d, %d, %d\n", color->r, color->g, color->b);
 }
 
 static void print_ambi(t_ambi *ambi)
 {
 	printf("[%s]\n", objects_to_name(ambi->type));
-	printf("\tAmbi: \t %.1f\n", ambi->ambi_ratio);
+	printf("\tAmbi: \t%.1f\n", ambi->ambi_ratio);
 	print_color(ambi->color);
 	printf("\n");
 }
@@ -57,15 +57,67 @@ static void print_plane(t_plane *plane)
 	printf("\tDir: \t");
 	print_vector(plane->orientation);
 	print_color(plane->color);
+	printf("\n");
 }
 
-static void	print_planes(t_plane *plane)
+static void	print_planes(t_plane *planes)
 {
-	printf("PLANE: %p\n", plane);
-	while (plane)
+	t_plane		*current;
+
+	current = planes;
+	while (current)
 	{
-		print_plane(plane);
-		plane = plane->next;
+		print_plane(current);
+		current = current->next;
+	}
+}
+
+// ------------------- Spheres --------------
+static void	print_sphere(t_sphere *sphere)
+{
+	printf("[%s]\n", objects_to_name(sphere->type));
+	printf("\tPos: \t");
+	print_vector(sphere->position);
+	printf("\tDiam: \t%.1f\n", sphere->diameter);
+	print_color(sphere->color);
+	printf("\n");
+}
+
+static void	print_spheres(t_sphere *spheres)
+{
+	t_sphere	*current;
+
+	current = spheres;
+	while (current)
+	{
+		print_sphere(current);
+		current = current->next;
+	}
+}
+
+// ------------------- Cylinders --------------
+static void	print_cylinder(t_cylinder *cylinder)
+{
+	printf("[%s]\n", objects_to_name(cylinder->type));
+	printf("\tPos: \t");
+	print_vector(cylinder->position);
+	printf("\tAxis: \t");
+	print_vector(cylinder->axis);
+	printf("\tDiam: \t%.1f\n",(cylinder->diameter));
+	printf("\tHeig: \t%.1f\n",(cylinder->height));
+	print_color(cylinder->color);
+	printf("\n");
+}
+
+static void print_cylinders(t_cylinder *cylinders)
+{
+	t_cylinder	*current;
+
+	current = cylinders;
+	while (current)
+	{
+		print_cylinder(current);
+		current = current->next;
 	}
 }
 
@@ -76,4 +128,6 @@ void	print_scene(t_scene *scene)
 	print_camera(scene->camera);
 	print_light(scene->light);
 	print_planes(scene->planes);
+	print_spheres(scene->spheres);
+	print_cylinders(scene->cylinders);
 }

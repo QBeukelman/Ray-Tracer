@@ -6,13 +6,13 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 19:18:55 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/01/10 15:09:35 by qbeukelm         ###   ########.fr       */
+/*   Updated: 2025/01/17 19:34:10 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-bool	save_object(t_scene *scene, char **tokens, e_object type)
+static bool	save_object(t_scene *scene, char **tokens, e_object type)
 {
 	int		i = 0;
 
@@ -27,7 +27,7 @@ bool	save_object(t_scene *scene, char **tokens, e_object type)
 	return (true);
 }
 
-bool	process_line(t_scene *scene, char *line)
+static bool	process_line(t_scene *scene, char *line)
 {
 	char		**tokens;
 	e_object	object_type;
@@ -43,6 +43,19 @@ bool	process_line(t_scene *scene, char *line)
 	return (save_object(scene, tokens, object_type));
 }
 
+static t_scene		*init_scene(void)
+{
+	t_scene		*scene;
+
+	scene = safe_malloc(sizeof(t_scene), "build_scene()");
+	scene->ambi = NULL;
+	scene->camera = NULL;
+	scene->light = NULL;
+	scene->planes = NULL;
+	scene->spheres = NULL;
+	scene->cylinders = NULL;
+}
+
 t_scene		*build_scene(char *file_name)
 {
 	int			fd;
@@ -50,7 +63,7 @@ t_scene		*build_scene(char *file_name)
 	t_scene		*scene;
 
 	fd = safe_open(file_name, O_RDONLY);
-	scene = safe_malloc(sizeof(scene), "build_scene()");
+	scene = init_scene();
 	while ((line = get_next_line(fd)) != NULL)
 	{
 		if (line[0] != '\n')

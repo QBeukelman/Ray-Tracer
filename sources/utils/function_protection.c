@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   function_protection.c                              :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/12/11 13:06:48 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2024/12/11 15:33:18 by quentinbeuk   ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   function_protection.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/11 13:06:48 by quentinbeuk       #+#    #+#             */
+/*   Updated: 2025/01/17 17:54:32 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,6 @@ void	*safe_malloc(size_t size, char *func_name)
 	ptr = NULL;
 	ptr = malloc(size);
 	if (ptr == NULL)
-	{
-		free (ptr);
 		exit_with_message(E_MALLOC, func_name, EXIT_FAILURE);
-	}
 	return (ptr);
 }

@@ -6,23 +6,25 @@
 #    By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/09 17:55:12 by quentinbeuk       #+#    #+#              #
-#    Updated: 2025/01/10 13:23:45 by qbeukelm         ###   ########.fr        #
+#    Updated: 2025/01/17 19:17:51 by qbeukelm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # ===== Sources =====
 SOURCES						= main.c \
 
-SOURCES_PARSER 				= parser.c \
+SOURCES_PARSER 				= add_object.c \
 								build_scene.c \
+								parser.c \
 								scene_objects.c \
 								split_string.c \
 
-SOURCES_PARSER_VALIDATE		= add_object.c \
-								build_ambient_light.c \
+SOURCES_PARSER_VALIDATE		= build_ambient_light.c \
 								build_camera.c \
+								build_cylinder.c \
 								build_light.c \
 								build_plane.c \
+								build_sphere.c \
 
 SOURCES_PARSER_COMP			= build_color.c \
 								build_int.c \
