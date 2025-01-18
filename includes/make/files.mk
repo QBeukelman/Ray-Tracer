@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         :::      ::::::::    #
-#    files.mk                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/12/09 17:55:12 by quentinbeuk       #+#    #+#              #
-#    Updated: 2025/01/10 13:23:45 by qbeukelm         ###   ########.fr        #
+#                                                         ::::::::             #
+#    files.mk                                           :+:    :+:             #
+#                                                      +:+                     #
+#    By: hesmolde <hesmolde@student.42.fr>            +#+                      #
+#                                                    +#+                       #
+#    Created: 2024/12/09 17:55:12 by quentinbeuk   #+#    #+#                  #
+#    Updated: 2025/01/17 17:07:05 by hesmolde      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,11 +33,14 @@ SOURCES_UTILS				= error.c \
 								function_protection.c \
 								print_scene.c \
 
+SOURCES_RAYTRACER			= init_window.c \
+
 # ===== Manage Directories =====
 DIR_SOURCES					= sources
 DIR_SOURCES_PARSER			= sources/parser
 DIR_SOURCES_PARSER_VALIDATE	= sources/parser/build_objects
 DIR_SOURCES_PARSER_COMP		= sources/parser/parse_components
+DIR_SOURCES_RAYTRACER		= sources/raytracer
 DIR_SOURCES_UTILS			= sources/utils
 
 # ===== Object Files =====
@@ -45,4 +48,5 @@ OBJ = $(addprefix $(DIR_OBJ)/, $(SOURCES:.c=.o)) \
 	$(addprefix $(DIR_OBJ)/, $(SOURCES_PARSER:.c=.o)) \
 	$(addprefix $(DIR_OBJ)/, $(SOURCES_PARSER_VALIDATE:.c=.o)) \
 	$(addprefix $(DIR_OBJ)/, $(SOURCES_PARSER_COMP:.c=.o)) \
+	$(addprefix $(DIR_OBJ)/, $(SOURCES_RAYTRACER:.c=.o)) \
 	$(addprefix $(DIR_OBJ)/, $(SOURCES_UTILS:.c=.o)) \

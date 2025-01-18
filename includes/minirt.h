@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/09 17:46:23 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/01/10 15:09:48 by qbeukelm         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   minirt.h                                           :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
+/*   Updated: 2025/01/17 17:09:04 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define MINIRT_H
 
 #include "libft/includes/libft.h"
+#include "MLX42/include/MLX42/MLX42.h"
 #include "errors.h"
 #include "objects.h"
 
@@ -29,6 +30,16 @@
 # define C_RED "\x1B[1;31m"
 # define RESET_COLOR "\033[0m"
 
+// ------------------------------------------------------------: window
+# define HIGHT 1000
+# define WIDTH 1600
+
+// ------------------------------------------------------------: data
+typedef struct s_data
+{
+	mlx_t			*mlx;
+	mlx_image_t		*img;
+} t_data;
 
 // ------------------------------------------------------------: scene
 typedef struct s_scene
@@ -82,6 +93,9 @@ float	parse_point_value(char *token);
 
 // build_position.c
 t_vect	*parse_position(char *token, float limit);
+
+// ------------------------------------------------------------: initialization
+void	init_mlx(t_data *data);
 
 
 
