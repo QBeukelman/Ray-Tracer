@@ -6,7 +6,7 @@
 #    By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/09 17:42:12 by quentinbeuk       #+#    #+#              #
-#    Updated: 2025/01/10 11:12:01 by qbeukelm         ###   ########.fr        #
+#    Updated: 2025/01/19 12:58:27 by qbeukelm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ endif
 all: $(NAME_EXECUTABLE)
 
 $(NAME_EXECUTABLE): submodules-checked $(OBJ)
-	@echo "$(BLUE)Making miniRT ...\n$(RESET)"
+	@echo "$(BLUE)\nMaking miniRT ...\n$(RESET)"
 	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME_EXECUTABLE) $(MLX42)
 	@echo "$(GREEN)Compile successful\n$(RESET)"
 
@@ -60,6 +60,9 @@ $(DIR_OBJ)/%.o: $(DIR_SOURCES_PARSER)/%.c | $(DIR_OBJ)
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 $(DIR_OBJ)/%.o: $(DIR_SOURCES_PARSER_VALIDATE)/%.c | $(DIR_OBJ)
+	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
+
+$(DIR_OBJ)/%.o: $(DIR_SOURCES_PARSER_CLEAN)/%.c | $(DIR_OBJ)
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 $(DIR_OBJ)/%.o: $(DIR_SOURCES_PARSER_COMP)/%.c | $(DIR_OBJ)
@@ -92,7 +95,7 @@ re: fclean all
 # ===== Valgrind =====
 valgrind: all
 	@echo "$(BLUE)\nTo create a Valgrind executable, run the following command:\n$(RESET)"
-	@echo "export EXEC_VALGRIND="valgrind --suppressions=MLX42.supp --leak-check=full --show-leak-kinds=all ./miniRT"
+	@echo "export EXEC_VALGRIND="valgrind --suppressions=MLX42.supp --leak-check=full --show-leak-kinds=all ./miniRT""
 	@echo "$(GREEN)\nRun $$EXEC_VALGRIND <file_name.rt> to execute with Valgrind.\n$(RESET)"
 
 .PHONY: all clean submodules

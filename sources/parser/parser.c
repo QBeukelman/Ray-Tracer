@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 17:46:02 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/01/10 15:13:24 by qbeukelm         ###   ########.fr       */
+/*   Updated: 2025/01/19 17:16:18 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,12 @@ int	ft_parse(char *file_name)
 
 	// ! 1. check file extension
 	scene = build_scene(file_name);
+	if (scene == NULL)
+	{
+		show_error("Failed to open scene: ", file_name);
+		return (FAILURE);
+	}
 	print_scene(scene);
-	scene->planes = NULL;
-	free (scene);
-
+	free_scene(scene);
 	return (0);
 }

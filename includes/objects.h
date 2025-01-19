@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 17:46:18 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/01/17 19:18:11 by qbeukelm         ###   ########.fr       */
+/*   Updated: 2025/01/19 11:59:07 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # define TOKEN_COUNT_P		4
 # define TOKEN_COUNT_CY		6
 
+
 typedef enum {
 	AMBIENT_LIGHT,
 	LIGHT,
@@ -26,6 +27,7 @@ typedef enum {
 	CYLINDER,
 	NUM_OBJECTS
 } e_object;
+
 
 // ------------------------------------------------------------: components
 typedef struct s_color
@@ -94,7 +96,6 @@ typedef struct s_cylinder
 	struct s_color		*color;
 	struct s_cylinder	*next;
 } t_cylinder;
-
 
 
 // ------------------------------------------------------------: parse

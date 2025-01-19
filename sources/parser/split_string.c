@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   split_string.c                                     :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/12/11 22:00:28 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2024/12/11 23:51:34 by quentinbeuk   ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   split_string.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/11 22:00:28 by quentinbeuk       #+#    #+#             */
+/*   Updated: 2025/01/19 15:53:42 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,11 @@ static char **assign_strings(char **split, char *str, int len)
 		i = extract_word(str, buffer, i, len);
 		if (buffer[0] != '\0')
 		{
-			split[string_index] = safe_malloc(sizeof(char *) \
-				* ft_strlen(buffer) + 1, "assign_substrings()");
 			split[string_index] = ft_strdup(buffer);
 			string_index++;
 		}
 	}
-	split[string_index] = 0;
+	split[string_index] = NULL;
 	return (split);
 }
 
@@ -97,7 +95,7 @@ char **split_string(char *str)
 
 	len = ft_strlen(str);
     count = count_substrings(str, len);
-	split = safe_malloc((sizeof(char *) * count + 1), "split_string()");
+	split = safe_malloc((sizeof(char *) * (count + 1)), "split_string()");
 	split = assign_strings(split, str, len);
     return (split);
 }

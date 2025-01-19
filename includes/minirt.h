@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 17:46:23 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/01/17 19:17:30 by qbeukelm         ###   ########.fr       */
+/*   Updated: 2025/01/19 15:10:24 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 #include <stdbool.h>
 #include <fcntl.h>
 #include <stdint.h>
+#include <math.h>
 
 // ------------------------------------------------------------: colors
 # define C_YELLOW "\033[1;33m"
@@ -43,8 +44,8 @@ typedef struct s_scene
 
 
 // ------------------------------------------------------------: parse
-
 // build_scene.c
+int			count_tokens(char **tokens);
 t_scene		*build_scene(char *file_name);
 
 // parser.c
@@ -52,10 +53,6 @@ int		ft_parse(char *file_name);
 
 // splic_strings.c
 char	**split_string(char *str);
-
-// add_objects.c
-bool	add_object(t_scene *scene, char **tokens, e_object type);
-int		count_tokens(char **tokens);
 
 
 // ------------------------------------------------------------: parse/build_objects
@@ -78,6 +75,12 @@ bool	add_plane(t_scene *scene, char **tokens);
 bool	add_sphere(t_scene *scene, char **tokens);
 
 
+// ------------------------------------------------------------: parse/clean_up
+// memory_cleanup.c
+void	free_split(char **split);
+void	free_scene(t_scene *scene);
+
+
 // ------------------------------------------------------------: parse/parse_components
 // build_color.c
 t_color		*parse_color(char *token);
@@ -90,7 +93,6 @@ float	parse_point_value(char *token);
 
 // build_position.c
 t_vect	*parse_position(char *token, float limit);
-
 
 
 // ------------------------------------------------------------: utils

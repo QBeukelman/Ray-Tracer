@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   build_ambient_light.c                              :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/12/16 19:31:43 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2024/12/25 22:05:59 by quentinbeuk   ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   build_ambient_light.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/16 19:31:43 by quentinbeuk       #+#    #+#             */
+/*   Updated: 2025/01/19 14:43:14 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,39 @@
 static t_ambi	*build_ambi(char **tokens)
 {
 	t_ambi		*ambi;
+	float		ambi_ratio;
+	t_color		*color;
 
-	ambi = safe_malloc(sizeof(t_ambi), "build_ambi()");
+	ambi = malloc(sizeof(t_ambi));
+	if (ambi == NULL)
+	{
+		show_error(E_MALLOC, "build_ambi()");
+		return (NULL);	
+	}
 	ambi->type = AMBIENT_LIGHT;
-	ambi->ambi_ratio = parse_point_value(tokens[1]);
-	ambi->color = parse_color(tokens[2]);
+	ambi_ratio = parse_point_value(tokens[1]);
+	if (ambi_ratio == NAN)
+		return (NULL);
+	ambi->ambi_ratio = ambi_ratio;
+	color = parse_color(tokens[2]);
+	if (color == NULL)
+		return (NULL);
+	ambi->color = color;
 	return (ambi);
 }
 
 bool	add_ambient_light(t_scene *scene, char **tokens)
 {
+	t_ambi		*ambi;
+	
 	if (count_tokens(tokens) != TOKEN_COUNT_A)
-		exit_with_message(E_TOKEN_COUNT, objects_to_name(AMBIENT_LIGHT), X_FAILURE);
-	scene->ambi = build_ambi(tokens);
+	{
+		show_error(E_TOKEN_COUNT, objects_to_name(AMBIENT_LIGHT));
+		return (FAILURE);
+	}
+	ambi = build_ambi(tokens);
+	if (ambi == NULL)
+		return (FAILURE);
+	scene->ambi = ambi;
 	return (SUCCESS);
 }

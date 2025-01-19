@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 22:09:42 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/01/17 19:35:12 by qbeukelm         ###   ########.fr       */
+/*   Updated: 2025/01/19 15:57:35 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,10 +124,16 @@ static void print_cylinders(t_cylinder *cylinders)
 void	print_scene(t_scene *scene)
 {
 	printf("\n========= [Scene] =========\n\n");
-	print_ambi(scene->ambi);
-	print_camera(scene->camera);
-	print_light(scene->light);
-	print_planes(scene->planes);
-	print_spheres(scene->spheres);
-	print_cylinders(scene->cylinders);
+	if (scene->ambi)
+		print_ambi(scene->ambi);
+	if (scene->camera)
+		print_camera(scene->camera);
+	if (scene->light)
+		print_light(scene->light);
+	if (scene->planes)
+		print_planes(scene->planes);
+	if (scene->spheres)
+		print_spheres(scene->spheres);
+	if (scene->cylinders)
+		print_cylinders(scene->cylinders);
 }
