@@ -6,21 +6,42 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:33:11 by qbeukelm          #+#    #+#             */
-/*   Updated: 2025/01/17 19:27:57 by qbeukelm         ###   ########.fr       */
+/*   Updated: 2025/01/19 17:12:38 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minirt.h"
 
+static t_sphere		*free_sphere(t_sphere *sphere)
+{
+	if (sphere->position)
+		free (sphere->position);
+	if (sphere->color)
+		free (sphere->color);
+	free (sphere);
+	return (NULL);
+}
+
 static t_sphere		*build_sphere(char **tokens)
 {
 	t_sphere	*sphere;
+	t_vect		*position;
+	t_color		*color;
 
-	sphere = safe_malloc(sizeof(t_sphere), "build_sphere()");
+	sphere = malloc(sizeof(t_sphere));
+	if (sphere == NULL)
+	{
+		show_error(E_MALLOC, "build_sphere()");
+		return (NULL);
+	} 
 	sphere->type = SPHERE;
-	sphere->position = parse_position(tokens[1], 0.0);
-	sphere->diameter = ft_strtof(tokens[2], NULL); // ! Add checks to ft_strtof
-	sphere->color = parse_color(tokens[3]);
+	position = parse_position(tokens[1], 0.0);
+	color = parse_color(tokens[3]);
+	if (!position || !color)
+		return (free_sphere(sphere));
+	sphere->position = position;
+	sphere->diameter = ft_strtof(tokens[2], NULL);
+	sphere->color = color;
 	sphere->next = NULL;
 	return (sphere);
 }
@@ -49,10 +70,16 @@ static void		append_sphere(t_scene *scene, t_sphere *new_sphere)
 
 bool	add_sphere(t_scene *scene, char **tokens)
 {
+	t_sphere	*new_sphere;
+	
 	if (count_tokens(tokens) != TOKEN_COUNT_SP)
-		exit_with_message(E_TOKEN_COUNT, objects_to_name(SPHERE), \
-			X_FAILURE);
-
-	append_sphere(scene, build_sphere(tokens));
-	return (SUCCESS);	
+	{
+		show_error(E_TOKEN_COUNT, objects_to_name(SPHERE));
+		return (FAILURE);
+	}
+	new_sphere = build_sphere(tokens);
+	if (new_sphere == NULL)
+		return (FAILURE);
+	append_sphere(scene, new_sphere);
+	return (SUCCESS);
 }

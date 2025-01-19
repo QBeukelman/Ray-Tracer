@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 12:50:34 by qbeukelm          #+#    #+#             */
-/*   Updated: 2025/01/10 13:08:10 by qbeukelm         ###   ########.fr       */
+/*   Updated: 2025/01/19 15:04:35 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,39 @@
 static t_light	*build_light(char **tokens)
 {
 	t_light		*light;
+	t_vect		*position;
+	float		brightness;
 
-	light = safe_malloc(sizeof(t_light), "build_light()");
+	light = malloc(sizeof(t_light));
+	if (light == NULL)
+	{
+		show_error(E_MALLOC, "build_light()");
+		return (NULL);
+	} 
 	light->type = LIGHT;
-	light->position = parse_position(tokens[1], 0.0);
-	light->brightness = parse_point_value(tokens[2]);
+	position = parse_position(tokens[1], 0.0);
+	if (position == NULL)
+		return (NULL);
+	light->position = position;
+	brightness = parse_point_value(tokens[2]);
+	if (brightness == NAN)
+		return (NULL);
+	light->brightness = brightness;
 	return (light);
 }
 
 bool add_light(t_scene *scene, char **tokens)
 {
+	t_light		*light;
+	
 	if (count_tokens(tokens) != TOKEN_COUNT_L)
-		exit_with_message(E_TOKEN_COUNT, objects_to_name(LIGHT), \
-			X_FAILURE);
-	scene->light = build_light(tokens);
+	{
+		show_error(E_TOKEN_COUNT, objects_to_name(LIGHT));
+		return (FAILURE);
+	}
+	light = build_light(tokens);
+	if (light == NULL)
+		return (FAILURE);
+	scene->light = light;
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 17:46:26 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/01/10 11:58:32 by qbeukelm         ###   ########.fr       */
+/*   Updated: 2025/01/19 16:34:15 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef enum e_validation
 
 // ------------------------------------------------------------: utils
 // error.c
-int	show_error(char *error, char *arg);
-int	exit_with_message(char *error, char *arg, int exit_code);
+int		show_error(char *error, char *arg);
+int		exit_with_message(char *error, char *arg, int exit_code); // ! Do not use
 
 #endif
