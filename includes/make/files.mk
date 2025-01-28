@@ -6,7 +6,7 @@
 #    By: hesmolde <hesmolde@student.42.fr>            +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/12/09 17:55:12 by quentinbeuk   #+#    #+#                  #
-#    Updated: 2025/01/17 17:07:05 by hesmolde      ########   odam.nl          #
+#    Updated: 2025/01/28 17:43:30 by hesmolde      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,8 +32,12 @@ SOURCES_PARSER_COMP			= build_color.c \
 SOURCES_UTILS				= error.c \
 								function_protection.c \
 								print_scene.c \
+								vector.c \
+								vector2.c \
 
-SOURCES_RAYTRACER			= init_window.c \
+SOURCES_RAYTRACER			= init_camera.c \
+								init_window.c \
+								
 
 # ===== Manage Directories =====
 DIR_SOURCES					= sources

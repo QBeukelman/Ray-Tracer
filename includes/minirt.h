@@ -6,24 +6,27 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/01/17 17:09:04 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/01/28 17:37:53 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
-#define MINIRT_H
+# define MINIRT_H
 
-#include "libft/includes/libft.h"
-#include "MLX42/include/MLX42/MLX42.h"
-#include "errors.h"
-#include "objects.h"
+# include "libft/includes/libft.h"
+# include "MLX42/include/MLX42/MLX42.h"
+# include "errors.h"
+# include "objects.h"
+# include "vector.h"
+# include "camera.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdbool.h>
-#include <fcntl.h>
-#include <stdint.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdbool.h>
+# include <fcntl.h>
+# include <stdint.h>
+# include <math.h>
 
 // ------------------------------------------------------------: colors
 # define C_YELLOW "\033[1;33m"
@@ -31,7 +34,7 @@
 # define RESET_COLOR "\033[0m"
 
 // ------------------------------------------------------------: window
-# define HIGHT 1000
+# define HEIGHT 1000
 # define WIDTH 1600
 
 // ------------------------------------------------------------: data
