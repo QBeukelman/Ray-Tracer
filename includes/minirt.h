@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/01/28 17:37:53 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/01/30 17:00:48 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@
 # define RESET_COLOR "\033[0m"
 
 // ------------------------------------------------------------: window
-# define HEIGHT 1000
-# define WIDTH 1600
+# define HEIGHT 500
+# define WIDTH 800
 
 // ------------------------------------------------------------: data
 typedef struct s_data
@@ -99,6 +99,8 @@ t_vect	*parse_position(char *token, float limit);
 
 // ------------------------------------------------------------: initialization
 void	init_mlx(t_data *data);
+void	render_image(t_data *d, t_camera_data *c);
+int		get_rgba(int r, int g, int b, int a);
 
 
 

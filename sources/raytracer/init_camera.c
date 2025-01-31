@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/28 12:28:00 by hesmolde      #+#    #+#                 */
-/*   Updated: 2025/01/28 22:05:44 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/01/28 23:54:19 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,16 @@ t_ray	calculate_ray_direction(t_camera_data *c, int x, int y)
 {
 	double		current_x_offset;
 	double		current_y_offset;
+	t_vector	three_d_pixel;
 	t_ray		new_ray;
 
 	new_ray.origin = c->position;
 	current_x_offset = x * c->viewport.x_off;
 	current_y_offset = (HEIGHT - y) * c->viewport.y_off;
-	new_ray.direction = vec_add(c->viewport.bottomleft, vec_scale(c->R, current_x_offset));
-	new_ray.direction = vec_add(c->viewport.bottomleft, vec_scale(c->U, current_y_offset));
+	three_d_pixel = vec_add(c->viewport.bottomleft, vec_scale(c->R, current_x_offset));
+	three_d_pixel = vec_add(three_d_pixel, vec_scale(c->U, current_y_offset));
+	new_ray.raw_direction = vec_sub(three_d_pixel, c->position);
+	new_ray.direction = vec_normalize(new_ray.raw_direction);
 	return (new_ray);
 }
 

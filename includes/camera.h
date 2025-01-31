@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/28 12:14:34 by hesmolde      #+#    #+#                 */
-/*   Updated: 2025/01/28 22:05:58 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/01/30 16:44:40 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,19 @@
 
 # include "minirt.h"
 # include "vector.h"
+
+typedef struct s_pixel
+{
+	int	x;
+	int	y;
+} t_pixel;
+
+typedef struct s_rgb
+{
+	double	r;
+	double	g;
+	double	b;
+}	t_rgb;
 
 typedef struct s_viewport
 {

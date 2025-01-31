@@ -6,7 +6,7 @@
 #    By: hesmolde <hesmolde@student.42.fr>            +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/12/09 17:42:12 by quentinbeuk   #+#    #+#                  #
-#    Updated: 2025/01/17 17:05:48 by hesmolde      ########   odam.nl          #
+#    Updated: 2025/01/31 15:52:39 by hein          ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,9 @@ include includes/make/files.mk
 
 
 # ===== Names =====
-CC 				= gcc
-CFlags 			= -Wall -Werror -Wextra 
+CC 				= cc
+# CFLAGS 			= -Wall -Werror -Wextra -fsanitize=address
+CFLAGS 			= -fsanitize=address
 
 NAME_EXECUTABLE = miniRT
 
@@ -43,7 +44,6 @@ ifeq ($(UNAME_S),Darwin)
     MLX42 = ./includes/MLX42/build/libmlx42.a -L$(BREW_PREFIX)/lib -lglfw $(FRAMEWORKS)
     CFLAGS = -I$(BREW_PREFIX)/include
 endif
-
 
 # ===== Rules =====
 all: $(NAME_EXECUTABLE)

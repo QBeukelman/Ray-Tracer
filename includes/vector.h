@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/27 17:14:14 by hesmolde      #+#    #+#                 */
-/*   Updated: 2025/01/28 21:14:48 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/01/30 15:13:16 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_ray
 {
 	struct s_vector	origin;
 	struct s_vector	direction;
+	struct s_vector raw_direction;
 }	t_ray;
 
 t_vector	vec_add(t_vector a, t_vector b);
