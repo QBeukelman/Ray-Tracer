@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/28 12:14:34 by hesmolde      #+#    #+#                 */
-/*   Updated: 2025/01/30 16:44:40 by hein          ########   odam.nl         */
+/*   Updated: 2025/02/02 18:04:13 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_camera_data
 {
 	double		aspect_ratio;
 	int			FOV;
+	double		FOV_radians;
 	t_vector	position;
 	t_vector	global_up;
 	t_vector	F;

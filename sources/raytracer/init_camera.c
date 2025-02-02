@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/28 12:28:00 by hesmolde      #+#    #+#                 */
-/*   Updated: 2025/01/28 23:54:19 by hein          ########   odam.nl         */
+/*   Updated: 2025/02/02 18:04:42 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,10 @@ void	init_viewport(t_camera_data *c)
 {
 	t_vector	height_scaled;
 	t_vector	width_scaled;
-	double		FOV_radians;
 
 	c->viewport.D = 1.0;
-	FOV_radians = c->FOV * 0.0174533;
-	c->viewport.height = 2 * c->viewport.D * tan(FOV_radians / 2);
+	c->FOV_radians = c->FOV * 0.0174533;
+	c->viewport.height = 2 * c->viewport.D * tan(c->FOV_radians / 2);
 	c->viewport.width = c->viewport.height * c->aspect_ratio;
 	c->viewport.center = vec_add(vec_scale(c->position, c->viewport.D), c->F);
 	c->viewport.x_off = c->viewport.width / WIDTH;

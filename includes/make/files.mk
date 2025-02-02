@@ -6,7 +6,7 @@
 #    By: hesmolde <hesmolde@student.42.fr>            +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/12/09 17:55:12 by quentinbeuk   #+#    #+#                  #
-#    Updated: 2025/01/30 16:36:17 by hein          ########   odam.nl          #
+#    Updated: 2025/02/02 18:17:52 by hesmolde      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,8 @@ SOURCES_UTILS				= error.c \
 
 SOURCES_RAYTRACER			= init_camera.c \
 								init_window.c \
-								pixel_loop.c
+								pixel_loop.c \
+								background.c \
 								
 
 # ===== Manage Directories =====

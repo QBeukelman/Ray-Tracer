@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:42:04 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/01/31 15:57:10 by hein          ########   odam.nl         */
+/*   Updated: 2025/02/02 19:45:13 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,31 +24,31 @@ int main(int argc, char **argv)
 	(void)argc;
 	(void)argv;
 	t_data			data;
-	// t_camera_data	camera;
+	t_camera_data	camera;
 	
 	ft_memset(&data, 0, sizeof(data));
 	init_mlx(&data);
-	// init_camera_data(&camera);
+	init_camera_data(&camera);
 	// printf("viewport center x[%f] y[%f] z[%f]\n", camera.viewport.center.x, camera.viewport.center.y, camera.viewport.center.z);
 	// printf("bx[%f] by[%f] bz[%f]\n", camera.viewport.bottomleft.x, camera.viewport.bottomleft.y, camera.viewport.bottomleft.z);
 	// printf("aspect ratio[%f]", camera.aspect_ratio);
-	// t_ray new = calculate_ray_direction(&camera, 800, 500);
-	// printf("output for pixel 800,500\n");
-	// printf("ray.x[%f] ray.y[%f] ray.z[%f]\n", new.raw_direction.x, new.raw_direction.y, new.raw_direction.z);
-	// new = calculate_ray_direction(&camera, 1599, 0);
-	// printf("output for pixel 1599,0\n");
-	// printf("ray.x[%f] ray.y[%f] ray.z[%f]\n", new.raw_direction.x, new.raw_direction.y, new.raw_direction.z);
-	// new = calculate_ray_direction(&camera, 1599, 999);
-	// printf("output for pixel 1599,999\n");
-	// printf("ray.x[%f] ray.y[%f] ray.z[%f]\n", new.raw_direction.x, new.raw_direction.y, new.raw_direction.z);
-	// new = calculate_ray_direction(&camera, 0, 999);
-	// printf("output for pixel 0,999\n");
-	// printf("ray.x[%f] ray.y[%f] ray.z[%f]\n", new.raw_direction.x, new.raw_direction.y, new.raw_direction.z);
-	
+	// t_ray new = calculate_ray_direction(&camera, 0, 0);
+	// printf("output for pixel 0,0\n");
+	// printf("ray.x[%f] ray.y[%f] ray.z[%f]\n", new.direction.x, new.direction.y, new.direction.z);
+	// new = calculate_ray_direction(&camera, 799, 0);
+	// printf("output for pixel 799,0\n");
+	// printf("ray.x[%f] ray.y[%f] ray.z[%f]\n", new.direction.x, new.direction.y, new.direction.z);
+	// new = calculate_ray_direction(&camera, 799, 499);
+	// printf("output for pixel 799,499\n");
+	// printf("ray.x[%f] ray.y[%f] ray.z[%f]\n", new.direction.x, new.direction.y, new.direction.z);
+	// new = calculate_ray_direction(&camera, 0, 499);
+	// printf("output for pixel 0,499\n");
+	// printf("ray.x[%f] ray.y[%f] ray.z[%f]\n", new.direction.x, new.direction.y, new.direction.z);
+	// exit(0);
 	// new.direction = vec_normalize(new.direction);
 	// printf("normalized ray.x[%f] ray.y[%f] ray.y[%f]\n", new.direction.x, new.direction.y, new.direction.y);
 	// exit(0);
-	// render_image(&data, &camera);
+	render_image(&data, &camera);
 	if (data.mlx == NULL)
 	{
 		printf("MLX = NULL");

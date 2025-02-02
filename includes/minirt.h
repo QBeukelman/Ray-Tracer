@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/01/30 17:00:48 by hein          ########   odam.nl         */
+/*   Updated: 2025/02/02 18:16:45 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,14 @@ t_vect	*parse_position(char *token, float limit);
 
 // ------------------------------------------------------------: initialization
 void	init_mlx(t_data *data);
-void	render_image(t_data *d, t_camera_data *c);
-int		get_rgba(int r, int g, int b, int a);
 
+// ------------------------------------------------------------: render_image
+void	render_image(t_data *d, t_camera_data *c);
+
+// ------------------------------------------------------------: background
+int		get_rgba(int r, int g, int b, int a);
+double	normalize_ray_y(t_camera_data *c, double ray_y);
+int		background_colour(t_camera_data *c, double ray_y);
 
 
 // ------------------------------------------------------------: utils
