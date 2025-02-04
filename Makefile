@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/12/09 17:42:12 by quentinbeuk       #+#    #+#              #
-#    Updated: 2025/01/19 12:58:27 by qbeukelm         ###   ########.fr        #
+#                                                         ::::::::             #
+#    Makefile                                           :+:    :+:             #
+#                                                      +:+                     #
+#    By: hesmolde <hesmolde@student.42.fr>            +#+                      #
+#                                                    +#+                       #
+#    Created: 2024/12/09 17:42:12 by quentinbeuk   #+#    #+#                  #
+#    Updated: 2025/02/04 16:52:05 by hesmolde      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,9 @@ include includes/make/files.mk
 
 
 # ===== Names =====
-CC 				= gcc
-CFlags 			= -Wall -Werror -Wextra 
+CC 				= cc
+# CFLAGS 			= -Wall -Werror -Wextra -fsanitize=address
+CFLAGS 			= -fsanitize=address
 
 NAME_EXECUTABLE = miniRT
 
@@ -44,7 +45,6 @@ ifeq ($(UNAME_S),Darwin)
     CFLAGS = -I$(BREW_PREFIX)/include
 endif
 
-
 # ===== Rules =====
 all: $(NAME_EXECUTABLE)
 
@@ -66,6 +66,9 @@ $(DIR_OBJ)/%.o: $(DIR_SOURCES_PARSER_CLEAN)/%.c | $(DIR_OBJ)
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 $(DIR_OBJ)/%.o: $(DIR_SOURCES_PARSER_COMP)/%.c | $(DIR_OBJ)
+	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
+
+$(DIR_OBJ)/%.o: $(DIR_SOURCES_RAYTRACER)/%.c | $(DIR_OBJ)
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 $(DIR_OBJ)/%.o: $(DIR_SOURCES_UTILS)/%.c | $(DIR_OBJ)

@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         :::      ::::::::    #
-#    files.mk                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/12/09 17:55:12 by quentinbeuk       #+#    #+#              #
-#    Updated: 2025/01/19 15:09:58 by qbeukelm         ###   ########.fr        #
+#                                                         ::::::::             #
+#    files.mk                                           :+:    :+:             #
+#                                                      +:+                     #
+#    By: hesmolde <hesmolde@student.42.fr>            +#+                      #
+#                                                    +#+                       #
+#    Created: 2024/12/09 17:55:12 by quentinbeuk   #+#    #+#                  #
+#    Updated: 2025/02/04 16:51:47 by hesmolde      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,14 @@ SOURCES_PARSER_COMP			= build_color.c \
 SOURCES_UTILS				= error.c \
 								function_protection.c \
 								print_scene.c \
+								vector.c \
+								vector2.c \
+
+SOURCES_RAYTRACER			= init_camera.c \
+								init_window.c \
+								pixel_loop.c \
+								background.c \
+								
 
 # ===== Manage Directories =====
 DIR_SOURCES					= sources
@@ -42,6 +50,7 @@ DIR_SOURCES_PARSER			= sources/parser
 DIR_SOURCES_PARSER_VALIDATE	= sources/parser/build_objects
 DIR_SOURCES_PARSER_CLEAN	= sources/parser/clean_up
 DIR_SOURCES_PARSER_COMP		= sources/parser/parse_components
+DIR_SOURCES_RAYTRACER		= sources/raytracer
 DIR_SOURCES_UTILS			= sources/utils
 
 # ===== Object Files =====
@@ -50,4 +59,5 @@ OBJ = $(addprefix $(DIR_OBJ)/, $(SOURCES:.c=.o)) \
 	$(addprefix $(DIR_OBJ)/, $(SOURCES_PARSER_VALIDATE:.c=.o)) \
 	$(addprefix $(DIR_OBJ)/, $(SOURCES_PARSER_CLEAN:.c=.o)) \
 	$(addprefix $(DIR_OBJ)/, $(SOURCES_PARSER_COMP:.c=.o)) \
+	$(addprefix $(DIR_OBJ)/, $(SOURCES_RAYTRACER:.c=.o)) \
 	$(addprefix $(DIR_OBJ)/, $(SOURCES_UTILS:.c=.o)) \

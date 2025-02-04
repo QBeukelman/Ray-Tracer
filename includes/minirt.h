@@ -1,35 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/09 17:46:23 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/01/19 15:10:24 by qbeukelm         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   minirt.h                                           :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
+/*   Updated: 2025/02/04 16:53:48 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
-#define MINIRT_H
+# define MINIRT_H
 
-#include "libft/includes/libft.h"
-#include "errors.h"
-#include "objects.h"
+# include "libft/includes/libft.h"
+# include "MLX42/include/MLX42/MLX42.h"
+# include "errors.h"
+# include "objects.h"
+# include "vector.h"
+# include "camera.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdbool.h>
-#include <fcntl.h>
-#include <stdint.h>
-#include <math.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdbool.h>
+# include <fcntl.h>
+# include <stdint.h>
+# include <math.h>
 
 // ------------------------------------------------------------: colors
 # define C_YELLOW "\033[1;33m"
 # define C_RED "\x1B[1;31m"
 # define RESET_COLOR "\033[0m"
 
+// ------------------------------------------------------------: window
+# define HEIGHT 500
+# define WIDTH 800
+
+// ------------------------------------------------------------: data
+typedef struct s_data
+{
+	mlx_t			*mlx;
+	mlx_image_t		*img;
+} t_data;
 
 // ------------------------------------------------------------: scene
 typedef struct s_scene
@@ -94,6 +107,16 @@ float	parse_point_value(char *token);
 // build_position.c
 t_vect	*parse_position(char *token, float limit);
 
+// ------------------------------------------------------------: initialization
+void	init_mlx(t_data *data);
+
+// ------------------------------------------------------------: render_image
+void	render_image(t_data *d, t_camera_data *c);
+
+// ------------------------------------------------------------: background
+int		get_rgba(int r, int g, int b, int a);
+double	normalize_ray_y(t_camera_data *c, double ray_y);
+int		background_colour(t_camera_data *c, double ray_y);
 
 // ------------------------------------------------------------: utils
 // function_protection.c
