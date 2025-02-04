@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   build_scene.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/16 19:18:55 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/01/19 17:14:53 by qbeukelm         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   build_scene.c                                      :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/12/16 19:18:55 by quentinbeuk   #+#    #+#                 */
+/*   Updated: 2025/02/05 00:12:45 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,15 @@ static t_scene		*init_scene(void)
 	{
 		show_error(E_MALLOC, "build_scene()");
 		return (NULL);
-	} 
+	}
+	//ft_memset(scene, 0, sizeof(t_scene)); NULL everything in scene
 	scene->ambi = NULL;
 	scene->camera = NULL;
 	scene->light = NULL;
 	scene->planes = NULL;
 	scene->spheres = NULL;
 	scene->cylinders = NULL;
+	return (scene);
 }
 
 int		count_tokens(char **tokens)
