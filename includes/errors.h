@@ -6,18 +6,18 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 17:46:26 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/01/19 16:34:15 by qbeukelm         ###   ########.fr       */
+/*   Updated: 2025/02/07 12:54:17 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ERRORS_H
 # define ERRORS_H
 
-typedef enum e_validation
+typedef enum
 {
 	FAILURE,
 	SUCCESS
-}	t_validation;
+}	e_validation;
 
 // ------------------------------------------------------------: error codes
 # define X_FAILURE		EXIT_FAILURE
@@ -26,6 +26,7 @@ typedef enum e_validation
 # define E_ERROR		"Error: "
 # define E_OPEN			"Failed to open file: "
 # define E_MALLOC		"Memory allocation failed in function: "
+# define E_PARSE		"Could not parse scene: "
 # define E_SPLIT		"Failed to split tokens in line: "
 # define E_INVALID_OBJ	"Invalid scene object with identifier: "
 # define E_TOKEN_COUNT	"Invalid token count for: "
@@ -33,6 +34,7 @@ typedef enum e_validation
 # define E_INVALID_PT	"Invalid point value format: "
 # define E_INVALID_POS	"Invalid position format: "
 # define E_OUT_OF_RANGE	"Value out of range: "
+# define E_OBJ_COUNT	"Invalid object count: "
 
 
 // ------------------------------------------------------------: utils

@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 19:31:43 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/01/19 14:43:14 by qbeukelm         ###   ########.fr       */
+/*   Updated: 2025/02/07 12:45:00 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,11 @@ bool	add_ambient_light(t_scene *scene, char **tokens)
 	if (count_tokens(tokens) != TOKEN_COUNT_A)
 	{
 		show_error(E_TOKEN_COUNT, objects_to_name(AMBIENT_LIGHT));
+		return (FAILURE);
+	}
+	if (scene->ambi != NULL)
+	{
+		show_error(E_OBJ_COUNT, objects_to_name(AMBIENT_LIGHT));
 		return (FAILURE);
 	}
 	ambi = build_ambi(tokens);
