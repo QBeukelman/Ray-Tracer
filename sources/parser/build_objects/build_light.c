@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 12:50:34 by qbeukelm          #+#    #+#             */
-/*   Updated: 2025/01/19 15:04:35 by qbeukelm         ###   ########.fr       */
+/*   Updated: 2025/02/07 13:16:19 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,11 @@ bool add_light(t_scene *scene, char **tokens)
 	if (count_tokens(tokens) != TOKEN_COUNT_L)
 	{
 		show_error(E_TOKEN_COUNT, objects_to_name(LIGHT));
+		return (FAILURE);
+	}
+	if (scene->light != NULL)
+	{
+		show_error(E_OBJ_COUNT, objects_to_name(AMBIENT_LIGHT));
 		return (FAILURE);
 	}
 	light = build_light(tokens);
