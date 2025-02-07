@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:19:51 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/01/19 16:22:19 by qbeukelm         ###   ########.fr       */
+/*   Updated: 2025/02/07 11:35:47 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static t_color	*build_color(char **color_values)
 		return (NULL);
 	}
 	if (color_values_in_range(color_values) == FAILURE)
-		return (FAILURE);
+		return (NULL);
 	color->r = ft_atoi(color_values[0]);
 	color->g = ft_atoi(color_values[1]);
 	color->b = ft_atoi(color_values[2]);

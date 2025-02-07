@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   minirt.h                                           :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/02/04 16:53:48 by hesmolde      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   minirt.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/09 17:46:23 by quentinbeuk       #+#    #+#             */
+/*   Updated: 2025/02/07 13:02:06 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,11 @@ typedef struct s_scene
 
 // ------------------------------------------------------------: parse
 // build_scene.c
-int			count_tokens(char **tokens);
 t_scene		*build_scene(char *file_name);
 
 // parser.c
-int		ft_parse(char *file_name);
+int			count_tokens(char **tokens);
+int			ft_parse(char *file_name);
 
 // splic_strings.c
 char	**split_string(char *str);

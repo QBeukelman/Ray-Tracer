@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   build_scene.c                                      :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/12/16 19:18:55 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/02/05 00:12:45 by hein          ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   build_scene.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/16 19:18:55 by quentinbeuk       #+#    #+#             */
+/*   Updated: 2025/02/07 13:12:37 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,32 @@ static bool	add_object(t_scene *scene, char **tokens, e_object type)
 	}
 }
 
-static bool	process_line(t_scene *scene, char *line)
+static bool faild_processing_line(char **tokens, char *line, char *error)
+{
+	show_error(error, line);
+	free_split(tokens);
+	free(line);
+	return (FAILURE);
+}
+
+static bool	line_to_object(t_scene *scene, char *line)
 {
 	char		**tokens;
 	e_object	object_type;
+	bool		status;
 
 	tokens = split_string(line);
 	if (tokens == NULL || !tokens[0])
-		exit_with_message(E_SPLIT, line, X_FAILURE);
+		return (faild_processing_line(tokens, line, E_SPLIT));
 	
 	object_type = string_to_objects(tokens[0]);
 	if (object_type >= NUM_OBJECTS)
-		exit_with_message(E_INVALID_OBJ, tokens[0], X_FAILURE);
+		return (faild_processing_line(tokens, line, E_INVALID_OBJ));
 
-	add_object(scene, tokens, object_type);
+	status = add_object(scene, tokens, object_type);
 	free_split(tokens);
 	free (line);
-	return (SUCCESS);
+	return (status);
 }
 
 static t_scene		*init_scene(void)
@@ -62,7 +71,6 @@ static t_scene		*init_scene(void)
 		show_error(E_MALLOC, "build_scene()");
 		return (NULL);
 	}
-	//ft_memset(scene, 0, sizeof(t_scene)); NULL everything in scene
 	scene->ambi = NULL;
 	scene->camera = NULL;
 	scene->light = NULL;
@@ -72,20 +80,30 @@ static t_scene		*init_scene(void)
 	return (scene);
 }
 
-int		count_tokens(char **tokens)
+static t_scene	*file_to_scene(int fd, t_scene *scene)
 {
-	int		i;
+	char		*line;
 
-	i = 0;
-	while (tokens[i])
-		i++;
-	return (i);
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		if (line[0] != '\n')
+		{
+			if (line_to_object(scene, line) == FAILURE)
+			{
+				free_scene(scene);
+				scene = NULL;
+				break ;
+			}
+		}
+		else
+			free (line);
+	}
+	return (scene);
 }
 
 t_scene		*build_scene(char *file_name)
 {
 	int			fd;
-	char		*line;
 	t_scene		*scene;
 
 	fd = safe_open(file_name, O_RDONLY);
@@ -95,13 +113,7 @@ t_scene		*build_scene(char *file_name)
 		close (fd);
 		return (NULL);
 	}
-	while ((line = get_next_line(fd)) != NULL)
-	{
-		if (line[0] != '\n')
-			process_line(scene, line);
-		else
-			free (line);
-	}
+	scene = file_to_scene(fd, scene);
 	close (fd);
 	return (scene);
 }

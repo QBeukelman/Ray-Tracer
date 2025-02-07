@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 22:22:28 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/01/19 15:51:41 by qbeukelm         ###   ########.fr       */
+/*   Updated: 2025/02/07 13:16:48 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ bool	add_camera(t_scene *scene, char **tokens)
 	if (count_tokens(tokens) != TOKEN_COUNT_C)
 	{
 		show_error(E_TOKEN_COUNT, objects_to_name(CAMERA));
+		return (FAILURE);
+	}
+	if (scene->camera != NULL)
+	{
+		show_error(E_OBJ_COUNT, objects_to_name(AMBIENT_LIGHT));
 		return (FAILURE);
 	}
 	camera = build_camera(tokens);
