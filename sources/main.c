@@ -6,13 +6,13 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:42:04 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/02/07 15:35:35 by hein          ########   odam.nl         */
+/*   Updated: 2025/02/07 15:36:25 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minirt.h"
 
-// add comment
+// add comment new
 int main(int argc, char **argv)
 {
 	
