@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   build_int.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 12:04:52 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2025/02/07 12:39:34 by hein          ########   odam.nl         */
+/*   Updated: 2025/02/07 22:22:30 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@
 // 	}
 // }
 
-bool	parse_int(int fov, char *str)
+bool	parse_int(int *fov, char *str)
 {
-	fov = ft_atoi(str);
-	if (fov >= 0 && fov <= FOV_LIMIT)
+	*fov = ft_atoi(str);
+	if (*fov >= 0 && *fov <= FOV_LIMIT)
 		return (true);
 	show_error(E_OUT_OF_RANGE, str);
 	return (false);

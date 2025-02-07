@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   build_plane.c                                      :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 13:11:34 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2025/02/07 03:12:59 by hein          ########   odam.nl         */
+/*   Updated: 2025/02/07 23:17:23 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@ static t_object	*build_plane(char **tokens)
 	}
 	ft_memset(new, 0, sizeof(t_object));
 	new->type = PLANE;
-	if (!parse_position(new->position, tokens[1], 0.0) \
-		|| !parse_position(new->orientation, tokens[2], 1.0) \
-		|| !parse_color(new, tokens[3]))
+	if (!parse_position(&(new->position), tokens[1], 0.0) \
+		|| !parse_position(&(new->orientation), tokens[2], 1.0) \
+		|| !parse_color(&(new->color), tokens[3]))
 	{
+		free(new);
 		return (NULL);
 	}
 	new->next = NULL;
@@ -45,7 +46,9 @@ bool	add_plane(t_scene *scene, char **tokens)
 	}
 	new = build_plane(tokens);
 	if (new == NULL)
+	{
 		return (FAILURE);
-	append_plane(scene, new);
+	}
+	append_object(scene, new);
 	return (SUCCESS);
 }

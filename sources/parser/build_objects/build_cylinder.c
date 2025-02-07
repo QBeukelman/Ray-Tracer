@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   build_cylinder.c                                   :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/17 19:16:02 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2025/02/07 03:14:53 by hein          ########   odam.nl         */
+/*   Updated: 2025/02/07 23:17:36 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@ static t_object	*build_cylinder(char **tokens)
 	}
 	ft_memset(new, 0, sizeof(t_object));
 	new->type = CYLINDER;
-	if (parse_position(new->position, tokens[1], 0.0) \
-		|| parse_position(new->axis, tokens[2], 1.0) \
-		|| parse_color(new, tokens[5]))
+	if (!parse_position(&(new->position), tokens[1], 0.0) \
+		|| !parse_position(&(new->axis), tokens[2], 1.0) \
+		|| !parse_color(&(new->color), tokens[5]))
 	{
+		free(new);
 		return (NULL);
 	}
 	new->diameter = ft_strtof(tokens[3], NULL);
@@ -47,7 +48,9 @@ bool	add_cylinder(t_scene *scene, char **tokens)
 	}
 	new = build_cylinder(tokens);
 	if (new == NULL)
+	{
 		return (FAILURE);
-	append_cylinder(scene, new);
+	}
+	append_object(scene, new);
 	return (SUCCESS);
 }

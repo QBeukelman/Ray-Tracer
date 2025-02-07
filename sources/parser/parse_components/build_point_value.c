@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   build_point_value.c                                :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/25 20:47:11 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/01/19 14:39:50 by qbeukelm         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   build_point_value.c                                :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/12/25 20:47:11 by quentinbeuk   #+#    #+#                 */
+/*   Updated: 2025/02/07 22:23:15 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,20 @@ static bool validate_point_value(char *token)
 	return (true);
 }
 
-static float build_point_value(char **point_values)
+static bool build_point_value(float *float_value, char **point_values)
 {
 	float		integer;
 	float		fraction;
-	float		result;
 
 	integer = ft_atoi(point_values[0]);
 	fraction = (ft_atoi(point_values[1]) / 10.0);
-	result = integer + fraction;
-	if (result > POINT_MAX)
+	*float_value = integer + fraction;
+	if (*float_value > POINT_MAX)
 	{
 		show_error(E_INVALID_PT, "< 1.0");
-		return (NAN);
+		return (false);
 	}
-	return (result);
+	return (true);
 }
 
 /**
@@ -71,22 +70,23 @@ static float build_point_value(char **point_values)
  *   will return NAN.
  * - If memory allocation fails during splitting, the function returns NAN.
  */
-float	parse_point_value(char *token)
+bool	parse_point_value(float *float_value, char *token)
 {
 	char	**point_values;
-	float	float_value;
 
 	if (validate_point_value(token) == FAILURE)
-		return (NAN);
-
+		return (FAILURE);
 	point_values = ft_split(token, DELIMITER);
 	if (point_values == NULL)
 	{
 		show_error(E_SPLIT, token);
-		return (NAN);
+		return (FAILURE);
 	}
-
-	float_value = build_point_value(point_values);
+	if (build_point_value(float_value, point_values) == false)
+	{
+		free_split(point_values);
+		return (FAILURE);
+	}
 	free_split(point_values);
-	return (float_value);
+	return (SUCCESS);
 }

@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   build_sphere.c                                     :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/17 18:33:11 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2025/02/07 03:02:51 by hein          ########   odam.nl         */
+/*   Updated: 2025/02/07 23:16:42 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@ static t_object		*build_sphere(char **tokens)
 	}
 	ft_memset(new, 0, sizeof(t_object));
 	new->type = SPHERE;
-	if (!parse_position(new->position, tokens[1], 0.0) \
-		|| !parse_color(new, tokens[3]))
+	if (!parse_position(&(new->position), tokens[1], 0.0) \
+		|| !parse_color(&(new->color), tokens[3]))
 	{
+		free(new);
 		return (NULL);
 	}
 	new->diameter = ft_strtof(tokens[2], NULL);
@@ -45,7 +46,9 @@ bool	add_sphere(t_scene *scene, char **tokens)
 	}
 	new = build_sphere(tokens);
 	if (new == NULL)
+	{
 		return (FAILURE);
+	}
 	append_object(scene, new);
 	return (SUCCESS);
 }

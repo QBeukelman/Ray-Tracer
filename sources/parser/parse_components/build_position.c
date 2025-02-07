@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   build_position.c                                   :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/25 23:29:33 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/02/07 03:02:01 by hein          ########   odam.nl         */
+/*   Updated: 2025/02/07 22:17:20 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static bool		validate_position(char *token)
 	return (SUCCESS);
 }
 
-static bool	build_position(t_vect vec, char **pos_vals, float limit)
+static bool	build_position(t_vector *vector, char **pos_vals, float limit)
 {
 	int		i;
 	
@@ -84,9 +84,9 @@ static bool	build_position(t_vect vec, char **pos_vals, float limit)
 	}	
 	if (validate_limits(pos_vals, limit) == FAILURE)
 		return (FAILURE);
-	vector.x = ft_strtof(pos_vals[0], NULL);
-	vector.y = ft_strtof(pos_vals[1], NULL);
-	vector.z = ft_strtof(pos_vals[2], NULL);
+	vector->x = ft_strtof(pos_vals[0], NULL);
+	vector->y = ft_strtof(pos_vals[1], NULL);
+	vector->z = ft_strtof(pos_vals[2], NULL);
 	return (SUCCESS);
 }
 
@@ -105,7 +105,7 @@ static bool	build_position(t_vect vec, char **pos_vals, float limit)
  * - If `ft_split()` fails, an error is logged with `E_SPLIT` and the input token.
  * - If `build_position()` encounters an error, it logs the appropriate message internally.
  */
-bool	parse_position(t_vect vec, char *token, float limit)
+bool	parse_position(t_vector *vector, char *token, float limit)
 {
 	char	**position_values;
 
@@ -119,7 +119,7 @@ bool	parse_position(t_vect vec, char *token, float limit)
 		show_error(E_SPLIT, token);
 		return (FAILURE);
 	}
-	if (build_position(vec, position_values, limit) == false)
+	if (build_position(vector, position_values, limit) == false)
 	{
 		free_split(position_values);
 		return (FAILURE);

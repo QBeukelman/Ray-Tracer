@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   build_color.c                                      :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/16 18:19:51 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/02/07 02:25:39 by hein          ########   odam.nl         */
+/*   Updated: 2025/02/07 22:15:02 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static bool	color_values_in_range(char **color_values)
 	return (SUCCESS);
 }
 
-static bool	build_color(t_object *object, char **color_values)
+static bool	build_color(t_color *color, char **color_values)
 {
 	int			i;
 
@@ -81,9 +81,9 @@ static bool	build_color(t_object *object, char **color_values)
 	{
 		return (false);
 	}
-	object->color.r = ft_atoi(color_values[0]);
-	object->color.g = ft_atoi(color_values[1]);
-	object->color.b = ft_atoi(color_values[2]);
+	color->r = ft_atoi(color_values[0]);
+	color->g = ft_atoi(color_values[1]);
+	color->b = ft_atoi(color_values[2]);
 	return (true);
 }
 
@@ -100,7 +100,7 @@ static bool	build_color(t_object *object, char **color_values)
  * - If the number of color values is not exactly 3, an error message is shown and `NULL` is returned.
  * - If any color value is out of the valid range, the function returns `FAILURE`.
  */
-bool	parse_color(t_object *object, char *token)
+bool	parse_color(t_color *color, char *token)
 {
 	char		**color_values;
 
@@ -112,7 +112,7 @@ bool	parse_color(t_object *object, char *token)
 		show_error(E_SPLIT, token);
 		return (false);
 	}
-	if (build_color(object, color_values) == false)
+	if (build_color(color, color_values) == false)
 	{
 		free_split(color_values);
 		return (false);

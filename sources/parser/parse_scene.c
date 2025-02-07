@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   build_scene.c                                      :+:    :+:            */
+/*   parse_scene.c                                      :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/16 19:18:55 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/02/07 02:27:02 by hein          ########   odam.nl         */
+/*   Updated: 2025/02/07 23:09:41 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static bool	process_line(t_scene *scene, char *line)
 {
-	// static const t_add_func	add_object[NUM_OBJECTS] = {add_ambient_light,
-	// 	add_light, add_camera, add_sphere, add_plane, add_cylinder};
-	static const t_add_func	add_object[1] = {add_sphere};
+	static const t_add_func	add_object[NUM_OBJECTS] = {add_ambient_light,
+		add_light, add_camera, add_sphere, add_plane, add_cylinder};
+	// static const t_add_func	add_object[1] = {add_sphere};
 	char					**tokens;
 	e_object				object_type;
 	
@@ -26,7 +26,7 @@ static bool	process_line(t_scene *scene, char *line)
 	object_type = string_to_objects(tokens[0]);
 	if (object_type >= NUM_OBJECTS)
 		exit_with_message(E_INVALID_OBJ, tokens[0], X_FAILURE);
-	if (add_object[0](scene, tokens) == false)
+	if (add_object[object_type](scene, tokens) == false)
 	{
 		free_split(tokens);
 		return (FAILURE);
@@ -45,7 +45,7 @@ int		count_tokens(char **tokens)
 	return (i);
 }
 
-bool	build_scene(t_scene *scene, char *file_name)
+bool	parse_scene(t_scene *scene, char *file_name)
 {
 	int		fd;
 	char	*line;
