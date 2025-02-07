@@ -6,70 +6,33 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/16 19:18:55 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/02/05 00:12:45 by hein          ########   odam.nl         */
+/*   Updated: 2025/02/07 02:27:02 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-static bool	add_object(t_scene *scene, char **tokens, e_object type)
-{
-	switch (type)
-	{
-		case AMBIENT_LIGHT:
-			return (add_ambient_light(scene, tokens));
-		case LIGHT:
-			return (add_light(scene, tokens));
-		case CAMERA:
-			return (add_camera(scene, tokens));
-		case SPHERE:
-			return (add_sphere(scene, tokens));
-		case PLANE:
-			return (add_plane(scene, tokens));
-		case CYLINDER:
-			return (add_cylinder(scene, tokens));
-		default:
-			return (FAILURE);
-	}
-}
-
 static bool	process_line(t_scene *scene, char *line)
 {
-	char		**tokens;
-	e_object	object_type;
-
+	// static const t_add_func	add_object[NUM_OBJECTS] = {add_ambient_light,
+	// 	add_light, add_camera, add_sphere, add_plane, add_cylinder};
+	static const t_add_func	add_object[1] = {add_sphere};
+	char					**tokens;
+	e_object				object_type;
+	
 	tokens = split_string(line);
 	if (tokens == NULL || !tokens[0])
 		exit_with_message(E_SPLIT, line, X_FAILURE);
-	
 	object_type = string_to_objects(tokens[0]);
 	if (object_type >= NUM_OBJECTS)
 		exit_with_message(E_INVALID_OBJ, tokens[0], X_FAILURE);
-
-	add_object(scene, tokens, object_type);
-	free_split(tokens);
-	free (line);
-	return (SUCCESS);
-}
-
-static t_scene		*init_scene(void)
-{
-	t_scene		*scene;
-
-	scene = malloc(sizeof(t_scene));
-	if (scene == NULL)
+	if (add_object[0](scene, tokens) == false)
 	{
-		show_error(E_MALLOC, "build_scene()");
-		return (NULL);
+		free_split(tokens);
+		return (FAILURE);
 	}
-	//ft_memset(scene, 0, sizeof(t_scene)); NULL everything in scene
-	scene->ambi = NULL;
-	scene->camera = NULL;
-	scene->light = NULL;
-	scene->planes = NULL;
-	scene->spheres = NULL;
-	scene->cylinders = NULL;
-	return (scene);
+	free_split(tokens);
+	return (SUCCESS);
 }
 
 int		count_tokens(char **tokens)
@@ -82,26 +45,25 @@ int		count_tokens(char **tokens)
 	return (i);
 }
 
-t_scene		*build_scene(char *file_name)
+bool	build_scene(t_scene *scene, char *file_name)
 {
-	int			fd;
-	char		*line;
-	t_scene		*scene;
+	int		fd;
+	char	*line;
 
 	fd = safe_open(file_name, O_RDONLY);
-	scene = init_scene();
-	if (scene == NULL)
-	{
-		close (fd);
-		return (NULL);
-	}
-	while ((line = get_next_line(fd)) != NULL)
+	ft_memset(scene, 0, sizeof(t_scene));
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
 		if (line[0] != '\n')
-			process_line(scene, line);
-		else
-			free (line);
+			if (process_line(scene, line) == false)
+			{
+				free(line);
+				return (FAILURE);
+			}
+		free (line);
+		line = get_next_line(fd);
 	}
 	close (fd);
-	return (scene);
+	return (SUCCESS);
 }

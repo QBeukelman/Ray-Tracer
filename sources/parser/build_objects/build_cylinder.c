@@ -1,91 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   build_cylinder.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/17 19:16:02 by qbeukelm          #+#    #+#             */
-/*   Updated: 2025/01/19 17:12:46 by qbeukelm         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   build_cylinder.c                                   :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/17 19:16:02 by qbeukelm      #+#    #+#                 */
+/*   Updated: 2025/02/07 03:14:53 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minirt.h"
 
-static t_cylinder	*free_cylinder(t_cylinder *cylinder)
+static t_object	*build_cylinder(char **tokens)
 {
-	if (cylinder->position)
-		free (cylinder->position);
-	if (cylinder->axis)
-		free (cylinder->axis);
-	if (cylinder->color)
-		free (cylinder->color);
-	free (cylinder);
-	return (NULL);
-}
+	t_object		*new;
 
-static t_cylinder	*build_cylinder(char **tokens)
-{
-	t_cylinder		*cylinder;
-	t_vect			*position;
-	t_vect			*axis;
-	t_color			*color;
-
-	cylinder = malloc(sizeof(t_cylinder));
-	if (cylinder == NULL)
+	new = malloc(sizeof(t_object));
+	if (new == NULL)
 	{
 		show_error(E_MALLOC, "build_cylinder()");
 		return (NULL);
 	}
-	cylinder->type = CYLINDER;
-	position = parse_position(tokens[1], 0.0);
-	axis = parse_position(tokens[2], 1.0);
-	color = parse_color(tokens[5]);
-	if (!position || !axis || !color)
-		return (free_cylinder(cylinder));
-	cylinder->position = position;
-	cylinder->axis = axis;
-	cylinder->diameter = ft_strtof(tokens[3], NULL);
-	cylinder->height = ft_strtof(tokens[4], NULL);
-	cylinder->color = color;
-	cylinder->next = NULL;
-	return (cylinder);
-}
-
-static t_cylinder	*list_last(t_cylinder *cylinders)
-{
-	while (cylinders->next != NULL)
-		cylinders = cylinders->next;
-	return (cylinders);
-}
-
-static void	append_cylinder(t_scene *scene, t_cylinder *new_cylinder)
-{
-	t_cylinder		*root;
-
-	root = scene->cylinders;
-	if (scene->cylinders == NULL)
+	ft_memset(new, 0, sizeof(t_object));
+	new->type = CYLINDER;
+	if (parse_position(new->position, tokens[1], 0.0) \
+		|| parse_position(new->axis, tokens[2], 1.0) \
+		|| parse_color(new, tokens[5]))
 	{
-		scene->cylinders = new_cylinder;
-		return ;
+		return (NULL);
 	}
-	else
-		list_last(scene->cylinders)->next = new_cylinder;
-	scene->cylinders = root;
+	new->diameter = ft_strtof(tokens[3], NULL);
+	new->height = ft_strtof(tokens[4], NULL);
+	new->next = NULL;
+	return (new);
 }
 
 bool	add_cylinder(t_scene *scene, char **tokens)
 {
-	t_cylinder		*new_cylinder;
+	t_object	*new;
 	
 	if (count_tokens(tokens) != TOKEN_COUNT_CY)
 	{
 		show_error(E_TOKEN_COUNT, objects_to_name(CYLINDER));
 		return (FAILURE);
 	}
-	new_cylinder = build_cylinder(tokens);
-	if (new_cylinder == NULL)
+	new = build_cylinder(tokens);
+	if (new == NULL)
 		return (FAILURE);
-	append_cylinder(scene, new_cylinder);
+	append_cylinder(scene, new);
 	return (SUCCESS);
 }

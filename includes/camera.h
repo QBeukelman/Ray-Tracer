@@ -6,14 +6,13 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/28 12:14:34 by hesmolde      #+#    #+#                 */
-/*   Updated: 2025/02/02 18:04:13 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/02/07 15:13:22 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CAMERA_H
 # define CAMERA_H
 
-# include "minirt.h"
 # include "vector.h"
 
 typedef struct s_pixel
@@ -40,6 +39,7 @@ typedef struct s_viewport
 	t_vector	bottomleft;
 } t_viewport;
 
+// ! 
 typedef struct s_camera_data
 {
 	double		aspect_ratio;

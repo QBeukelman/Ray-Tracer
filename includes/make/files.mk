@@ -6,7 +6,7 @@
 #    By: hesmolde <hesmolde@student.42.fr>            +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/12/09 17:55:12 by quentinbeuk   #+#    #+#                  #
-#    Updated: 2025/02/04 16:51:47 by hesmolde      ########   odam.nl          #
+#    Updated: 2025/02/07 01:12:55 by hein          ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ SOURCES_PARSER_COMP			= build_color.c \
 								build_point_value.c \
 								build_position.c \
 
-SOURCES_UTILS				= error.c \
+SOURCES_UTILS				= build_object_list.c \
+								error.c \
 								function_protection.c \
 								print_scene.c \
 								vector.c \

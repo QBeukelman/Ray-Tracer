@@ -6,7 +6,7 @@
 #    By: hesmolde <hesmolde@student.42.fr>            +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/12/09 17:42:12 by quentinbeuk   #+#    #+#                  #
-#    Updated: 2025/02/05 00:07:52 by hein          ########   odam.nl          #
+#    Updated: 2025/02/06 22:13:07 by hein          ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ include includes/make/files.mk
 
 # ===== Names =====
 CC 				= cc
-CFLAGS 			= -Wall -Werror -Wextra
+# CFLAGS 			= -Wall -Werror -Wextra
 # CFLAGS 			= -fsanitize=address
 
 NAME_EXECUTABLE = miniRT

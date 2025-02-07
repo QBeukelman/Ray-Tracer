@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:42:04 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/02/05 00:08:21 by hein          ########   odam.nl         */
+/*   Updated: 2025/02/07 02:37:35 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,17 @@
 
 int main(int argc, char **argv)
 {
-	
 	(void)argc;
 	(void)argv;
-	ft_parse("scenes/scene_00.rt");
+	char *scene_file = "scenes/scene_01.rt";
+
+	t_mlx_data	mlx;
+	t_scene		scene;
+	
+	if (build_scene(&scene, scene_file) == false)
+		clear_list_exit_program(scene.objects);
+	printf("x[%f]y[%f]z[%f]", scene.objects->position.x, scene.objects->next->position.y, scene.objects->position.z);
+	clear_list_exit_program(scene.objects);
 	return (0);
 }
 
@@ -26,7 +33,7 @@ int main(int argc, char **argv)
 
 // 	(void)argc;
 // 	(void)argv;
-// 	t_data			data;
+// 	t_mlx_data			data;
 // 	t_camera_data	camera;
 	
 // 	ft_memset(&data, 0, sizeof(data));

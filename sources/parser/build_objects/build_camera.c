@@ -1,58 +1,70 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   build_camera.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/25 22:22:28 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/01/19 15:51:41 by qbeukelm         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   build_camera.c                                     :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/12/25 22:22:28 by quentinbeuk   #+#    #+#                 */
+/*   Updated: 2025/02/07 15:18:28 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minirt.h"
 
-static t_camera		*build_camera(char **tokens)
-{
-	t_camera	*camera;
-	t_vect		*position;
-	t_vect		*orientation;
-	int			fov;
+#define RADIAN_CONST 0.0174533
 
-	camera = malloc(sizeof(t_camera));
-	if (camera == NULL)
+static void	calculate_viewport(t_camera c)
+{
+	t_vector	height_scaled;
+	t_vector	width_scaled;
+
+	c->viewport.D = 1.0;
+	c->fov_radians = c->fov * RADIAN_CONST;
+	c->viewport.height = 2 * c->viewport.D * tan(c->fov_radians / 2);
+	c->viewport.width = c->viewport.height * c->aspect_ratio;
+	c->viewport.center = vec_add(vec_scale(c->position, c->viewport.D), c->orientation);
+	c->viewport.x_off = c->viewport.width / WIDTH;
+	c->viewport.y_off = c->viewport.height / HEIGHT;
+	height_scaled = vec_scale(c->up, c->viewport.height / 2);
+	width_scaled = vec_scale(c->right, c->viewport.width / 2);
+	c->viewport.bottomleft = vec_sub(c->viewport.center, height_scaled);
+	c->viewport.bottomleft = vec_sub(c->viewport.bottomleft, width_scaled);
+}
+
+static void	initialize_viewport(t_camera camera)
+{
+	set_temp_input_data(camera);
+	camera->aspect_ratio = (double)WIDTH / HEIGHT;
+	camera->global_up.x = 0.0;
+	camera->global_up.y = 1.0;
+	camera->global_up.z = 0.0;
+	camera->right = vec_cross(camera->global_up, camera->orientation);
+	camera->right = vec_normalize(camera->right);
+	camera->up = vec_cross(camera->orientation, camera->right);
+	calculate_viewport(camera);
+}
+
+static bool		build_camera(t_scene *scene, char **tokens)
+{
+	if (parse_position(scene->camera.position, tokens[1], 0.0) \
+		|| parse_position(scene->camera.orientation, tokens[2], 1.0)
+		|| parse_int(scene->camera.fov, tokens[3]))
 	{
-		show_error(E_MALLOC, "build_camera()");
-		return (NULL);
+		return (FAILURE);
 	}
-	camera->type = CAMERA;
-	position = parse_position(tokens[1], 0.0);
-	if (position == NULL)
-		return (NULL);
-	camera->position = position;
-	orientation = parse_position(tokens[2], 1.0);
-	if (orientation == NULL)
-		return (NULL);
-	camera->orientation = orientation;
-	fov = parse_int(tokens[3], 180);
-	if (fov < 0)
-		return (NULL);
-	camera->fov = fov;
-	return (camera);
+	initialize_viewport(scene->camera);
+	return (SUCCESS);
 }
 
 bool	add_camera(t_scene *scene, char **tokens)
 {
-	t_camera	*camera;
-	
 	if (count_tokens(tokens) != TOKEN_COUNT_C)
 	{
 		show_error(E_TOKEN_COUNT, objects_to_name(CAMERA));
 		return (FAILURE);
 	}
-	camera = build_camera(tokens);
-	if (camera == NULL)
+	if (build_camera(scene, tokens) == false)
 		return (FAILURE);
-	scene->camera = camera;
 	return (SUCCESS);
 }

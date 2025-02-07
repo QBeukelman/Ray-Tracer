@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/02/04 16:53:48 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/02/07 03:01:30 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,28 +38,37 @@
 # define WIDTH 800
 
 // ------------------------------------------------------------: data
-typedef struct s_data
+typedef struct s_mlx_data
 {
 	mlx_t			*mlx;
 	mlx_image_t		*img;
-} t_data;
+} t_mlx_data;
 
 // ------------------------------------------------------------: scene
+// typedef struct s_scene
+// {
+// 	struct s_ambi		*ambi;
+// 	struct s_camera		*camera;
+// 	struct s_light		*light;
+// 	struct s_plane		*planes;
+// 	struct s_sphere		*spheres;
+// 	struct s_cylinder	*cylinders;
+// } t_scene;
+
 typedef struct s_scene
 {
-	struct s_ambi		*ambi;
-	struct s_camera		*camera;
-	struct s_light		*light;
-	struct s_plane		*planes;
-	struct s_sphere		*spheres;
-	struct s_cylinder	*cylinders;
+	struct s_ambi		ambi;
+	struct s_camera		camera;
+	struct s_light		light;
+	struct s_object		*objects;
 } t_scene;
 
+typedef bool	(*t_add_func)(t_scene*, char **);
 
 // ------------------------------------------------------------: parse
 // build_scene.c
 int			count_tokens(char **tokens);
-t_scene		*build_scene(char *file_name);
+bool		build_scene(t_scene *scene, char *file_name);
 
 // parser.c
 int		ft_parse(char *file_name);
@@ -96,7 +105,7 @@ void	free_scene(t_scene *scene);
 
 // ------------------------------------------------------------: parse/parse_components
 // build_color.c
-t_color		*parse_color(char *token);
+bool	parse_color(t_object *object, char *token);
 
 // build_int.c
 int		parse_int(char *str, int limit);
@@ -105,13 +114,13 @@ int		parse_int(char *str, int limit);
 float	parse_point_value(char *token);
 
 // build_position.c
-t_vect	*parse_position(char *token, float limit);
+bool	parse_position(t_vect vec, char *token, float limit);
 
 // ------------------------------------------------------------: initialization
-void	init_mlx(t_data *data);
+void	init_mlx(t_mlx_data *data);
 
 // ------------------------------------------------------------: render_image
-void	render_image(t_data *d, t_camera_data *c);
+void	render_image(t_mlx_data *d, t_camera_data *c);
 
 // ------------------------------------------------------------: background
 int		get_rgba(int r, int g, int b, int a);
@@ -126,4 +135,8 @@ void	*safe_malloc(size_t size, char *func_name);
 // print_scene.c
 void	print_scene(t_scene *scene);
 
+// build_object_list.c
+void	free_object_list(t_object *object);
+void	clear_list_exit_program(t_object *object);
+void	append_object(t_scene *scene, t_object *new_object);
 #endif
