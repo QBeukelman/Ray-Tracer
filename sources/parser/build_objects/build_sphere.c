@@ -6,13 +6,13 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/17 18:33:11 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2025/02/07 23:16:42 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/02/08 00:31:05 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minirt.h"
 
-static t_object		*build_sphere(char **tokens)
+static t_object	*build_sphere(char **tokens)
 {
 	t_object	*new;
 
@@ -36,9 +36,9 @@ static t_object		*build_sphere(char **tokens)
 }
 
 bool	add_sphere(t_scene *scene, char **tokens)
-{	
+{
 	t_object	*new;
-	
+
 	if (count_tokens(tokens) != TOKEN_COUNT_SP)
 	{
 		show_error(E_TOKEN_COUNT, objects_to_name(SPHERE));

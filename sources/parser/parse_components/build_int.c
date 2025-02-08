@@ -6,13 +6,13 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 12:04:52 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2025/02/07 22:22:30 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/02/08 00:43:31 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minirt.h"
 
-# define FOV_LIMIT 180
+#define FOV_LIMIT 180
 
 /**
  * @brief Parses a string into an integer and checks if the value is within the specified range.

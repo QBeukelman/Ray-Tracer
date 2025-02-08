@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 13:11:34 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2025/02/07 23:17:23 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/02/08 00:30:25 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static t_object	*build_plane(char **tokens)
 bool	add_plane(t_scene *scene, char **tokens)
 {
 	t_object	*new;
-	
+
 	if (count_tokens(tokens) != TOKEN_COUNT_P)
 	{
 		show_error(E_TOKEN_COUNT, objects_to_name(PLANE));

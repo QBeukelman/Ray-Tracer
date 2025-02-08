@@ -6,18 +6,18 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/25 20:47:11 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/02/07 22:23:15 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/02/08 01:17:16 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minirt.h"
 
-# define POINT_VALUE_LENGTH 3
-# define POINT_MAX 1.0
-# define DELIMITER_COUNT 1
-# define DELIMITER '.'
+#define POINT_VALUE_LENGTH 3
+#define POINT_MAX 1.0
+#define DELIMITER_COUNT 1
+#define DELIMITER '.'
 
-static bool validate_point_value(char *token)
+static bool	validate_point_value(char *token)
 {
 	int		i;
 
@@ -33,17 +33,17 @@ static bool validate_point_value(char *token)
 		if (!ft_isdigit(token[i]) && token[i] != DELIMITER)
 		{
 			show_error(E_INVALID_PT, token);
-			return (FAILURE);	
+			return (FAILURE);
 		}
 		i++;
 	}
 	return (true);
 }
 
-static bool build_point_value(float *float_value, char **point_values)
+static bool	build_point_value(float *float_value, char **point_values)
 {
-	float		integer;
-	float		fraction;
+	float	integer;
+	float	fraction;
 
 	integer = ft_atoi(point_values[0]);
 	fraction = (ft_atoi(point_values[1]) / 10.0);

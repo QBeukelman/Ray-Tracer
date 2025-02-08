@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/07 21:01:58 by hesmolde      #+#    #+#                 */
-/*   Updated: 2025/02/07 21:15:10 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/02/08 02:01:04 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	free_object_list(t_object *object)
 {
 	t_object	*temp;
-	
+
 	while (object != NULL)
 	{
 		temp = object->next;
@@ -30,7 +30,7 @@ void	clear_list_exit_program(t_object *object)
 	exit(1);
 }
 
-static t_object	*list_last(t_object *object)
+static	t_object	*list_last(t_object *object)
 {
 	while (object->next != NULL)
 	{

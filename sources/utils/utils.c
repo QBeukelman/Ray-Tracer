@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/07 22:36:47 by hesmolde      #+#    #+#                 */
-/*   Updated: 2025/02/07 22:37:30 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/02/08 02:03:09 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	free_split(char **split)
 
 	i = 0;
 	if (split == NULL)
-		return;
+		return ;
 	while (split[i])
 	{
 		free (split[i]);

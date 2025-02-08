@@ -6,14 +6,14 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/25 23:29:33 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/02/07 22:17:20 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/02/08 01:16:55 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minirt.h"
 
-# define DELIMITER ','
-# define DELIMITER_COUNT 2
+#define DELIMITER ','
+#define DELIMITER_COUNT 2
 
 static bool	validate_limit(float val, float limit)
 {
@@ -22,7 +22,7 @@ static bool	validate_limit(float val, float limit)
 	return (false);
 }
 
-static bool validate_limits(char **pos_vals, float limit)
+static bool	validate_limits(char **pos_vals, float limit)
 {
 	if (limit != 0)
 	{
@@ -45,7 +45,7 @@ static bool validate_limits(char **pos_vals, float limit)
 	return (SUCCESS);
 }
 
-static bool		validate_position(char *token)
+static bool	validate_position(char *token)
 {
 	int		i;
 
@@ -73,7 +73,7 @@ static bool		validate_position(char *token)
 static bool	build_position(t_vector *vector, char **pos_vals, float limit)
 {
 	int		i;
-	
+
 	i = 0;
 	while (pos_vals[i])
 		i++;
@@ -81,7 +81,7 @@ static bool	build_position(t_vector *vector, char **pos_vals, float limit)
 	{
 		show_error(E_INVALID_POS, "Too many values");
 		return (FAILURE);
-	}	
+	}
 	if (validate_limits(pos_vals, limit) == FAILURE)
 		return (FAILURE);
 	vector->x = ft_strtof(pos_vals[0], NULL);

@@ -6,13 +6,13 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/16 19:31:43 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/02/07 22:47:36 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/02/08 01:58:39 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minirt.h"
 
-static	bool build_ambi(t_scene *scene, char **tokens)
+static bool	build_ambi(t_scene *scene, char **tokens)
 {
 	if (!parse_point_value(&(scene->ambi.ratio), tokens[1]) \
 		|| !parse_color(&(scene->ambi.color), tokens[2]))

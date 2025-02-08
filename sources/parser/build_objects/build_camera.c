@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/25 22:22:28 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/02/07 22:47:56 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/02/08 00:37:53 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@ static void	calculate_viewport(t_camera *c)
 {
 	t_vector	height_scaled;
 	t_vector	width_scaled;
+	t_vector	scaled_origin;
 
-	c->viewport.D = 1.0;
+	c->viewport.distance = 1.0;
 	c->fov_radians = c->fov * RADIAN_CONST;
-	c->viewport.height = 2 * c->viewport.D * tan(c->fov_radians / 2);
+	c->viewport.height = 2 * c->viewport.distance * tan(c->fov_radians / 2);
 	c->viewport.width = c->viewport.height * c->aspect_ratio;
-	c->viewport.center = vec_add(vec_scale(c->position, c->viewport.D), c->orientation);
+	scaled_origin = vec_scale(c->position, c->viewport.distance);
+	c->viewport.center = vec_add(scaled_origin, c->orientation);
 	c->viewport.x_off = c->viewport.width / WIDTH;
 	c->viewport.y_off = c->viewport.height / HEIGHT;
 	height_scaled = vec_scale(c->up, c->viewport.height / 2);
@@ -44,7 +46,7 @@ static void	initialize_viewport(t_camera *camera)
 	calculate_viewport(camera);
 }
 
-static bool		build_camera(t_scene *scene, char **tokens)
+static bool	build_camera(t_scene *scene, char **tokens)
 {
 	if (!parse_position(&(scene->camera.position), tokens[1], 0.0) \
 		|| !parse_position(&(scene->camera.orientation), tokens[2], 1.0)

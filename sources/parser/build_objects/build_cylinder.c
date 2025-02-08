@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/17 19:16:02 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2025/02/07 23:17:36 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/02/08 00:31:23 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static t_object	*build_cylinder(char **tokens)
 bool	add_cylinder(t_scene *scene, char **tokens)
 {
 	t_object	*new;
-	
+
 	if (count_tokens(tokens) != TOKEN_COUNT_CY)
 	{
 		show_error(E_TOKEN_COUNT, objects_to_name(CYLINDER));

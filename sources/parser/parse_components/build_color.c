@@ -6,21 +6,21 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/16 18:19:51 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/02/07 22:15:02 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/02/08 01:18:06 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minirt.h"
 
-# define MAX_LEN 11
-# define MIN_LEN 5
-# define COMMA_COUNT 2
-# define RANGE 255
-# define DELIMITER ','
-# define OUT_RANGE "Out of range."
-# define TOO_MANY "Too many values"
+#define MAX_LEN 11
+#define MIN_LEN 5
+#define COMMA_COUNT 2
+#define RANGE 255
+#define DELIMITER ','
+#define OUT_RANGE "Out of range."
+#define TOO_MANY "Too many values"
 
-static bool validate_color(char *token)
+static bool	validate_color(char *token)
 {
 	int		len;
 	int		i;
@@ -67,7 +67,7 @@ static bool	color_values_in_range(char **color_values)
 
 static bool	build_color(t_color *color, char **color_values)
 {
-	int			i;
+	int		i;
 
 	i = 0;
 	while (color_values[i])
@@ -102,7 +102,7 @@ static bool	build_color(t_color *color, char **color_values)
  */
 bool	parse_color(t_color *color, char *token)
 {
-	char		**color_values;
+	char	**color_values;
 
 	if (validate_color(token) == FAILURE)
 		return (false);

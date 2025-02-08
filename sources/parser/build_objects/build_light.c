@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 12:50:34 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2025/02/07 22:48:27 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/02/08 00:30:09 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static bool	build_light(t_scene *scene, char **tokens)
 	return (SUCCESS);
 }
 
-bool add_light(t_scene *scene, char **tokens)
+bool	add_light(t_scene *scene, char **tokens)
 {
 	if (count_tokens(tokens) != TOKEN_COUNT_L)
 	{

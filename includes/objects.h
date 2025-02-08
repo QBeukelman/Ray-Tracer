@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:18 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/02/07 22:46:39 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/02/08 00:36:45 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct s_ambi
 
 typedef struct s_viewport
 {
-	double		D;
+	double		distance;
 	t_vector	center;
 	double		height;
 	double		width;
