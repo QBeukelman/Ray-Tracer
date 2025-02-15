@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   pixel_loop.c                                       :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/30 15:15:23 by hein          #+#    #+#                 */
-/*   Updated: 2025/02/08 02:39:02 by hein          ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   pixel_loop.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/30 15:15:23 by hein              #+#    #+#             */
+/*   Updated: 2025/02/15 16:28:47 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,24 @@ t_ray	calculate_ray(t_camera *c, int x, int y)
 	return (new_ray);
 }
 
+# define CONST2 -2.0
+# define CONST4 4
+static bool hit_sphere(t_object *sphere, t_ray *ray)
+{
+	t_vector		oc;
+	double			a;
+	double			b;
+	double			c;
+	const double	radius_sq = (sphere->diameter/2) * (sphere->diameter/2);
+	
+	oc = vec_sub(sphere->position, ray->origin);
+	a = vec_dot(ray->direction, ray->direction);
+	b = CONST2 * vec_dot(ray->direction, oc);
+	c = vec_dot(oc, oc) - radius_sq;
+	return (((b*b) - CONST4*a*c) >= 0);
+}
+
+
 void	render_image(t_mlx_data *mlx, t_scene *scene)
 {
 	t_pixel	pixel;
@@ -42,8 +60,16 @@ void	render_image(t_mlx_data *mlx, t_scene *scene)
 		while (pixel.x < WIDTH)
 		{
 			current_ray = calculate_ray(&(scene->camera), pixel.x, pixel.y);
-			// Colusion(c_ray) -> Color value of closest obj?
-			colour = background(&(scene->camera), current_ray.direction.y);
+			
+			// TODO Hit obj
+			// Loop objs
+			// Which type?
+			// Dist and which closest?
+			if (hit_sphere(scene->objects, &current_ray))
+				colour = 1;
+			else
+				colour = background(&(scene->camera), current_ray.direction.y);
+			
 			mlx_put_pixel(mlx->img, pixel.x, pixel.y, colour);
 			pixel.x++;
 		}
