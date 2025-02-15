@@ -6,21 +6,21 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:19:51 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/02/07 11:35:47 by qbeukelm         ###   ########.fr       */
+/*   Updated: 2025/02/15 12:28:00 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minirt.h"
 
-# define MAX_LEN 11
-# define MIN_LEN 5
-# define COMMA_COUNT 2
-# define RANGE 255
-# define DELIMITER ','
-# define OUT_RANGE "Out of range."
-# define TOO_MANY "Too many values"
+#define MAX_LEN 11
+#define MIN_LEN 5
+#define COMMA_COUNT 2
+#define RANGE 255
+#define DELIMITER ','
+#define OUT_RANGE "Out of range."
+#define TOO_MANY "Too many values"
 
-static bool validate_color(char *token)
+static bool	validate_color(char *token)
 {
 	int		len;
 	int		i;
@@ -65,31 +65,26 @@ static bool	color_values_in_range(char **color_values)
 	return (SUCCESS);
 }
 
-static t_color	*build_color(char **color_values)
+static bool	build_color(t_color *color, char **color_values)
 {
-	int			i;
-	t_color		*color;
+	int		i;
 
 	i = 0;
-	color = malloc(sizeof(t_color));
-	if (color == NULL)
-	{
-		show_error(E_MALLOC, "build_color()");
-		return (NULL);
-	}
 	while (color_values[i])
 		i++;
 	if (i != 3)
 	{
 		show_error(E_INVALID_CLR, TOO_MANY);
-		return (NULL);
+		return (false);
 	}
 	if (color_values_in_range(color_values) == FAILURE)
-		return (NULL);
+	{
+		return (false);
+	}
 	color->r = ft_atoi(color_values[0]);
 	color->g = ft_atoi(color_values[1]);
 	color->b = ft_atoi(color_values[2]);
-	return (color);
+	return (true);
 }
 
 /**
@@ -105,20 +100,23 @@ static t_color	*build_color(char **color_values)
  * - If the number of color values is not exactly 3, an error message is shown and `NULL` is returned.
  * - If any color value is out of the valid range, the function returns `FAILURE`.
  */
-t_color		*parse_color(char *token)
+bool	parse_color(t_color *color, char *token)
 {
-	char		**color_values;
-	t_color		*color;
+	char	**color_values;
 
 	if (validate_color(token) == FAILURE)
-		return (NULL);
+		return (false);
 	color_values = ft_split(token, DELIMITER);
 	if (color_values == NULL)
 	{
 		show_error(E_SPLIT, token);
-		return (NULL);
+		return (false);
 	}
-	color = build_color(color_values);
+	if (build_color(color, color_values) == false)
+	{
+		free_split(color_values);
+		return (false);
+	}
 	free_split(color_values);
-	return (color);
+	return (true);
 }

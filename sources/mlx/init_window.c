@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   vector.c                                           :+:    :+:            */
+/*   init_window.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/01/27 17:15:21 by hesmolde      #+#    #+#                 */
-/*   Updated: 2025/02/08 02:03:39 by hein          ########   odam.nl         */
+/*   Created: 2025/01/17 16:35:07 by hesmolde      #+#    #+#                 */
+/*   Updated: 2025/02/07 14:51:32 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-t_vector	vec_add(t_vector a, t_vector b)
+void	init_mlx(t_mlx_data *data)
 {
-	return ((t_vector){a.x + b.x, a.y + b.y, a.z + b.z});
-}
-
-t_vector	vec_sub(t_vector a, t_vector b)
-{
-	return ((t_vector){a.x - b.x, a.y - b.y, a.z - b.z});
-}
-
-t_vector	vec_scale(t_vector v, double scalar)
-{
-	return ((t_vector){v.x * scalar, v.y * scalar, v.z * scalar});
-}
-
-t_vector	vec_negate(t_vector v)
-{
-	return ((t_vector){-v.x, -v.y, -v.z});
+	data->mlx = mlx_init(WIDTH, HEIGHT, "MINI_RT", false);
+	if (!data->mlx)
+		exit(1);
+	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	if (!data->img)
+	{
+		mlx_terminate(data->mlx);
+		exit(1);
+	}
 }

@@ -6,50 +6,60 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/12 00:21:54 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2024/12/13 13:33:51 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/02/08 01:56:55 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
 // Do not use global variable here
-static char *scene_object_keys[] = {
-	"A",
-	"L",
-	"C",
-	"sp",
-	"pl",
-	"cy",
-	"UNKONOWN"
-};
-
-static char *scene_object_names[] = {
-	"Ambient Light",
-	"Light",
-	"Camera",
-	"Sphere",
-	"Plane",
-	"Cylinder",
-	"Unknown Object"
-};
 
 char	*objects_to_string(e_object object)
 {
+	const char	*scene_object_keys[7] = {
+		"A",
+		"L",
+		"C",
+		"sp",
+		"pl",
+		"cy",
+		"UNKONOWN"
+	};
+
 	if (object >= 0 && object < NUM_OBJECTS)
-		return (scene_object_keys[object]);
-	return (scene_object_keys[NUM_OBJECTS]);
+		return ((char *)scene_object_keys[object]);
+	return ((char *)scene_object_keys[NUM_OBJECTS]);
 }
 
 char	*objects_to_name(e_object object)
 {
+	static char	*scene_object_names[7] = {
+		"Ambient Light",
+		"Light",
+		"Camera",
+		"Sphere",
+		"Plane",
+		"Cylinder",
+		"Unknown Object"
+	};
+
 	if (object >= 0 && object < NUM_OBJECTS)
-		return (scene_object_names[object]);
-	return (scene_object_names[NUM_OBJECTS]);
+		return ((char *)scene_object_names[object]);
+	return ((char *)scene_object_names[NUM_OBJECTS]);
 }
 
-e_object		string_to_objects(char *str)
+e_object	string_to_objects(char *str)
 {
-	int		i;
+	const char	*scene_object_keys[7] = {
+		"A",
+		"L",
+		"C",
+		"sp",
+		"pl",
+		"cy",
+		"UNKONOWN"
+	};
+	int			i;
 
 	i = 0;
 	while (i < NUM_OBJECTS)

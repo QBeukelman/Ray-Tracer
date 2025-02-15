@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   function_protection.c                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 13:06:48 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/01/17 17:54:32 by qbeukelm         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   function_protection.c                              :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/12/11 13:06:48 by quentinbeuk   #+#    #+#                 */
+/*   Updated: 2025/02/08 02:00:19 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-int		safe_open(char *file_name, int open_flags, ...)
+int	safe_open(char *file_name, int open_flags, ...)
 {
 	int	fd;
 

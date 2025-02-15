@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   split_string.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 22:00:28 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/01/19 15:53:42 by qbeukelm         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   split_string.c                                     :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/12/11 22:00:28 by quentinbeuk   #+#    #+#                 */
+/*   Updated: 2025/02/08 01:12:51 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-static int skip_spaces(char *str, int i, int len)
+static int	skip_spaces(char *str, int i, int len)
 {
 	while (i < len)
 	{
@@ -41,7 +41,6 @@ int	count_substrings(char *str, int len)
 				break ;
 			i++;
 		}
-
 		if (i > i_check)
 			count++;
 	}
@@ -65,7 +64,7 @@ static int	extract_word(char *str, char *buffer, int i, int len)
 	return (i);
 }
 
-static char **assign_strings(char **split, char *str, int len)
+static char	**assign_strings(char **split, char *str, int len)
 {
 	int		i;
 	int		string_index;
@@ -87,15 +86,15 @@ static char **assign_strings(char **split, char *str, int len)
 	return (split);
 }
 
-char **split_string(char *str)
+char	**split_string(char *str)
 {
 	int		len;
-    int     count;
-    char    **split;
+	int		count;
+	char	**split;
 
 	len = ft_strlen(str);
-    count = count_substrings(str, len);
+	count = count_substrings(str, len);
 	split = safe_malloc((sizeof(char *) * (count + 1)), "split_string()");
 	split = assign_strings(split, str, len);
-    return (split);
+	return (split);
 }

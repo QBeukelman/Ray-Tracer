@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   build_position.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/25 23:29:33 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/01/19 15:51:08 by qbeukelm         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   build_position.c                                   :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/12/25 23:29:33 by quentinbeuk   #+#    #+#                 */
+/*   Updated: 2025/02/08 01:16:55 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minirt.h"
 
-# define DELIMITER ','
-# define DELIMITER_COUNT 2
+#define DELIMITER ','
+#define DELIMITER_COUNT 2
 
 static bool	validate_limit(float val, float limit)
 {
@@ -22,7 +22,7 @@ static bool	validate_limit(float val, float limit)
 	return (false);
 }
 
-static bool validate_limits(char **pos_vals, float limit)
+static bool	validate_limits(char **pos_vals, float limit)
 {
 	if (limit != 0)
 	{
@@ -45,7 +45,7 @@ static bool validate_limits(char **pos_vals, float limit)
 	return (SUCCESS);
 }
 
-static bool		validate_position(char *token)
+static bool	validate_position(char *token)
 {
 	int		i;
 
@@ -67,31 +67,27 @@ static bool		validate_position(char *token)
 		}
 		i++;
 	}
-	return (true);
+	return (SUCCESS);
 }
 
-static t_vect	*build_position(char **pos_vals, float limit)
+static bool	build_position(t_vector *vector, char **pos_vals, float limit)
 {
 	int		i;
-	t_vect	*vec;
-	
+
 	i = 0;
-	vec = malloc(sizeof(t_vect));
-	if (vec == NULL)
-		return (NULL);
 	while (pos_vals[i])
 		i++;
 	if (i != 3)
 	{
 		show_error(E_INVALID_POS, "Too many values");
-		return (NULL);
-	}	
+		return (FAILURE);
+	}
 	if (validate_limits(pos_vals, limit) == FAILURE)
-		return (NULL);
-	vec->x = ft_strtof(pos_vals[0], NULL);
-	vec->y = ft_strtof(pos_vals[1], NULL);
-	vec->z = ft_strtof(pos_vals[2], NULL);
-	return (vec);
+		return (FAILURE);
+	vector->x = ft_strtof(pos_vals[0], NULL);
+	vector->y = ft_strtof(pos_vals[1], NULL);
+	vector->z = ft_strtof(pos_vals[2], NULL);
+	return (SUCCESS);
 }
 
 /**
@@ -109,20 +105,25 @@ static t_vect	*build_position(char **pos_vals, float limit)
  * - If `ft_split()` fails, an error is logged with `E_SPLIT` and the input token.
  * - If `build_position()` encounters an error, it logs the appropriate message internally.
  */
-t_vect	*parse_position(char *token, float limit)
+bool	parse_position(t_vector *vector, char *token, float limit)
 {
 	char	**position_values;
-	t_vect	*position;
 
 	if (validate_position(token) == FAILURE)
-		return (NULL);
+	{
+		return (FAILURE);
+	}
 	position_values = ft_split(token, DELIMITER);
 	if (position_values == NULL)
 	{
 		show_error(E_SPLIT, token);
-		return (NULL);
+		return (FAILURE);
 	}
-	position = build_position(position_values, limit);
+	if (build_position(vector, position_values, limit) == false)
+	{
+		free_split(position_values);
+		return (FAILURE);
+	}
 	free_split(position_values);
-	return (position);
+	return (SUCCESS);
 }
