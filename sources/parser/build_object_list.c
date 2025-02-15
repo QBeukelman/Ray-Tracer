@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   build_object_list.c                                :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/02/07 21:01:58 by hesmolde      #+#    #+#                 */
-/*   Updated: 2025/02/08 02:01:04 by hein          ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   build_object_list.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/07 21:01:58 by hesmolde          #+#    #+#             */
+/*   Updated: 2025/02/15 13:08:12 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ void	clear_list_exit_program(t_object *object)
 static	t_object	*list_last(t_object *object)
 {
 	while (object->next != NULL)
-	{
 		object = object->next;
-	}
 	return (object);
 }
 

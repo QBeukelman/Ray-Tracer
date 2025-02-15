@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 19:31:43 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/02/15 12:27:02 by qbeukelm         ###   ########.fr       */
+/*   Updated: 2025/02/15 13:15:38 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ static bool	build_ambi(t_scene *scene, char **tokens)
 {
 	if (!parse_point_value(&(scene->ambi.ratio), tokens[1]) \
 		|| !parse_color(&(scene->ambi.color), tokens[2]))
-	{
 		return (FAILURE);
-	}
 	scene->ambi.type = AMBIENT_LIGHT;
 	return (SUCCESS);
 }
@@ -31,8 +29,6 @@ bool	add_ambient_light(t_scene *scene, char **tokens)
 		return (FAILURE);
 	}
 	if (build_ambi(scene, tokens) == false)
-	{
 		return (FAILURE);
-	}
 	return (SUCCESS);
 }

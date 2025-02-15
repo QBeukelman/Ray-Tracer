@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   build_plane.c                                      :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/10 13:11:34 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2025/02/08 00:30:25 by hein          ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   build_plane.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/10 13:11:34 by qbeukelm          #+#    #+#             */
+/*   Updated: 2025/02/15 13:16:20 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,7 @@ bool	add_plane(t_scene *scene, char **tokens)
 	}
 	new = build_plane(tokens);
 	if (new == NULL)
-	{
 		return (FAILURE);
-	}
 	append_object(scene, new);
 	return (SUCCESS);
 }

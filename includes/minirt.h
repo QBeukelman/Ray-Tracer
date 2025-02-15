@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 17:46:23 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/02/15 12:26:12 by qbeukelm         ###   ########.fr       */
+/*   Updated: 2025/02/15 13:04:32 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ typedef bool	(*t_add_func)(t_scene*, char **);
 // ------------------------------------------------------------: parse
 // parse_scene.c
 int		count_tokens(char **tokens);
-bool	parse_scene(t_scene *scene, char *file_name);
+bool	parse_scene(t_scene *scene, const char *file_name);
 
 
 // splic_strings.c
@@ -147,7 +147,6 @@ int		background(t_camera *c, double ray_y);
 
 // ------------------------------------------------------------: utils
 // function_protection.c
-int		safe_open(char *file_name, int open_flags, ...);
 void	*safe_malloc(size_t size, char *func_name);
 
 // print_scene.c
