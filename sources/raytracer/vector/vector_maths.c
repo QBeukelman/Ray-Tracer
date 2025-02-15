@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   vector.c                                           :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/27 17:15:21 by hesmolde      #+#    #+#                 */
-/*   Updated: 2025/02/08 02:03:39 by hein          ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   vector_maths.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/15 14:15:15 by qbeukelm          #+#    #+#             */
+/*   Updated: 2025/02/15 14:15:17 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minirt.h"
+#include "../../../includes/minirt.h"
 
 t_vector	vec_add(t_vector a, t_vector b)
 {

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   build_sphere.c                                     :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/17 18:33:11 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2025/02/08 00:31:05 by hein          ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   build_sphere.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/17 18:33:11 by qbeukelm          #+#    #+#             */
+/*   Updated: 2025/02/15 13:16:34 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,7 @@ bool	add_sphere(t_scene *scene, char **tokens)
 	}
 	new = build_sphere(tokens);
 	if (new == NULL)
-	{
 		return (FAILURE);
-	}
 	append_object(scene, new);
 	return (SUCCESS);
 }

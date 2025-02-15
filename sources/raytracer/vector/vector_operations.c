@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   vector2.c                                          :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/27 17:15:49 by hesmolde      #+#    #+#                 */
-/*   Updated: 2025/02/08 02:05:02 by hein          ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   vector_operations.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/15 14:15:06 by qbeukelm          #+#    #+#             */
+/*   Updated: 2025/02/15 14:15:08 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minirt.h"
+#include "../../../includes/minirt.h"
 
 double	vec_dot(t_vector a, t_vector b)
 {

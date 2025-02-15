@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   build_cylinder.c                                   :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/17 19:16:02 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2025/02/08 00:31:23 by hein          ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   build_cylinder.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/17 19:16:02 by qbeukelm          #+#    #+#             */
+/*   Updated: 2025/02/15 13:16:04 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,7 @@ bool	add_cylinder(t_scene *scene, char **tokens)
 	}
 	new = build_cylinder(tokens);
 	if (new == NULL)
-	{
 		return (FAILURE);
-	}
 	append_object(scene, new);
 	return (SUCCESS);
 }

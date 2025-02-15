@@ -1,19 +1,22 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         ::::::::             #
-#    files.mk                                           :+:    :+:             #
-#                                                      +:+                     #
-#    By: hesmolde <hesmolde@student.42.fr>            +#+                      #
-#                                                    +#+                       #
-#    Created: 2024/12/09 17:55:12 by quentinbeuk   #+#    #+#                  #
-#    Updated: 2025/02/07 23:45:13 by hesmolde      ########   odam.nl          #
+#                                                         :::      ::::::::    #
+#    files.mk                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/12/09 17:55:12 by quentinbeuk       #+#    #+#              #
+#    Updated: 2025/02/15 14:15:34 by qbeukelm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # ===== Sources =====
 SOURCES						= main.c \
 
-SOURCES_PARSER 				= parse_scene.c \
+SOURCES_MLX					= init_window.c \
+
+SOURCES_PARSER 				= build_object_list.c \
+								parse_scene.c \
 								scene_objects.c \
 								split_string.c \
 
@@ -29,34 +32,34 @@ SOURCES_PARSER_COMP			= build_color.c \
 								build_point_value.c \
 								build_position.c \
 
-SOURCES_UTILS				= build_object_list.c \
-								error.c \
-								function_protection.c \
-								print_scene.c \
-								utils.c \
-								vector.c \
-								vector2.c \
-
 SOURCES_RAYTRACER			= pixel_loop.c \
 								background.c \
 
-SOURCES_MLX_FUNCTIONS		= init_window.c \
-								
+SOURCES_RAYTRACER_VECTOR	= vector_maths.c \
+								vector_operations.c \
+
+SOURCES_UTILS				= error.c \
+								function_protection.c \
+								print_scene.c \
+								utils.c \
+
 
 # ===== Manage Directories =====
 DIR_SOURCES					= sources
+DIR_SOURCES_MLX				= sources/mlx
 DIR_SOURCES_PARSER			= sources/parser
 DIR_SOURCES_PARSER_VALIDATE	= sources/parser/build_objects
 DIR_SOURCES_PARSER_COMP		= sources/parser/parse_components
 DIR_SOURCES_RAYTRACER		= sources/raytracer
+DIR_SOURCES_RAYTRACER_VEC	= sources/raytracer/vector
 DIR_SOURCES_UTILS			= sources/utils
-DIR_SOURCES_MLX_FUNCTIONS		= sources/mlx_functions
 
 # ===== Object Files =====
 OBJ = $(addprefix $(DIR_OBJ)/, $(SOURCES:.c=.o)) \
+	$(addprefix $(DIR_OBJ)/, $(SOURCES_MLX:.c=.o)) \
 	$(addprefix $(DIR_OBJ)/, $(SOURCES_PARSER:.c=.o)) \
 	$(addprefix $(DIR_OBJ)/, $(SOURCES_PARSER_VALIDATE:.c=.o)) \
 	$(addprefix $(DIR_OBJ)/, $(SOURCES_PARSER_COMP:.c=.o)) \
 	$(addprefix $(DIR_OBJ)/, $(SOURCES_RAYTRACER:.c=.o)) \
+	$(addprefix $(DIR_OBJ)/, $(SOURCES_RAYTRACER_VECTOR:.c=.o)) \
 	$(addprefix $(DIR_OBJ)/, $(SOURCES_UTILS:.c=.o)) \
-	$(addprefix $(DIR_OBJ)/, $(SOURCES_MLX_FUNCTIONS:.c=.o)) \
