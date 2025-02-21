@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/09 17:46:23 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/02/15 13:04:32 by qbeukelm         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   minirt.h                                           :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
+/*   Updated: 2025/02/17 23:30:38 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ bool	parse_position(t_vector *vector, char *token, float limit);
 
 // ------------------------------------------------------------: initialization
 void	init_mlx(t_mlx_data *data);
+void	initialize_viewport(t_camera *camera);
 
 // ------------------------------------------------------------: render_image
 void	render_image(t_mlx_data *mlx, t_scene *scene);

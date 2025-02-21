@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   pixel_loop.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/30 15:15:23 by hein              #+#    #+#             */
-/*   Updated: 2025/02/15 16:28:47 by qbeukelm         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   pixel_loop.c                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/30 15:15:23 by hein          #+#    #+#                 */
+/*   Updated: 2025/02/17 23:33:19 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	render_image(t_mlx_data *mlx, t_scene *scene)
 	int		colour;
 
 	pixel.y = 0;
+	initialize_viewport(&(scene->camera));
 	while (pixel.y < HEIGHT)
 	{
 		pixel.x = 0;

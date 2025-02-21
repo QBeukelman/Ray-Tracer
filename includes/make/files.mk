@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         :::      ::::::::    #
-#    files.mk                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/12/09 17:55:12 by quentinbeuk       #+#    #+#              #
-#    Updated: 2025/02/15 14:15:34 by qbeukelm         ###   ########.fr        #
+#                                                         ::::::::             #
+#    files.mk                                           :+:    :+:             #
+#                                                      +:+                     #
+#    By: qbeukelm <qbeukelm@student.42.fr>            +#+                      #
+#                                                    +#+                       #
+#    Created: 2024/12/09 17:55:12 by quentinbeuk   #+#    #+#                  #
+#    Updated: 2025/02/17 23:35:12 by hein          ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SOURCES_PARSER_COMP			= build_color.c \
 
 SOURCES_RAYTRACER			= pixel_loop.c \
 								background.c \
+								viewport.c \
 
 SOURCES_RAYTRACER_VECTOR	= vector_maths.c \
 								vector_operations.c \
