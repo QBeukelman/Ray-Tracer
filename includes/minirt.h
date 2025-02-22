@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/02/17 23:30:38 by hein          ########   odam.nl         */
+/*   Updated: 2025/02/22 15:42:28 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,14 @@ typedef struct s_scene
 	t_light		light;
 	struct s_object		*objects;
 } t_scene;
+
+typedef struct s_collision
+{
+	t_object	*closest_obj;
+	double		distance;
+	t_vector	collision_point;
+	t_vector	surface_normal;
+}		t_collision;
 
 typedef struct s_pixel
 {
