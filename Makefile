@@ -6,7 +6,7 @@
 #    By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/09 17:42:12 by quentinbeuk       #+#    #+#              #
-#    Updated: 2025/02/15 13:22:53 by qbeukelm         ###   ########.fr        #
+#    Updated: 2025/02/22 12:57:14 by qbeukelm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,9 @@ $(DIR_OBJ)/%.o: $(DIR_SOURCES_PARSER_COMP)/%.c | $(DIR_OBJ)
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 $(DIR_OBJ)/%.o: $(DIR_SOURCES_RAYTRACER)/%.c | $(DIR_OBJ)
+	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
+
+$(DIR_OBJ)/%.o: $(DIR_SOURCES_RAYTRACER_COLLISION)/%.c | $(DIR_OBJ)
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 $(DIR_OBJ)/%.o: $(DIR_SOURCES_RAYTRACER_VEC)/%.c | $(DIR_OBJ)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   minirt.h                                           :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/02/17 23:30:38 by hein          ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   minirt.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/09 17:46:23 by quentinbeuk       #+#    #+#             */
+/*   Updated: 2025/02/22 14:03:04 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,10 @@ typedef struct s_rgb
 
 typedef bool	(*t_add_func)(t_scene*, char **);
 
+// ------------------------------------------------------------: mlx
+// init_window.c
+void	init_mlx(t_mlx_data *data);
+
 // ------------------------------------------------------------: parse
 // parse_scene.c
 int		count_tokens(char **tokens);
@@ -120,6 +124,7 @@ void	free_scene(t_scene *scene);
 
 // ------------------------------------------------------------: parse/parse_components
 // build_color.c
+int		color_rgba_to_int(int r, int g, int b, int a);
 bool	parse_color(t_color *color, char *token);
 
 // build_int.c
@@ -131,20 +136,23 @@ bool	parse_point_value(float *float_value, char *token);
 // build_position.c
 bool	parse_position(t_vector *vector, char *token, float limit);
 
-// ------------------------------------------------------------: initialization
-void	init_mlx(t_mlx_data *data);
-void	initialize_viewport(t_camera *camera);
 
-// ------------------------------------------------------------: render_image
+// ------------------------------------------------------------: raytracer
+// background.c
+int		background(t_camera *c, double ray_y);
+
+// pixel_loop.c
+t_ray	calculate_ray(t_camera *c, int x, int y);
 void	render_image(t_mlx_data *mlx, t_scene *scene);
 
-// ------------------------------------------------------------: camera_stuff
-void	init_camera_data(t_camera *camera);
-t_ray	calculate_ray(t_camera *c, int x, int y);
+// viewport.c
+void	initialize_viewport(t_camera *camera);
 
-// ------------------------------------------------------------: background
-int		get_rgba(int r, int g, int b, int a);
-int		background(t_camera *c, double ray_y);
+
+// ------------------------------------------------------------: raytracer/collision
+// sphere.c
+bool hit_sphere(t_object *sphere, t_ray *ray, double *t_nearest);
+
 
 // ------------------------------------------------------------: utils
 // function_protection.c

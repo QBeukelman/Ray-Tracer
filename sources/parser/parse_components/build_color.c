@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:19:51 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/02/15 12:28:00 by qbeukelm         ###   ########.fr       */
+/*   Updated: 2025/02/22 12:48:51 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,11 @@ static bool	build_color(t_color *color, char **color_values)
 	color->g = ft_atoi(color_values[1]);
 	color->b = ft_atoi(color_values[2]);
 	return (true);
+}
+
+int	color_rgba_to_int(int r, int g, int b, int a)
+{
+	return (r << 24 | g << 16 | b << 8 | a);
 }
 
 /**

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   background.c                                       :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/02/02 18:00:13 by hesmolde      #+#    #+#                 */
-/*   Updated: 2025/02/08 02:19:02 by hein          ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   background.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/02 18:00:13 by hesmolde          #+#    #+#             */
+/*   Updated: 2025/02/22 12:49:06 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,5 @@ int	background(t_camera *c, double ray_y)
 	colour.r = (int)(255.999 * ((1.0 - blend) * white.r + blend * blue.r));
 	colour.g = (int)(255.999 * ((1.0 - blend) * white.g + blend * blue.g));
 	colour.b = (int)(255.999 * ((1.0 - blend) * white.b + blend * blue.b));
-	return (get_rgba(colour.r, colour.g, colour.b, 255));
+	return (color_rgba_to_int(colour.r, colour.g, colour.b, 255));
 }
