@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/01 15:48:11 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/01 18:04:54 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # include <stdint.h>
 # include <string.h>
 
-// ------------------------------------------------------------: colours
+// ------------------------------------------------------------: colors
 # define C_YELLOW "\033[1;33m"
 # define C_RED "\x1B[1;31m"
 # define RESET_COLOR "\033[0m"
@@ -77,7 +77,7 @@ typedef struct s_object
 	t_vector		orientation;
 	double			diameter;
 	double 			height;
-	t_colour		colour;
+	t_color			color;
 	struct s_object	*next;
 }	t_object;
 
@@ -90,25 +90,12 @@ typedef struct s_scene
 	t_camera			camera;
 	t_light				light;
 	struct s_object		*objects;
-	t_vector			**rays;
 } t_scene;
-
-typedef struct s_collision
-{
-	t_object	*closest_obj;
-	double		distance;
-	t_vector	collision_point;
-	t_vector	surface_normal;
-} t_collision;
 
 typedef struct s_pixel
 {
-	int		x;
-	int		y;
-	double	ndc_x;
-	double	ndc_y;
-	double	camera_x;
-	double	camera_y;
+	int	x;
+	int	y;
 } t_pixel;
 
 typedef struct s_rgb
@@ -192,6 +179,8 @@ void	enter_key_hook(t_mlx_data *mlx_data, t_scene *scene);
 // key_hooks.c
 void	ft_keyhook(mlx_key_data_t keydata, void *data);
 
+// init_window.c
+void	init_mlx(t_mlx_data *data);
 
 // ------------------------------------------------------------: parse
 // parse_scene.c
@@ -225,12 +214,12 @@ bool	add_sphere(t_scene *scene, char **tokens);
 // ------------------------------------------------------------: parse/clean_up
 // memory_cleanup.c
 void	free_split(char **split);
-void	free_rays(t_scene *scene);
 
 
 // ------------------------------------------------------------: parse/parse_components
-// build_colour.c
-bool	parse_colour(t_colour *colour, char *token);
+// build_color.c
+int		color_rgba_to_int(int r, int g, int b, int a);
+bool	parse_color(t_color *color, char *token);
 
 // build_int.c
 bool	parse_int(int *fov, char *str);
@@ -273,12 +262,21 @@ int	calculate_shading(t_collision *col, t_light *light, t_ambi *ambi, t_object *
 // render_image.c
 bool 	is_collision(t_object *objects, t_ray ray, t_collision *collision);
 bool 	collision_for_object(t_object *object, t_ray ray, t_collision *collision);
+// ------------------------------------------------------------: raytracer
+// background.c
+int		background(t_camera *c, double ray_y);
+
+// pixel_loop.c
+t_ray	calculate_ray(t_camera *c, int x, int y);
 void	render_image(t_mlx_data *mlx, t_scene *scene);
 
-// rays.c
-void	generate_rays(t_vector **rays, t_camera *c);
-bool	initialize_rays(t_scene *scene);
+// viewport.c
+void	initialize_viewport(t_camera *camera);
 
+
+// ------------------------------------------------------------: raytracer/collision
+// sphere.c
+bool hit_sphere(t_object *sphere, t_ray *ray, double *t_nearest);
 // world_martix.c
 t_matrix	set_translation_matrix(int yaw, int pitch);
 t_vector	set_ray_direction(t_vector ray, t_matrix m);

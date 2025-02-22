@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:18 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/04/30 21:24:44 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/01 18:05:50 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,33 @@ typedef enum {
 } e_object;
 
 // ------------------------------------------------------------: components
-typedef struct s_colour
+typedef struct s_color
 {
 	int		r;
 	int		g;
 	int		b;
-} t_colour;
+} t_color;
 
 
 // ------------------------------------------------------------: objects
+typedef struct s_ambi
+{
+	e_object		type;
+	float			ratio;
+	t_color			color;
+} t_ambi;
+
+typedef struct s_viewport
+{
+	double		distance;
+	t_vector	center;
+	double		height;
+	double		width;
+	double		x_off;
+	double		y_off;
+	t_vector	bottomleft;
+} t_viewport;
+
 // TODO: Camera orientation as 3D normalized vector
 typedef struct s_camera
 {
@@ -55,8 +73,11 @@ typedef struct s_camera
 	int			fov;
 	double		fov_radians;
 	t_vector	position;
-	int			yaw;
-	int			pitch;
+	t_vector	global_up;
+	t_vector	orientation;
+	t_vector	right;
+	t_vector	up;
+	t_viewport	viewport;
 	bool		initialized;
 } t_camera;
 

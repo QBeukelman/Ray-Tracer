@@ -6,39 +6,41 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/30 15:15:23 by hein          #+#    #+#                 */
-/*   Updated: 2025/04/28 14:48:47 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/01 18:07:26 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minirt.h"
 
-bool collision_for_object(t_object *object, t_ray ray, t_collision *collision)
-{
-	switch (object->type)
-	{
-		case SPHERE:
-			return (sphere_collision(object, ray, collision));
-		case PLANE:
-			return (plane_collision(object, ray, collision));
-		default:
-			return (0);
-	}
-	return (0);
-}
+// bool collision_for_object(t_object *object, t_ray ray, t_collision *collision)
+// {
+// 	const t_collision_func f[3] = {sphere_collision, plane_collision, cylinder_collision};
+// 	switch (object->type)
+// 	{
+// 		case SPHERE:
+// 			return (sphere_collision(object, ray, collision));
+// 		case PLANE:
+// 			return (plane_collision(object, ray, collision));
+// 		default:
+// 			return (0);
+// 	}
+// 	return (0);
+// }
 
 bool is_collision(t_object *objects, t_ray ray, t_collision *collision)
 {
-	t_object		*current_object;
-	t_collision		temp_collision;
-	bool			found_collision;
-	double			min_distance;
+	const t_collision_func f[3] = {sphere_collision, plane_collision, cylinder_collision};
+	t_object				*current_object;
+	t_collision				temp_collision;
+	bool					found_collision;
+	double					min_distance;
 
 	found_collision = false;
 	min_distance = __DBL_MAX__;
 	current_object = objects;
 	while (current_object)
 	{
-		if (collision_for_object(current_object, ray, &temp_collision) &&
+		if (f[current_object->type - 3](current_object, ray, &temp_collision) &&
 			temp_collision.distance > 0 &&
 			temp_collision.distance < min_distance)
 		{
