@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         ::::::::             #
-#    files.mk                                           :+:    :+:             #
-#                                                      +:+                     #
-#    By: qbeukelm <qbeukelm@student.42.fr>            +#+                      #
-#                                                    +#+                       #
-#    Created: 2024/12/09 17:55:12 by quentinbeuk   #+#    #+#                  #
-#    Updated: 2025/02/17 23:35:12 by hein          ########   odam.nl          #
+#                                                         :::      ::::::::    #
+#    files.mk                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/12/09 17:55:12 by quentinbeuk       #+#    #+#              #
+#    Updated: 2025/02/22 12:57:00 by qbeukelm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,8 @@ SOURCES_RAYTRACER			= pixel_loop.c \
 								background.c \
 								viewport.c \
 
+SOURCES_RAYTRACER_COLLISION = sphere.c \
+
 SOURCES_RAYTRACER_VECTOR	= vector_maths.c \
 								vector_operations.c \
 
@@ -52,6 +54,7 @@ DIR_SOURCES_PARSER			= sources/parser
 DIR_SOURCES_PARSER_VALIDATE	= sources/parser/build_objects
 DIR_SOURCES_PARSER_COMP		= sources/parser/parse_components
 DIR_SOURCES_RAYTRACER		= sources/raytracer
+DIR_SOURCES_RAYTRACER_COLLISION = sources/raytracer/collision
 DIR_SOURCES_RAYTRACER_VEC	= sources/raytracer/vector
 DIR_SOURCES_UTILS			= sources/utils
 
@@ -63,4 +66,5 @@ OBJ = $(addprefix $(DIR_OBJ)/, $(SOURCES:.c=.o)) \
 	$(addprefix $(DIR_OBJ)/, $(SOURCES_PARSER_COMP:.c=.o)) \
 	$(addprefix $(DIR_OBJ)/, $(SOURCES_RAYTRACER:.c=.o)) \
 	$(addprefix $(DIR_OBJ)/, $(SOURCES_RAYTRACER_VECTOR:.c=.o)) \
+	$(addprefix $(DIR_OBJ)/, $(SOURCES_RAYTRACER_COLLISION:.c=.o)) \
 	$(addprefix $(DIR_OBJ)/, $(SOURCES_UTILS:.c=.o)) \
