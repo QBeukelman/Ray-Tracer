@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   pixel_loop.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/30 15:15:23 by hein              #+#    #+#             */
-/*   Updated: 2025/02/22 14:14:23 by qbeukelm         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   pixel_loop.c                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/30 15:15:23 by hein          #+#    #+#                 */
+/*   Updated: 2025/02/23 11:11:22 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,48 +29,40 @@ t_ray	calculate_ray(t_camera *c, int x, int y)
 	return (new_ray);
 }
 
-static int ray_color_for_obj(t_object *object, t_ray *ray, double *nearest)
+static bool collision_for_object(t_object *object, t_ray ray, t_collision *collision)
 {
 	switch (object->type)
 	{
 		case SPHERE:
-			return (hit_sphere(object, &ray, &nearest));
+			return (sphere_collision(object, ray, collision));
 		default:
 			return (0);
 	}
 	return (0);
 }
 
-static int ray_color(t_scene *scene, t_ray ray)
+static bool is_collision(t_scene *scene, t_ray ray, t_collision *collision)
 {
 	t_object	*current_object;
-	int			color;
-	double		nearest;
 	t_object	*closest;
 
 	current_object = scene->objects;
-	nearest = INFINITY;
 	closest = NULL;
 	while (current_object)
 	{
-		if (ray_color_for_obj(scene, &ray, &nearest))
-			closest = &current_object;
+		if (collision_for_object(current_object, ray, collision))
+			closest = current_object;
 		current_object = current_object->next;
 	}
-
-	if (closest)
-		color = 1;
-	else
-		color = background(&(scene->camera), ray.direction.y);
-		
-	return (color);
+	return (closest != NULL);
 }
 
 void	render_image(t_mlx_data *mlx, t_scene *scene)
 {
-	t_pixel	pixel;
-	t_ray	current_ray;
-	int		colour;
+	t_pixel			pixel;
+	t_ray			current_ray;
+	int				colour;
+	t_collision		collision;
 
 	pixel.y = 0;
 	initialize_viewport(&(scene->camera));
@@ -80,7 +72,10 @@ void	render_image(t_mlx_data *mlx, t_scene *scene)
 		while (pixel.x < WIDTH)
 		{
 			current_ray = calculate_ray(&(scene->camera), pixel.x, pixel.y);
-			colour = ray_color(scene, current_ray);
+			if (is_collision(scene, current_ray, &collision))
+				colour = colour_to_int(&(collision.closest_obj->colour), 255);
+			else
+				colour = background(&(scene->camera), current_ray.direction.y);
 			
 			mlx_put_pixel(mlx->img, pixel.x, pixel.y, colour);
 			pixel.x++;

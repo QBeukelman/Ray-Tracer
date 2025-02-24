@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   build_plane.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/10 13:11:34 by qbeukelm          #+#    #+#             */
-/*   Updated: 2025/02/15 13:16:20 by qbeukelm         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   build_plane.c                                      :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/10 13:11:34 by qbeukelm      #+#    #+#                 */
+/*   Updated: 2025/02/23 11:11:07 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static t_object	*build_plane(char **tokens)
 	new->type = PLANE;
 	if (!parse_position(&(new->position), tokens[1], 0.0) \
 		|| !parse_position(&(new->orientation), tokens[2], 1.0) \
-		|| !parse_color(&(new->color), tokens[3]))
+		|| !parse_colour(&(new->colour), tokens[3]))
 	{
 		free(new);
 		return (NULL);

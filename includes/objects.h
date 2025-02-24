@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:18 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/02/08 00:36:45 by hein          ########   odam.nl         */
+/*   Updated: 2025/02/23 11:06:47 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ typedef enum {
 } e_object;
 
 // ------------------------------------------------------------: components
-typedef struct s_color
+typedef struct s_colour
 {
 	int		r;
 	int		g;
 	int		b;
-} t_color;
+} t_colour;
 
 
 // ------------------------------------------------------------: objects
@@ -48,7 +48,7 @@ typedef struct s_ambi
 {
 	e_object		type;
 	float			ratio;
-	t_color			color;
+	t_colour		colour;
 } t_ambi;
 
 typedef struct s_viewport

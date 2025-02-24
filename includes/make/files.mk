@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         :::      ::::::::    #
-#    files.mk                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/12/09 17:55:12 by quentinbeuk       #+#    #+#              #
-#    Updated: 2025/02/22 12:57:00 by qbeukelm         ###   ########.fr        #
+#                                                         ::::::::             #
+#    files.mk                                           :+:    :+:             #
+#                                                      +:+                     #
+#    By: qbeukelm <qbeukelm@student.42.fr>            +#+                      #
+#                                                    +#+                       #
+#    Created: 2024/12/09 17:55:12 by quentinbeuk   #+#    #+#                  #
+#    Updated: 2025/02/23 11:06:55 by quentinbeuk   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SOURCES_PARSER_VALIDATE		= build_ambient_light.c \
 								build_plane.c \
 								build_sphere.c \
 
-SOURCES_PARSER_COMP			= build_color.c \
+SOURCES_PARSER_COMP			= build_colour.c \
 								build_int.c \
 								build_point_value.c \
 								build_position.c \
@@ -41,7 +41,8 @@ SOURCES_RAYTRACER_COLLISION = sphere.c \
 SOURCES_RAYTRACER_VECTOR	= vector_maths.c \
 								vector_operations.c \
 
-SOURCES_UTILS				= error.c \
+SOURCES_UTILS				= colour_utils.c \
+								error.c \
 								function_protection.c \
 								print_scene.c \
 								utils.c \

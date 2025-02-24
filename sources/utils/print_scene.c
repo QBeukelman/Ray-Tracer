@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/25 22:09:42 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/02/07 23:45:41 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/02/23 11:08:19 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 typedef void (*print_object)(t_object*);
 
 // ------------------ Print Utils --------------
-static void print_color(t_color color)
+static void print_colour(t_colour colour)
 {
-	printf("\tCol: \t%d, %d, %d\n", color.r, color.g, color.b);
+	printf("\tCol: \t%d, %d, %d\n", colour.r, colour.g, colour.b);
 }
 
 static void print_vector(t_vector vec)
@@ -30,7 +30,7 @@ static void print_ambi(t_ambi *ambi)
 {
 	printf("[%s]\n", objects_to_name(ambi->type));
 	printf("\tAmbi: \t%.1f\n", ambi->ratio);
-	print_color(ambi->color);
+	print_colour(ambi->colour);
 	printf("\n");
 }
 
@@ -62,7 +62,7 @@ static void print_plane(t_object *plane)
 	print_vector(plane->position);
 	printf("\tDir: \t");
 	print_vector(plane->orientation);
-	print_color(plane->color);
+	print_colour(plane->colour);
 	printf("\n");
 }
 
@@ -73,7 +73,7 @@ static void	print_sphere(t_object *sphere)
 	printf("\tPos: \t");
 	print_vector(sphere->position);
 	printf("\tDiam: \t%.1f\n", sphere->diameter);
-	print_color(sphere->color);
+	print_colour(sphere->colour);
 	printf("\n");
 }
 
@@ -87,7 +87,7 @@ static void	print_cylinder(t_object *cylinder)
 	print_vector(cylinder->axis);
 	printf("\tDiam: \t%.1f\n",(cylinder->diameter));
 	printf("\tHeig: \t%.1f\n",(cylinder->height));
-	print_color(cylinder->color);
+	print_colour(cylinder->colour);
 	printf("\n");
 }
 

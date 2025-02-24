@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   build_cylinder.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/17 19:16:02 by qbeukelm          #+#    #+#             */
-/*   Updated: 2025/02/15 13:16:04 by qbeukelm         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   build_cylinder.c                                   :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/17 19:16:02 by qbeukelm      #+#    #+#                 */
+/*   Updated: 2025/02/23 11:11:02 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static t_object	*build_cylinder(char **tokens)
 	new->type = CYLINDER;
 	if (!parse_position(&(new->position), tokens[1], 0.0) \
 		|| !parse_position(&(new->axis), tokens[2], 1.0) \
-		|| !parse_color(&(new->color), tokens[5]))
+		|| !parse_colour(&(new->colour), tokens[5]))
 	{
 		free(new);
 		return (NULL);

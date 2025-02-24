@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   sphere.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/22 12:38:49 by qbeukelm          #+#    #+#             */
-/*   Updated: 2025/02/22 14:14:01 by qbeukelm         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   sphere.c                                           :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/02/22 12:38:49 by qbeukelm      #+#    #+#                 */
+/*   Updated: 2025/02/23 11:01:46 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,39 @@
 
 # define CONST2 -2.0
 # define CONST4 4
-static bool nearest_collision(double a, double b, double discriminant, double *nearest)
-{
-    const double sqrt_d = sqrt(discriminant);
-    const double t1 = (-b - sqrt_d) / (2 * a);
-    const double t2 = (-b + sqrt_d) / (2 * a);
 
-    if (t1 > 0 && t1 < *nearest) 
-    {
-        *nearest = t1;
-        return (true);
-    }
-    if (t2 > 0 && t2 < *nearest) 
-    {
-        *nearest = t2;
-        return (true);
-    }
-    return (false);
+static double ft_sqrt(double value)
+{
+    return value * value;
 }
 
-bool hit_sphere(t_object *sphere, t_ray *ray, double *nearest)
+static double collision_dst(double a, double b, double discriminant)
 {
-	t_vector		oc;
-	double			a;
-	double			b;
-	double			c;
-	double			discriminant;
-	const double	radius_sq = (sphere->diameter/2) * (sphere->diameter/2);
-	
-	oc = vec_sub(sphere->position, ray->origin);
-	a = vec_dot(ray->direction, ray->direction);
-	b = CONST2 * vec_dot(ray->direction, oc);
-	c = vec_dot(oc, oc) - radius_sq;
-	discriminant = ((b*b) - CONST4*a*c);
-	
+    const double sqrt_d = sqrt(discriminant);
+    double t1 = (-b - sqrt_d) / (CONST2 * a);
+    double t2 = (-b + sqrt_d) / (CONST2 * a);
+    
+    if (t1 < 0 && t2 < 0)
+        return (-1);
+    
+    return ((t1 > 0) ? t1 : t2);
+}
+
+bool	sphere_collision(t_object *sphere, t_ray ray, t_collision *collision)
+{
+	const t_vector		oc = vec_sub(sphere->position, ray.origin);
+	const double		a = vec_dot(ray.direction, ray.direction);
+	const double		b = CONST2 * vec_dot(ray.direction, oc);
+	const double		c = vec_dot(oc, oc) - ft_sqrt(sphere->diameter / 2);
+	const double		discriminant = ((b * b) - CONST4 * a * c);
+
 	if (discriminant < 0)
 		return (false);
-	return (nearest_collision(a, b, discriminant, nearest));
+
+	const double t = collision_dst(a, b, discriminant);
+    collision->distance = t;
+    collision->collision_point = vec_add(ray.origin, vec_scale(ray.direction, t));
+    collision->surface_normal = vec_normalize(vec_sub(collision->collision_point, sphere->position));
+    collision->closest_obj = sphere;
+	return (true);
 }

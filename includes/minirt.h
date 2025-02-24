@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/02/22 19:46:22 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/02/23 11:12:20 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # include <stdint.h>
 # include <math.h>
 
-// ------------------------------------------------------------: colors
+// ------------------------------------------------------------: colours
 # define C_YELLOW "\033[1;33m"
 # define C_RED "\x1B[1;31m"
 # define RESET_COLOR "\033[0m"
@@ -54,7 +54,7 @@ typedef struct s_object
 	t_vector		orientation;
 	double			diameter;
 	double 			height;
-	t_color			color;
+	t_colour			colour;
 	struct s_object	*next;
 }	t_object;
 
@@ -73,7 +73,7 @@ typedef struct s_collision
 	double		distance;
 	t_vector	collision_point;
 	t_vector	surface_normal;
-}		t_collision;
+} t_collision;
 
 typedef struct s_pixel
 {
@@ -131,9 +131,8 @@ void	free_scene(t_scene *scene);
 
 
 // ------------------------------------------------------------: parse/parse_components
-// build_color.c
-int		color_rgba_to_int(int r, int g, int b, int a);
-bool	parse_color(t_color *color, char *token);
+// build_colour.c
+bool	parse_colour(t_colour *colour, char *token);
 
 // build_int.c
 bool	parse_int(int *fov, char *str);
@@ -159,10 +158,14 @@ void	initialize_viewport(t_camera *camera);
 
 // ------------------------------------------------------------: raytracer/collision
 // sphere.c
-bool hit_sphere(t_object *sphere, t_ray *ray, double *t_nearest);
+bool	sphere_collision(t_object *sphere, t_ray ray, t_collision *collision);
 
 
 // ------------------------------------------------------------: utils
+// colour_utils.c
+int		rgba_to_int(int r, int g, int b, int a);
+int		colour_to_int(t_colour *colour, int a);
+
 // function_protection.c
 void	*safe_malloc(size_t size, char *func_name);
 
