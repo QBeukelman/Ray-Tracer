@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   build_sphere.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/17 18:33:11 by qbeukelm          #+#    #+#             */
-/*   Updated: 2025/02/15 13:16:34 by qbeukelm         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   build_sphere.c                                     :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/17 18:33:11 by qbeukelm      #+#    #+#                 */
+/*   Updated: 2025/02/23 11:11:15 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static t_object	*build_sphere(char **tokens)
 	ft_memset(new, 0, sizeof(t_object));
 	new->type = SPHERE;
 	if (!parse_position(&(new->position), tokens[1], 0.0) \
-		|| !parse_color(&(new->color), tokens[3]))
+		|| !parse_colour(&(new->colour), tokens[3]))
 	{
 		free(new);
 		return (NULL);

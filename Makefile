@@ -1,16 +1,16 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/12/09 17:42:12 by quentinbeuk       #+#    #+#              #
-#    Updated: 2025/02/15 13:22:53 by qbeukelm         ###   ########.fr        #
+#                                                         ::::::::             #
+#    Makefile                                           :+:    :+:             #
+#                                                      +:+                     #
+#    By: qbeukelm <qbeukelm@student.42.fr>            +#+                      #
+#                                                    +#+                       #
+#    Created: 2024/12/09 17:42:12 by quentinbeuk   #+#    #+#                  #
+#    Updated: 2025/02/23 11:05:47 by quentinbeuk   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-include includes/make/colors.mk
+include includes/make/colours.mk
 include includes/make/files.mk
 
 
@@ -29,7 +29,13 @@ LIBFT			= ./includes/libft/libft.a
 
 MLX42_DIR		= ./includes/MLX42
 MLX42_URL		= https://github.com/codam-coding-college/MLX42.git
-FRAMEWORKS 		= -framework Cocoa -framework OpenGL -framework IOKit
+
+FRAMEWORKS 		= -framework Cocoa
+FRAMEWORKS 		+= -framework OpenGL
+FRAMEWORKS 		+= -framework IOKit
+
+LDFLAGS 		+= $(FRAMEWORKS)
+
 
 # ===== OS Specific =====
 UNAME_S := $(shell uname -s)
@@ -40,10 +46,12 @@ ifeq ($(OS),Windows_NT)
     # Windows code here
 endif
 ifeq ($(UNAME_S),Darwin)
-	BREW_PREFIX = /Users/$(USER)/.brew
-    MLX42 = ./includes/MLX42/build/libmlx42.a -L$(BREW_PREFIX)/lib -lglfw $(FRAMEWORKS)
-    CFLAGS = -I$(BREW_PREFIX)/include
+    BREW_PREFIX = /Users/$(USER)/.brew
+    MLX42 = ./includes/MLX42/build/libmlx42.a -L$(BREW_PREFIX)/lib -lglfw
+    LDFLAGS += $(FRAMEWORKS)
+    CFLAGS += -I$(BREW_PREFIX)/include
 endif
+
 
 # ===== Rules =====
 all: $(NAME_EXECUTABLE)
@@ -69,6 +77,9 @@ $(DIR_OBJ)/%.o: $(DIR_SOURCES_PARSER_COMP)/%.c | $(DIR_OBJ)
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 $(DIR_OBJ)/%.o: $(DIR_SOURCES_RAYTRACER)/%.c | $(DIR_OBJ)
+	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
+
+$(DIR_OBJ)/%.o: $(DIR_SOURCES_RAYTRACER_COLLISION)/%.c | $(DIR_OBJ)
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 $(DIR_OBJ)/%.o: $(DIR_SOURCES_RAYTRACER_VEC)/%.c | $(DIR_OBJ)

@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/30 15:15:23 by hein          #+#    #+#                 */
-/*   Updated: 2025/02/17 23:33:19 by hein          ########   odam.nl         */
+/*   Updated: 2025/02/23 11:11:22 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,29 +29,40 @@ t_ray	calculate_ray(t_camera *c, int x, int y)
 	return (new_ray);
 }
 
-# define CONST2 -2.0
-# define CONST4 4
-static bool hit_sphere(t_object *sphere, t_ray *ray)
+static bool collision_for_object(t_object *object, t_ray ray, t_collision *collision)
 {
-	t_vector		oc;
-	double			a;
-	double			b;
-	double			c;
-	const double	radius_sq = (sphere->diameter/2) * (sphere->diameter/2);
-	
-	oc = vec_sub(sphere->position, ray->origin);
-	a = vec_dot(ray->direction, ray->direction);
-	b = CONST2 * vec_dot(ray->direction, oc);
-	c = vec_dot(oc, oc) - radius_sq;
-	return (((b*b) - CONST4*a*c) >= 0);
+	switch (object->type)
+	{
+		case SPHERE:
+			return (sphere_collision(object, ray, collision));
+		default:
+			return (0);
+	}
+	return (0);
 }
 
+static bool is_collision(t_scene *scene, t_ray ray, t_collision *collision)
+{
+	t_object	*current_object;
+	t_object	*closest;
+
+	current_object = scene->objects;
+	closest = NULL;
+	while (current_object)
+	{
+		if (collision_for_object(current_object, ray, collision))
+			closest = current_object;
+		current_object = current_object->next;
+	}
+	return (closest != NULL);
+}
 
 void	render_image(t_mlx_data *mlx, t_scene *scene)
 {
-	t_pixel	pixel;
-	t_ray	current_ray;
-	int		colour;
+	t_pixel			pixel;
+	t_ray			current_ray;
+	int				colour;
+	t_collision		collision;
 
 	pixel.y = 0;
 	initialize_viewport(&(scene->camera));
@@ -61,13 +72,8 @@ void	render_image(t_mlx_data *mlx, t_scene *scene)
 		while (pixel.x < WIDTH)
 		{
 			current_ray = calculate_ray(&(scene->camera), pixel.x, pixel.y);
-			
-			// TODO Hit obj
-			// Loop objs
-			// Which type?
-			// Dist and which closest?
-			if (hit_sphere(scene->objects, &current_ray))
-				colour = 1;
+			if (is_collision(scene, current_ray, &collision))
+				colour = colour_to_int(&(collision.closest_obj->colour), 255);
 			else
 				colour = background(&(scene->camera), current_ray.direction.y);
 			

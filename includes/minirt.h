@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/02/22 15:42:28 by hein          ########   odam.nl         */
+/*   Updated: 2025/02/23 11:12:20 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # include <stdint.h>
 # include <math.h>
 
-// ------------------------------------------------------------: colors
+// ------------------------------------------------------------: colours
 # define C_YELLOW "\033[1;33m"
 # define C_RED "\x1B[1;31m"
 # define RESET_COLOR "\033[0m"
@@ -54,7 +54,7 @@ typedef struct s_object
 	t_vector		orientation;
 	double			diameter;
 	double 			height;
-	t_color			color;
+	t_colour			colour;
 	struct s_object	*next;
 }	t_object;
 
@@ -73,7 +73,7 @@ typedef struct s_collision
 	double		distance;
 	t_vector	collision_point;
 	t_vector	surface_normal;
-}		t_collision;
+} t_collision;
 
 typedef struct s_pixel
 {
@@ -89,6 +89,10 @@ typedef struct s_rgb
 }	t_rgb;
 
 typedef bool	(*t_add_func)(t_scene*, char **);
+
+// ------------------------------------------------------------: mlx
+// init_window.c
+void	init_mlx(t_mlx_data *data);
 
 // ------------------------------------------------------------: parse
 // parse_scene.c
@@ -127,8 +131,8 @@ void	free_scene(t_scene *scene);
 
 
 // ------------------------------------------------------------: parse/parse_components
-// build_color.c
-bool	parse_color(t_color *color, char *token);
+// build_colour.c
+bool	parse_colour(t_colour *colour, char *token);
 
 // build_int.c
 bool	parse_int(int *fov, char *str);
@@ -139,22 +143,29 @@ bool	parse_point_value(float *float_value, char *token);
 // build_position.c
 bool	parse_position(t_vector *vector, char *token, float limit);
 
-// ------------------------------------------------------------: initialization
-void	init_mlx(t_mlx_data *data);
-void	initialize_viewport(t_camera *camera);
 
-// ------------------------------------------------------------: render_image
-void	render_image(t_mlx_data *mlx, t_scene *scene);
-
-// ------------------------------------------------------------: camera_stuff
-void	init_camera_data(t_camera *camera);
-t_ray	calculate_ray(t_camera *c, int x, int y);
-
-// ------------------------------------------------------------: background
-int		get_rgba(int r, int g, int b, int a);
+// ------------------------------------------------------------: raytracer
+// background.c
 int		background(t_camera *c, double ray_y);
 
+// pixel_loop.c
+t_ray	calculate_ray(t_camera *c, int x, int y);
+void	render_image(t_mlx_data *mlx, t_scene *scene);
+
+// viewport.c
+void	initialize_viewport(t_camera *camera);
+
+
+// ------------------------------------------------------------: raytracer/collision
+// sphere.c
+bool	sphere_collision(t_object *sphere, t_ray ray, t_collision *collision);
+
+
 // ------------------------------------------------------------: utils
+// colour_utils.c
+int		rgba_to_int(int r, int g, int b, int a);
+int		colour_to_int(t_colour *colour, int a);
+
 // function_protection.c
 void	*safe_malloc(size_t size, char *func_name);
 
