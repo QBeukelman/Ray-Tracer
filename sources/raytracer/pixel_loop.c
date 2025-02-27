@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/30 15:15:23 by hein          #+#    #+#                 */
-/*   Updated: 2025/02/23 11:11:22 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/02/27 14:09:17 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static bool is_collision(t_scene *scene, t_ray ray, t_collision *collision)
 
 	current_object = scene->objects;
 	closest = NULL;
+	ft_memset(collision, 0, sizeof(t_collision));
 	while (current_object)
 	{
 		if (collision_for_object(current_object, ray, collision))
@@ -73,7 +74,11 @@ void	render_image(t_mlx_data *mlx, t_scene *scene)
 		{
 			current_ray = calculate_ray(&(scene->camera), pixel.x, pixel.y);
 			if (is_collision(scene, current_ray, &collision))
+			{
 				colour = colour_to_int(&(collision.closest_obj->colour), 255);
+				// colour = calculate_shading(&collision, &(scene->light));
+				exit(1);
+			}
 			else
 				colour = background(&(scene->camera), current_ray.direction.y);
 			

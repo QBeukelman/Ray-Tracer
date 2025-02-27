@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/02/23 11:12:20 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/02/27 14:48:28 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,10 @@ void	initialize_viewport(t_camera *camera);
 // sphere.c
 bool	sphere_collision(t_object *sphere, t_ray ray, t_collision *collision);
 
+// ------------------------------------------------------------: raytracer/shading
+// shading.c
+int	calculate_shading(t_collision *object, t_light *light);
+
 
 // ------------------------------------------------------------: utils
 // colour_utils.c
@@ -170,7 +174,7 @@ int		colour_to_int(t_colour *colour, int a);
 void	*safe_malloc(size_t size, char *func_name);
 
 // print_scene.c
-void	print_scene(t_scene *scene);
+void	print_scene(t_scene *scene, const char *scene_file);
 void	print_viewport(t_scene *scene);
 
 // build_object_list.c

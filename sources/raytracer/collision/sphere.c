@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/22 12:38:49 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2025/02/23 11:01:46 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/02/27 14:44:22 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,26 @@ bool	sphere_collision(t_object *sphere, t_ray ray, t_collision *collision)
 	const double		a = vec_dot(ray.direction, ray.direction);
 	const double		b = CONST2 * vec_dot(ray.direction, oc);
 	const double		c = vec_dot(oc, oc) - ft_sqrt(sphere->diameter / 2);
+    // const double        c = vec_dot(oc, oc) - pow(sphere->diameter / 2, 2);
 	const double		discriminant = ((b * b) - CONST4 * a * c);
 
+    // printf("c = [%f]\ndiscriminant = [%f]\n", c, discriminant);
 	if (discriminant < 0)
 		return (false);
 
 	const double t = collision_dst(a, b, discriminant);
+    // printf("distance T [%f]\n", t);
+    if (t < 0)
+    {
+        return (false);
+    }
     collision->distance = t;
     collision->collision_point = vec_add(ray.origin, vec_scale(ray.direction, t));
     collision->surface_normal = vec_normalize(vec_sub(collision->collision_point, sphere->position));
+    // printf("surface normal X [%f]\n", collision->surface_normal.x);
+    // printf("surface normal Y [%f]\n", collision->surface_normal.y);
+    // printf("surface normal Z [%f]\n", collision->surface_normal.z);
+
     collision->closest_obj = sphere;
 	return (true);
 }

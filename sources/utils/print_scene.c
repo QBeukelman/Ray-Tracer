@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/25 22:09:42 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/02/23 11:08:19 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/02/27 14:48:23 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,9 +105,9 @@ static void print_objects(t_object *objects)
 	}
 }
 
-void	print_scene(t_scene *scene)
+void	print_scene(t_scene *scene, const char *scene_file)
 {
-	printf("\n========= [Scene] =========\n\n");
+	printf("\n========= [%s] =========\n\n", scene_file);
 	if (&(scene->ambi))
 		print_ambi(&(scene->ambi));
 	if (&(scene->camera))
