@@ -1,19 +1,22 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         ::::::::             #
-#    files.mk                                           :+:    :+:             #
-#                                                      +:+                     #
-#    By: qbeukelm <qbeukelm@student.42.fr>            +#+                      #
-#                                                    +#+                       #
-#    Created: 2024/12/09 17:55:12 by quentinbeuk   #+#    #+#                  #
-#    Updated: 2025/02/23 11:06:55 by quentinbeuk   ########   odam.nl          #
+#                                                         :::      ::::::::    #
+#    files.mk                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/12/09 17:55:12 by quentinbeuk       #+#    #+#              #
+#    Updated: 2025/02/28 13:15:27 by qbeukelm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # ===== Sources =====
 SOURCES						= main.c \
 
-SOURCES_MLX					= init_window.c \
+SOURCES_MLX					= window_handler.c \
+
+SOURCES_MLX_HOOKS			= key_enter.c \
+								key_hooks.c \
 
 SOURCES_PARSER 				= build_object_list.c \
 								parse_scene.c \
@@ -51,6 +54,7 @@ SOURCES_UTILS				= colour_utils.c \
 # ===== Manage Directories =====
 DIR_SOURCES					= sources
 DIR_SOURCES_MLX				= sources/mlx
+DIR_SOURCES_MLX_HOOKS		= sources/mlx/input_hooks
 DIR_SOURCES_PARSER			= sources/parser
 DIR_SOURCES_PARSER_VALIDATE	= sources/parser/build_objects
 DIR_SOURCES_PARSER_COMP		= sources/parser/parse_components
@@ -62,6 +66,7 @@ DIR_SOURCES_UTILS			= sources/utils
 # ===== Object Files =====
 OBJ = $(addprefix $(DIR_OBJ)/, $(SOURCES:.c=.o)) \
 	$(addprefix $(DIR_OBJ)/, $(SOURCES_MLX:.c=.o)) \
+	$(addprefix $(DIR_OBJ)/, $(SOURCES_MLX_HOOKS:.c=.o)) \
 	$(addprefix $(DIR_OBJ)/, $(SOURCES_PARSER:.c=.o)) \
 	$(addprefix $(DIR_OBJ)/, $(SOURCES_PARSER_VALIDATE:.c=.o)) \
 	$(addprefix $(DIR_OBJ)/, $(SOURCES_PARSER_COMP:.c=.o)) \

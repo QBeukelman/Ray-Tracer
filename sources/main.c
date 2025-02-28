@@ -1,20 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/12/09 17:42:04 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/02/23 10:41:20 by quentinbeuk   ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/09 17:42:04 by quentinbeuk       #+#    #+#             */
+/*   Updated: 2025/02/28 13:24:59 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minirt.h"
 
+static int	run_mlx(t_scene scene)
+{
+	t_mlx_data		mlx_data;
+	t_all_data		all_data;
+
+	if (ft_mlx_init(&mlx_data) == FAILURE)
+		return (FAILURE);
+
+	render_image(&mlx_data, &scene);
+	mlx_image_to_window(mlx_data.mlx, mlx_data.img, 0, 0);
+
+	all_data.mlx_data = &mlx_data;
+	all_data.scene = &scene;
+	mlx_key_hook(mlx_data.mlx, &ft_keyhook, &all_data);
+	mlx_loop(mlx_data.mlx);
+	ft_mlx_terminate(mlx_data);
+	return (SUCCESS);
+}
+
 int	main(int argc, char **argv)
 {
-	t_mlx_data		mlx;
 	t_scene			scene;
 	const char		*scene_file = "assets/scene_01.rt";
 
@@ -23,15 +41,9 @@ int	main(int argc, char **argv)
 	if (parse_scene(&scene, scene_file) == false)
 		clear_list_exit_program(scene.objects);
 	
-	// TODO:
-	print_scene(&scene);
+	// print_scene(&scene);
 	// print_viewport(&scene);
-	
-	init_mlx(&mlx);
-	render_image(&mlx, &scene);
-	mlx_image_to_window(mlx.mlx, mlx.img, 0, 0);
-	mlx_loop(mlx.mlx);
-	mlx_delete_image(mlx.mlx, mlx.img);
-	mlx_terminate(mlx.mlx);
+	run_mlx(scene);
 	clear_list_exit_program(scene.objects);
+	return (SUCCESS);
 }
