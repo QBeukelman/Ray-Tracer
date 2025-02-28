@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse_scene.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/16 19:18:55 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/02/15 13:14:03 by qbeukelm         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   parse_scene.c                                      :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/12/16 19:18:55 by quentinbeuk   #+#    #+#                 */
+/*   Updated: 2025/02/28 14:49:59 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,13 @@ bool	parse_scene(t_scene *scene, const char *file_name)
 	if (fd <= 0)
 		return (FAILURE);
 	ft_memset(scene, 0, sizeof(t_scene));
+
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
 		if (line[0] != '\n')
 		{
+			printf("line: %s\n", line);
 			if (process_line(scene, line) == false)
 			{
 				free(line);

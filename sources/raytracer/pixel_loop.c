@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/30 15:15:23 by hein          #+#    #+#                 */
-/*   Updated: 2025/02/23 11:11:22 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/02/28 16:40:37 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@ t_ray	calculate_ray(t_camera *c, int x, int y)
 	t_vector	current_y_offset;
 	t_vector	three_d_pixel;
 	t_ray		new_ray;
+
+	// printf("camera data in calculate ray\n");
+	// printf("viewport offsets x[%f], y[%f]\n",c->viewport.x_off, c->viewport.y_off);
+	// if (x == 10)
+
+	// exit(1);
 
 	new_ray.origin = c->position;
 	current_x_offset = vec_scale(c->right, (x * c->viewport.x_off));
@@ -66,12 +72,22 @@ void	render_image(t_mlx_data *mlx, t_scene *scene)
 
 	pixel.y = 0;
 	initialize_viewport(&(scene->camera));
+	// printf("camera data after initializing viewport in render image\n");
+	// printf("viewport offsets x[%f], y[%f]\n",scene->camera.viewport.x_off, scene->camera.viewport.y_off);
+	print_viewport(scene);
+
+	// exit (1);
 	while (pixel.y < HEIGHT)
 	{
 		pixel.x = 0;
 		while (pixel.x < WIDTH)
 		{
 			current_ray = calculate_ray(&(scene->camera), pixel.x, pixel.y);
+			// if (pixel.y == 0)
+			// {
+			// 	printf("ray x [%f]\n", current_ray.direction.x);
+			// }
+
 			if (is_collision(scene, current_ray, &collision))
 				colour = colour_to_int(&(collision.closest_obj->colour), 255);
 			else
