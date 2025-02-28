@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/22 12:38:49 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2025/02/23 11:01:46 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/02/28 15:21:42 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static double collision_dst(double a, double b, double discriminant)
     double t1 = (-b - sqrt_d) / (CONST2 * a);
     double t2 = (-b + sqrt_d) / (CONST2 * a);
     
+// printf("t1[%f] t2[%f]\n", t1, t2);
+
     if (t1 < 0 && t2 < 0)
         return (-1);
     
@@ -44,6 +46,9 @@ bool	sphere_collision(t_object *sphere, t_ray ray, t_collision *collision)
 		return (false);
 
 	const double t = collision_dst(a, b, discriminant);
+
+    // printf("t is here [%f]\n", t);
+    
     collision->distance = t;
     collision->collision_point = vec_add(ray.origin, vec_scale(ray.direction, t));
     collision->surface_normal = vec_normalize(vec_sub(collision->collision_point, sphere->position));

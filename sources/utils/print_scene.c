@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/25 22:09:42 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/02/23 11:08:19 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/02/28 16:26:59 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,8 @@ static void print_objects(t_object *objects)
 
 void	print_scene(t_scene *scene)
 {
-	printf("\n========= [Scene] =========\n\n");
+	// printf("\n========= [Scene] =========\n\n");
+	// printf("AMBI %p\n", &(scene->ambi));
 	if (&(scene->ambi))
 		print_ambi(&(scene->ambi));
 	if (&(scene->camera))
