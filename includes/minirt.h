@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   minirt.h                                           :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/02/23 11:12:20 by quentinbeuk   ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   minirt.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/09 17:46:23 by quentinbeuk       #+#    #+#             */
+/*   Updated: 2025/02/28 13:23:16 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,27 @@ typedef struct s_rgb
 	double	b;
 }	t_rgb;
 
+typedef struct s_all_data
+{
+	t_mlx_data	*mlx_data;
+	t_scene		*scene;
+} t_all_data;
+
 typedef bool	(*t_add_func)(t_scene*, char **);
 
 // ------------------------------------------------------------: mlx
 // init_window.c
-void	init_mlx(t_mlx_data *data);
+int		ft_mlx_init(t_mlx_data *mlx_data);
+void	ft_mlx_terminate(t_mlx_data mlx_data);
+
+
+// ------------------------------------------------------------: mlx/input_hooks
+// key_space.c
+void	key_enter(t_mlx_data *mlx_data, t_scene *scene);
+
+// key_hooks.c
+void	ft_keyhook(mlx_key_data_t keydata, t_all_data *scene);
+
 
 // ------------------------------------------------------------: parse
 // parse_scene.c
