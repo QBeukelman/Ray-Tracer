@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/09 17:46:23 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/02/28 13:23:16 by qbeukelm         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   minirt.h                                           :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
+/*   Updated: 2025/03/03 19:28:26 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	ft_mlx_terminate(t_mlx_data mlx_data);
 void	key_enter(t_mlx_data *mlx_data, t_scene *scene);
 
 // key_hooks.c
-void	ft_keyhook(mlx_key_data_t keydata, t_all_data *scene);
+void	ft_keyhook(mlx_key_data_t keydata, void *data);
 
 
 // ------------------------------------------------------------: parse
