@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/03/03 19:28:26 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/03/04 22:43:12 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,9 @@ void	initialize_viewport(t_camera *camera);
 
 
 // ------------------------------------------------------------: raytracer/collision
+// plane.c
+bool plane_collision(t_object *plane, t_ray ray, t_collision *collision);
+
 // sphere.c
 bool	sphere_collision(t_object *sphere, t_ray ray, t_collision *collision);
 
