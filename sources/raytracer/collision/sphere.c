@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/22 12:38:49 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2025/02/28 15:21:42 by hein          ########   odam.nl         */
+/*   Updated: 2025/03/04 23:08:33 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,36 @@ static double ft_sqrt(double value)
     return value * value;
 }
 
+// static double collision_dst(double a, double b, double discriminant)
+// {
+//     const double sqrt_d = sqrt(discriminant);
+//     double t1 = (-b - sqrt_d) / (CONST2 * a);
+//     double t2 = (-b + sqrt_d) / (CONST2 * a);
+    
+// // printf("t1[%f] t2[%f]\n", t1, t2);
+
+//     if (t1 < 0 && t2 < 0)
+//         return (-1);
+    
+//     return ((t1 > 0) ? t1 : t2);
+// }
+
 static double collision_dst(double a, double b, double discriminant)
 {
     const double sqrt_d = sqrt(discriminant);
     double t1 = (-b - sqrt_d) / (CONST2 * a);
     double t2 = (-b + sqrt_d) / (CONST2 * a);
-    
-// printf("t1[%f] t2[%f]\n", t1, t2);
 
-    if (t1 < 0 && t2 < 0)
-        return (-1);
-    
-    return ((t1 > 0) ? t1 : t2);
+    if (t1 > 0 && t2 > 0)
+        return (t1 < t2 ? t1 : t2);
+    if (t1 > 0)
+        return (t1);
+    if (t2 > 0)
+        return (t2);
+
+    return (-1);
 }
+
 
 bool	sphere_collision(t_object *sphere, t_ray ray, t_collision *collision)
 {
@@ -47,6 +64,8 @@ bool	sphere_collision(t_object *sphere, t_ray ray, t_collision *collision)
 
 	const double t = collision_dst(a, b, discriminant);
 
+    if (t <= 0)
+        return (false);
     // printf("t is here [%f]\n", t);
     
     collision->distance = t;
