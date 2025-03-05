@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   parse_scene.c                                      :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/16 19:18:55 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/02/28 14:49:59 by hein          ########   odam.nl         */
+/*   Updated: 2025/03/04 20:55:21 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ bool	parse_scene(t_scene *scene, const char *file_name)
 	{
 		if (line[0] != '\n')
 		{
-			printf("line: %s\n", line);
 			if (process_line(scene, line) == false)
 			{
 				free(line);

@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   pixel_loop.c                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/30 15:15:23 by hein          #+#    #+#                 */
-/*   Updated: 2025/03/05 00:13:36 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/03/05 12:13:14 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,16 @@
 
 t_ray	calculate_ray(t_camera *c, int x, int y)
 {
-	t_vector	current_x_offset;
-	t_vector	current_y_offset;
-	t_vector	three_d_pixel;
+	t_vector	x_offset;
+	t_vector	y_offset;
+	t_vector	current_pixel;
 	t_ray		new_ray;
 
 	new_ray.origin = c->position;
-	current_x_offset = vec_scale(c->right, (x * c->viewport.x_off));
-	current_y_offset = vec_scale(c->up, ((HEIGHT - y) * c->viewport.y_off));
-	three_d_pixel = vec_add(c->viewport.bottomleft, current_x_offset);
-	three_d_pixel = vec_add(three_d_pixel, current_y_offset);
-	new_ray.raw_direction = vec_sub(three_d_pixel, c->position);
+	x_offset = vec_scale(c->viewport.x_off, x);
+	y_offset = vec_scale(c->viewport.y_off, y);
+	current_pixel = vec_add(c->viewport.topleft, vec_add(x_offset, y_offset));
+	new_ray.raw_direction = vec_sub(current_pixel, c->position);
 	new_ray.direction = vec_normalize(new_ray.raw_direction);
 	return (new_ray);
 }

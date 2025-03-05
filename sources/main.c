@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   main.c                                             :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:42:04 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/03/04 22:45:08 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/03/05 12:13:23 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
