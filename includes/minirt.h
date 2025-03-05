@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   minirt.h                                           :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/03/04 22:43:12 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/03/05 17:24:46 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,9 @@ bool	parse_position(t_vector *vector, char *token, float limit);
 // ------------------------------------------------------------: raytracer
 // background.c
 int		background(t_camera *c, double ray_y);
+
+// shading
+int	calculate_shading(t_collision *object, t_light *light);
 
 // pixel_loop.c
 t_ray	calculate_ray(t_camera *c, int x, int y);

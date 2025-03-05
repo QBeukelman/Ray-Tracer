@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/30 15:15:23 by hein          #+#    #+#                 */
-/*   Updated: 2025/03/05 13:47:47 by hein          ########   odam.nl         */
+/*   Updated: 2025/03/05 17:25:11 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,24 @@ static bool is_collision(t_scene *scene, t_ray ray, t_collision *collision)
 	return (found_collision);
 }
 
+int	calculate_shading(t_collision *object, t_light *light)
+{
+	t_vector	light_direction;
+	t_colour	colour;
+	double		angle_intensity;
+
+	light_direction = vec_normalize(vec_sub(light->position, object->collision_point));
+	angle_intensity = fmax(0.0, vec_dot(object->surface_normal, light_direction));
+
+	// printf("Intensity[%f]\n", angle_intensity);
+	colour.r = object->closest_obj->colour.r * light->brightness * angle_intensity;
+	colour.g = object->closest_obj->colour.g * light->brightness * angle_intensity;
+	colour.b = object->closest_obj->colour.b * light->brightness * angle_intensity;
+
+	// printf("R[%f]\nG[%f]\nB[%f]\n", colour.r, colour.g, colour.b);
+	return (colour_to_int(&colour, 255));
+}
+
 void	render_image(t_mlx_data *mlx, t_scene *scene)
 {
 	t_pixel			pixel;
@@ -86,7 +104,10 @@ void	render_image(t_mlx_data *mlx, t_scene *scene)
 			current_ray = calculate_ray(&(scene->camera), pixel.x, pixel.y);
 
 			if (is_collision(scene, current_ray, &collision))
-				colour = colour_to_int(&(collision.closest_obj->colour), 255);
+			{
+				colour = calculate_shading(&collision, &(scene->light));
+				// colour = colour_to_int(&(collision.closest_obj->colour), 255);
+			}
 			else
 				colour = background(&(scene->camera), current_ray.direction.y);
 			
