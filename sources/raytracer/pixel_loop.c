@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/30 15:15:23 by hein          #+#    #+#                 */
-/*   Updated: 2025/02/28 16:40:37 by hein          ########   odam.nl         */
+/*   Updated: 2025/03/05 00:13:36 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,6 @@ t_ray	calculate_ray(t_camera *c, int x, int y)
 	t_vector	current_y_offset;
 	t_vector	three_d_pixel;
 	t_ray		new_ray;
-
-	// printf("camera data in calculate ray\n");
-	// printf("viewport offsets x[%f], y[%f]\n",c->viewport.x_off, c->viewport.y_off);
-	// if (x == 10)
-
-	// exit(1);
 
 	new_ray.origin = c->position;
 	current_x_offset = vec_scale(c->right, (x * c->viewport.x_off));
@@ -41,6 +35,8 @@ static bool collision_for_object(t_object *object, t_ray ray, t_collision *colli
 	{
 		case SPHERE:
 			return (sphere_collision(object, ray, collision));
+		case PLANE:
+			return (plane_collision(object, ray, collision));
 		default:
 			return (0);
 	}
@@ -49,18 +45,27 @@ static bool collision_for_object(t_object *object, t_ray ray, t_collision *colli
 
 static bool is_collision(t_scene *scene, t_ray ray, t_collision *collision)
 {
-	t_object	*current_object;
-	t_object	*closest;
+	t_object		*current_object;
+	t_collision		temp_collision;
+	bool			found_collision;
+	double			min_distance;
 
+	found_collision = false;
+	min_distance = __DBL_MAX__;
 	current_object = scene->objects;
-	closest = NULL;
 	while (current_object)
 	{
-		if (collision_for_object(current_object, ray, collision))
-			closest = current_object;
+		if (collision_for_object(current_object, ray, &temp_collision) &&
+			temp_collision.distance > 0 &&
+			temp_collision.distance < min_distance)
+		{
+			min_distance = temp_collision.distance;
+			*collision = temp_collision;
+			found_collision = true;
+		}
 		current_object = current_object->next;
 	}
-	return (closest != NULL);
+	return (found_collision);
 }
 
 void	render_image(t_mlx_data *mlx, t_scene *scene)
@@ -72,21 +77,14 @@ void	render_image(t_mlx_data *mlx, t_scene *scene)
 
 	pixel.y = 0;
 	initialize_viewport(&(scene->camera));
-	// printf("camera data after initializing viewport in render image\n");
-	// printf("viewport offsets x[%f], y[%f]\n",scene->camera.viewport.x_off, scene->camera.viewport.y_off);
 	print_viewport(scene);
 
-	// exit (1);
 	while (pixel.y < HEIGHT)
 	{
 		pixel.x = 0;
 		while (pixel.x < WIDTH)
 		{
 			current_ray = calculate_ray(&(scene->camera), pixel.x, pixel.y);
-			// if (pixel.y == 0)
-			// {
-			// 	printf("ray x [%f]\n", current_ray.direction.x);
-			// }
 
 			if (is_collision(scene, current_ray, &collision))
 				colour = colour_to_int(&(collision.closest_obj->colour), 255);

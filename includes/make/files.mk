@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         :::      ::::::::    #
-#    files.mk                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/12/09 17:55:12 by quentinbeuk       #+#    #+#              #
-#    Updated: 2025/02/28 13:15:27 by qbeukelm         ###   ########.fr        #
+#                                                         ::::::::             #
+#    files.mk                                           :+:    :+:             #
+#                                                      +:+                     #
+#    By: qbeukelm <qbeukelm@student.42.fr>            +#+                      #
+#                                                    +#+                       #
+#    Created: 2024/12/09 17:55:12 by quentinbeuk   #+#    #+#                  #
+#    Updated: 2025/03/04 22:40:15 by quentinbeuk   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,8 @@ SOURCES_RAYTRACER			= pixel_loop.c \
 								background.c \
 								viewport.c \
 
-SOURCES_RAYTRACER_COLLISION = sphere.c \
+SOURCES_RAYTRACER_COLLISION = plane.c \
+								sphere.c \
 
 SOURCES_RAYTRACER_VECTOR	= vector_maths.c \
 								vector_operations.c \
