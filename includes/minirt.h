@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/03/05 17:24:46 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/03/07 20:37:30 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,14 @@ typedef struct s_collision
 
 typedef struct s_pixel
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
+	double	ndc_x;
+	double	ndc_y;
+	double	screen_x;
+	double	screen_y;
+	double	camera_x;
+	double	camera_y;
 } t_pixel;
 
 typedef struct s_rgb
@@ -172,6 +178,8 @@ t_ray	calculate_ray(t_camera *c, int x, int y);
 void	render_image(t_mlx_data *mlx, t_scene *scene);
 
 // viewport.c
+t_vector	**allocate_rays();
+void	generate_rays(t_vector ***rays, t_camera *c);
 void	initialize_viewport(t_camera *camera);
 
 

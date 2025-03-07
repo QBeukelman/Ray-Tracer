@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/17 23:28:14 by hein          #+#    #+#                 */
-/*   Updated: 2025/03/04 22:17:05 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/03/07 20:51:15 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,58 @@ t_vector	vec_abs(t_vector v)
 	if (v.z < 0)
 		v.z = fabs(v.z);
 	return (v);
+}
+
+t_vector	**allocate_rays()
+{
+	t_vector	**rays;
+	int			y;
+
+	rays = (t_vector **)malloc(HEIGHT * sizeof(t_vector *));
+	if (rays == NULL)
+	{
+		return (NULL);
+	}
+	rays[0] = (t_vector *)malloc(WIDTH * HEIGHT * sizeof(t_vector));
+	if (rays[0] == NULL)
+	{
+		free (rays);
+		return (NULL);
+	}
+	y = 1;
+	while (y < HEIGHT)
+	{
+		rays[y] = rays[0] + (y * WIDTH);
+		y++;
+	}
+	return (rays);
+}
+
+void	generate_rays(t_vector ***rays, t_camera *c)
+{
+	const double	aspect_ratio = (double)WIDTH / (double)HEIGHT; 
+	const double	fov_tan = tan((c->fov * RADIAN_CONST) / 2);
+	t_pixel			p;
+	t_vector		origin;
+	t_vector		worldpixel;
+	
+	p.y = 0;
+	while (p.y < HEIGHT)
+	{
+		p.x = 0;
+		while (p.x < WIDTH)
+		{
+			p.ndc_x = (p.x + 0.5) / WIDTH;
+			p.ndc_y = (p.y + 0.5) / HEIGHT;
+			p.camera_x = ((2 * p.ndc_x) - 1) * aspect_ratio;
+			p.camera_y = 1 - (2 * p.ndc_y);
+			origin = vec_set(0,0,0);
+			worldpixel = vec_set(p.camera_x, p.camera_y, -1);
+			(*rays)[p.y][p.x] = vec_normalize(vec_sub(worldpixel, origin));
+			p.x++;
+		}
+		p.y++;
+	}
 }
 
 static void	calculate_viewport(t_camera *c)

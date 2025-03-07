@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/30 15:15:23 by hein          #+#    #+#                 */
-/*   Updated: 2025/03/05 17:25:11 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/03/05 17:49:57 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ t_ray	calculate_ray(t_camera *c, int x, int y)
 	t_ray		new_ray;
 
 	new_ray.origin = c->position;
-	x_offset = vec_scale(c->viewport.x_off, (WIDTH - x));
+	// x_offset = vec_scale(c->viewport.x_off, (WIDTH - x));
+	x_offset = vec_scale(c->viewport.x_off, x);
 	y_offset = vec_scale(c->viewport.y_off, (HEIGHT - y));
 	current_pixel = vec_add(c->viewport.topleft, vec_add(x_offset, y_offset));
 	new_ray.raw_direction = vec_sub(current_pixel, c->position);
