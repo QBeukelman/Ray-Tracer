@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/17 23:28:14 by hein          #+#    #+#                 */
-/*   Updated: 2025/03/08 16:15:22 by hein          ########   odam.nl         */
+/*   Updated: 2025/03/08 17:49:31 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_vector	**allocate_rays()
 void	generate_rays(t_vector **rays, t_camera *c)
 {
 	const double	aspect_ratio = (double)WIDTH / (double)HEIGHT; 
-	const double	fov_tan = tan((c->fov * RADIAN_CONST) / 2);
+	const double	fov_radians = tan((c->fov * RADIAN_CONST) / 2);
 	t_pixel			p;
 	t_vector		origin;
 	t_vector		worldpixel;
@@ -67,15 +67,17 @@ void	generate_rays(t_vector **rays, t_camera *c)
 		{
 			p.ndc_x = (p.x + 0.5) / WIDTH;
 			p.ndc_y = (p.y + 0.5) / HEIGHT;
-			p.camera_x = (((2 * p.ndc_x) - 1) * fov_tan) * aspect_ratio;
-			p.camera_y = (1 - (2 * p.ndc_y)) * fov_tan;
+			p.camera_x = ((2 * p.ndc_x) - 1) * aspect_ratio;
+			p.camera_y = (1 - (2 * p.ndc_y));
+			p.camera_x *= fov_radians;
+			p.camera_y *= fov_radians;
 			worldpixel = vec_set(p.camera_x, p.camera_y, 1);
 			rays[p.y][p.x] = vec_normalize(worldpixel);
 			p.x++;
 		}
 		p.y++;
 	}
-	printf("fov_tan = %f for FOV %d\n", fov_tan, c->fov);
+	printf("fov_radians = %f for FOV %d\n", fov_radians, c->fov);
 }
 
 // void	generate_rays(t_vector **rays, t_camera *c)
@@ -170,12 +172,12 @@ void	initialize_viewport(t_camera *camera)
 	// if (camera->up.y < 0)
 	// 	camera->up = vec_scale(camera->up, -1);
 	// camera->up = vec_abs(camera->up);
-	printf("camera->forward			x[%f] y[%f] z[%f]\n", camera->orientation.x, camera->orientation.y, camera->orientation.z);
-	printf("camera->right			x[%f] y[%f] z[%f]\n", camera->right.x, camera->right.y, camera->right.z);
-	printf("camera->up			x[%f] y[%f] z[%f]\n", camera->up.x, camera->up.y, camera->up.z);
-	printf("dot product between up and forward [%f]\n", vec_dot(camera->orientation, camera->up));
-	printf("dot product between up and right [%f]\n", vec_dot(camera->right, camera->up));
-	printf("dot product between right and forward [%f]\n", vec_dot(camera->orientation, camera->right));
+	// printf("camera->forward			x[%f] y[%f] z[%f]\n", camera->orientation.x, camera->orientation.y, camera->orientation.z);
+	// printf("camera->right			x[%f] y[%f] z[%f]\n", camera->right.x, camera->right.y, camera->right.z);
+	// printf("camera->up			x[%f] y[%f] z[%f]\n", camera->up.x, camera->up.y, camera->up.z);
+	// printf("dot product between up and forward [%f]\n", vec_dot(camera->orientation, camera->up));
+	// printf("dot product between up and right [%f]\n", vec_dot(camera->right, camera->up));
+	// printf("dot product between right and forward [%f]\n", vec_dot(camera->orientation, camera->right));
 	// exit(1);
 	// calculate_viewport(camera);
 }

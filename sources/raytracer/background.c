@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/02 18:00:13 by hesmolde      #+#    #+#                 */
-/*   Updated: 2025/03/05 12:54:48 by hein          ########   odam.nl         */
+/*   Updated: 2025/03/08 19:08:19 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static double	normalize_ray_y(t_camera *c, double ray_y)
 {
-	const double	min_ray_y = -tan(c->fov_radians / 2);
-	const double	max_ray_y = tan(c->fov_radians / 2);
+	const double	min_ray_y = -tan((c->fov * 0.0174533) / 2);
+	const double	max_ray_y = tan((c->fov * 0.0174533) / 2);
 	double			normalized_y;
 
 	normalized_y = 2 * ((ray_y - min_ray_y) / (max_ray_y - min_ray_y)) - 1;

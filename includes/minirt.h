@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/03/07 23:26:19 by hein          ########   odam.nl         */
+/*   Updated: 2025/03/08 19:08:36 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,7 @@ bool	parse_position(t_vector *vector, char *token, float limit);
 
 // ------------------------------------------------------------: raytracer
 // background.c
-int		background(t_camera *c, double ray_y);
+int	background(t_camera *c, double ray_y);
 
 // shading
 int	calculate_shading(t_collision *object, t_light *light);

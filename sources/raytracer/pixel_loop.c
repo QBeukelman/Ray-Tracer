@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/30 15:15:23 by hein          #+#    #+#                 */
-/*   Updated: 2025/03/08 15:27:45 by hein          ########   odam.nl         */
+/*   Updated: 2025/03/08 19:10:49 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,35 +109,36 @@ void	render_image(t_mlx_data *mlx, t_scene *scene)
 	initialize_viewport(&(scene->camera));
 
 	// print_viewport(scene);
-
 	while (pixel.y < HEIGHT)
 	{
 		pixel.x = 0;
 		while (pixel.x < WIDTH)
 		{
-			current_ray = calculate_world_ray(scene->camera, &(scene->rays)[pixel.y][pixel.x]);
-			if (pixel.y == 0 && pixel.x == 0)
-				printf("ray for pixel 0,0		x[%f] y[%f] z[%f]\n", current_ray.direction.x, current_ray.direction.y, current_ray.direction.z);
-			if (pixel.y == 0 && pixel.x == 799)
-				printf("ray for pixel 0,799		x[%f] y[%f] z[%f]\n", current_ray.direction.x, current_ray.direction.y, current_ray.direction.z);
-			if (pixel.y == 499 && pixel.x == 0)
-				printf("ray for pixel 0,499		x[%f] y[%f] z[%f]\n", current_ray.direction.x, current_ray.direction.y, current_ray.direction.z);
-			if (pixel.y == 499 && pixel.x == 799)
-				printf("ray for pixel 499,799		x[%f] y[%f] z[%f]\n", current_ray.direction.x, current_ray.direction.y, current_ray.direction.z);
-			if (pixel.y == (HEIGHT / 2) && pixel.x == (WIDTH / 2))
-				printf("ray for the center		x[%f] y[%f] z[%f]\n", current_ray.direction.x, current_ray.direction.y, current_ray.direction.z);
+			// current_ray = calculate_world_ray(scene->camera, &(scene->rays)[pixel.y][pixel.x]);
+			current_ray.direction = scene->rays[pixel.y][pixel.x];
+			// printf("ray x is here %f\n", current_ray.direction.x);
+			// if (pixel.y == 0 && pixel.x == 0)
+			// 	printf("ray for pixel 0,0		x[%f] y[%f] z[%f]\n", current_ray.direction.x, current_ray.direction.y, current_ray.direction.z);
+			// if (pixel.y == 0 && pixel.x == 799)
+			// 	printf("ray for pixel 0,799		x[%f] y[%f] z[%f]\n", current_ray.direction.x, current_ray.direction.y, current_ray.direction.z);
+			// if (pixel.y == 499 && pixel.x == 0)
+			// 	printf("ray for pixel 0,499		x[%f] y[%f] z[%f]\n", current_ray.direction.x, current_ray.direction.y, current_ray.direction.z);
+			// if (pixel.y == 499 && pixel.x == 799)
+			// 	printf("ray for pixel 499,799		x[%f] y[%f] z[%f]\n", current_ray.direction.x, current_ray.direction.y, current_ray.direction.z);
+			// if (pixel.y == (HEIGHT / 2) && pixel.x == (WIDTH / 2))
+			// 	printf("ray for the center		x[%f] y[%f] z[%f]\n", current_ray.direction.x, current_ray.direction.y, current_ray.direction.z);
+			// if (pixel.y == 300 && pixel.x == 599)
+			// 	printf("ray for pixel 300,599		x[%f] y[%f] z[%f]\n", current_ray.direction.x, current_ray.direction.y, current_ray.direction.z);
 			if (is_collision(scene, current_ray, &collision))
 			{
-				// colour = calculate_shading(&collision, &(scene->light));
-				colour = colour_to_int(&(collision.closest_obj->colour), 255);
+				colour = calculate_shading(&collision, &(scene->light));
+				// colour = colour_to_int(&(collision.closest_obj->colour), 255);
 			}
 			else
 				colour = background(&(scene->camera), current_ray.direction.y);
-			
 			mlx_put_pixel(mlx->img, pixel.x, pixel.y, colour);
 			pixel.x++;
 		}
 		pixel.y++;
 	}
-	exit (1);
 }
