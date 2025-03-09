@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/07 22:36:47 by hesmolde          #+#    #+#             */
-/*   Updated: 2025/02/22 12:46:23 by qbeukelm         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   utils.c                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/02/07 22:36:47 by hesmolde      #+#    #+#                 */
+/*   Updated: 2025/03/08 23:31:58 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,10 @@ void	free_split(char **split)
 		i++;
 	}
 	free (split);
+}
+
+void	free_rays(t_scene *scene)
+{
+	free(scene->rays[0]);
+	free(scene->rays);
 }
