@@ -3,10 +3,10 @@
 #                                                         ::::::::             #
 #    files.mk                                           :+:    :+:             #
 #                                                      +:+                     #
-#    By: qbeukelm <qbeukelm@student.42.fr>            +#+                      #
+#    By: hesmolde <hesmolde@student.42.fr>            +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/12/09 17:55:12 by quentinbeuk   #+#    #+#                  #
-#    Updated: 2025/03/09 00:52:58 by hein          ########   odam.nl          #
+#    Updated: 2025/03/09 20:17:31 by hesmolde      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,12 +38,13 @@ SOURCES_PARSER_COMP			= build_colour.c \
 SOURCES_RAYTRACER_RENDERING	= render_image.c \
 								background.c \
 								rays.c \
-								viewport.c \
+								world_matrix.c \
 
 SOURCES_RAYTRACER_COLLISION = plane.c \
 								sphere.c \
 
-DIR_SOURCES_RAYTRACER_SHADING = shading.c \
+SOURCES_RAYTRACER_SHADING	= shading.c \
+								shadow_ray.c \
 
 
 SOURCES_RAYTRACER_VECTOR	= vector_maths.c \

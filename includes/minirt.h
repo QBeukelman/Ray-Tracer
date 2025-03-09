@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/03/09 00:43:38 by hein          ########   odam.nl         */
+/*   Updated: 2025/03/09 19:57:41 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,13 @@ typedef struct s_rgb
 	double	b;
 }	t_rgb;
 
+typedef struct s_ambient
+{
+	double	r;
+	double	g;
+	double	b;
+}	t_ambient;
+
 typedef struct s_all_data
 {
 	t_mlx_data	*mlx_data;
@@ -169,7 +176,7 @@ bool	parse_position(t_vector *vector, char *token, float limit);
 // ------------------------------------------------------------: raytracer/shading
 
 // shading.g
-int	calculate_shading(t_collision *object, t_light *light);
+int	calculate_shading(t_collision *object, t_light *light, t_ambi *ambi);
 
 // background.c
 int	background(t_camera *c, double ray_y);
