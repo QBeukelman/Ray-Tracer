@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/03/08 19:08:36 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/03/09 00:43:38 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,7 @@ bool	add_sphere(t_scene *scene, char **tokens);
 // ------------------------------------------------------------: parse/clean_up
 // memory_cleanup.c
 void	free_split(char **split);
+void	free_rays(t_scene *scene);
 void	free_scene(t_scene *scene);
 
 
@@ -165,21 +166,23 @@ bool	parse_point_value(float *float_value, char *token);
 bool	parse_position(t_vector *vector, char *token, float limit);
 
 
-// ------------------------------------------------------------: raytracer
+// ------------------------------------------------------------: raytracer/shading
+
+// shading.g
+int	calculate_shading(t_collision *object, t_light *light);
+
 // background.c
 int	background(t_camera *c, double ray_y);
 
-// shading
-int	calculate_shading(t_collision *object, t_light *light);
 
-// pixel_loop.c
-t_ray	calculate_ray(t_camera *c, int x, int y);
+// ------------------------------------------------------------: raytracer/rendering
+
+// rendering.c
 void	render_image(t_mlx_data *mlx, t_scene *scene);
 
-// viewport.c
-t_vector	**allocate_rays();
+// rays.c
 void	generate_rays(t_vector **rays, t_camera *c);
-void	initialize_viewport(t_camera *camera);
+bool	initialize_rays(t_scene *scene);
 
 
 // ------------------------------------------------------------: raytracer/collision

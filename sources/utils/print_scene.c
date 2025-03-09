@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/25 22:09:42 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/02/28 16:26:59 by hein          ########   odam.nl         */
+/*   Updated: 2025/03/08 23:35:21 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,20 +120,25 @@ void	print_scene(t_scene *scene)
 
 // ----------------- Print Viewport --------------
 
-void	print_viewport(t_scene *scene)
-{
-	t_ray new; 
+// void	print_viewport(t_scene *scene)
+// {
+// 	t_ray new; 
 	
-	new = calculate_ray(&(scene->camera), 0, 0);
-	printf("output for pixel 0,0\n");
-	printf("ray.x[%f] ray.y[%f] ray.z[%f]\n", new.direction.x, new.direction.y, new.direction.z);
-	new = calculate_ray(&(scene->camera), 799, 0);
-	printf("output for pixel 799,0\n");
-	printf("ray.x[%f] ray.y[%f] ray.z[%f]\n", new.direction.x, new.direction.y, new.direction.z);
-	new = calculate_ray(&(scene->camera), 799, 499);
-	printf("output for pixel 799,499\n");
-	printf("ray.x[%f] ray.y[%f] ray.z[%f]\n", new.direction.x, new.direction.y, new.direction.z);
-	new = calculate_ray(&(scene->camera), 0, 499);
-	printf("output for pixel 0,499\n");
-	printf("ray.x[%f] ray.y[%f] ray.z[%f]\n", new.direction.x, new.direction.y, new.direction.z);
+// 	new = calculate_ray(&(scene->camera), 0, 0);
+// 	printf("output for pixel 0,0\n");
+// 	printf("ray.x[%f] ray.y[%f] ray.z[%f]\n", new.direction.x, new.direction.y, new.direction.z);
+// 	new = calculate_ray(&(scene->camera), 799, 0);
+// 	printf("output for pixel 799,0\n");
+// 	printf("ray.x[%f] ray.y[%f] ray.z[%f]\n", new.direction.x, new.direction.y, new.direction.z);
+// 	new = calculate_ray(&(scene->camera), 799, 499);
+// 	printf("output for pixel 799,499\n");
+// 	printf("ray.x[%f] ray.y[%f] ray.z[%f]\n", new.direction.x, new.direction.y, new.direction.z);
+// 	new = calculate_ray(&(scene->camera), 0, 499);
+// 	printf("output for pixel 0,499\n");
+// 	printf("ray.x[%f] ray.y[%f] ray.z[%f]\n", new.direction.x, new.direction.y, new.direction.z);
+// }
+
+void	print_ray(t_ray ray, int y, int x)
+{
+	printf("ray for pixel y[%d] x[%d] = x[%f] y[%f] z[%f]\n", ray.direction.x, ray.direction.y, ray.direction.z);
 }

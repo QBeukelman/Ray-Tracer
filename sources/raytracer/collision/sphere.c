@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/22 12:38:49 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2025/03/05 12:20:59 by hein          ########   odam.nl         */
+/*   Updated: 2025/03/08 23:51:48 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,6 @@
 # define CONST_2 2.0
 # define CONST_MIN_2 -2.0
 # define CONST_4 4
-
-// static double collision_dst(double a, double b, double discriminant)
-// {
-//     const double sqrt_d = sqrt(discriminant);
-//     double t1 = (-b - sqrt_d) / (CONST2 * a);
-//     double t2 = (-b + sqrt_d) / (CONST2 * a);
-    
-// // printf("t1[%f] t2[%f]\n", t1, t2);
-
-//     if (t1 < 0 && t2 < 0)
-//         return (-1);
-    
-//     return ((t1 > 0) ? t1 : t2);
-// }
 
 static double collision_dst(double a, double b, double discriminant)
 {
@@ -41,7 +27,6 @@ static double collision_dst(double a, double b, double discriminant)
     
     return ((t1 > 0) ? t1 : t2);
 }
-
 
 bool	sphere_collision(t_object *sphere, t_ray ray, t_collision *collision)
 {
@@ -58,7 +43,6 @@ bool	sphere_collision(t_object *sphere, t_ray ray, t_collision *collision)
 
     if (t <= 0)
         return (false);
-    // printf("t is here [%f]\n", t);
     
     collision->distance = t;
     collision->collision_point = vec_add(ray.origin, vec_scale(ray.direction, t));

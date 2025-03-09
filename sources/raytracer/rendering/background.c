@@ -6,11 +6,11 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/02 18:00:13 by hesmolde      #+#    #+#                 */
-/*   Updated: 2025/03/08 19:08:19 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/03/09 00:50:19 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minirt.h"
+#include "../../../includes/minirt.h"
 
 static double	normalize_ray_y(t_camera *c, double ray_y)
 {

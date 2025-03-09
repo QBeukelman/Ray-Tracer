@@ -6,13 +6,13 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:42:04 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/03/08 17:14:48 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/03/09 00:07:44 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minirt.h"
 
-static int	run_mlx(t_scene scene)
+static int	run_mlx(t_scene *scene)
 {
 	t_mlx_data		mlx_data;
 	t_all_data		all_data;
@@ -20,11 +20,11 @@ static int	run_mlx(t_scene scene)
 	if (ft_mlx_init(&mlx_data) == FAILURE)
 		return (FAILURE);
 
-	render_image(&mlx_data, &scene);
+	render_image(&mlx_data, scene);
 	mlx_image_to_window(mlx_data.mlx, mlx_data.img, 0, 0);
 
 	all_data.mlx_data = &mlx_data;
-	all_data.scene = &scene;
+	all_data.scene = scene;
 	mlx_key_hook(mlx_data.mlx, &ft_keyhook, &all_data);
 	mlx_loop(mlx_data.mlx);
 	ft_mlx_terminate(mlx_data);
@@ -38,23 +38,13 @@ int	main(int argc, char **argv)
 
 	(void)argc;
 	(void)argv;
-	if (parse_scene(&scene, scene_file) == false)
+	if (parse_scene(&scene, scene_file) == false \
+		|| initialize_rays(&scene) == false)
 		clear_list_exit_program(scene.objects);
-	scene.rays = allocate_rays();
-	if (scene.rays == NULL)
-		clear_list_exit_program(scene.objects);
-	generate_rays(scene.rays, &(scene.camera));
-	// initialize_viewport(&(scene.camera));
-	// printf("ray for pixel 0,0		x[%f] y[%f] z[%f]\n", scene.rays[0][0].x, scene.rays[0][0].y, scene.rays[0][0].z);
-	// printf("ray for pixel 0,499		x[%f] y[%f] z[%f]\n", scene.rays[499][0].x, scene.rays[499][0].y, scene.rays[499][0].z);
-	// printf("ray for image center		x[%f] y[%f] z[%f]\n", scene.rays[249][399].x, scene.rays[249][399].y, scene.rays[249][399].z);
-	// printf("ray for pixel 0,799		x[%f] y[%f] z[%f]\n", scene.rays[0][799].x, scene.rays[0][799].y, scene.rays[0][799].z);
-	// printf("ray for pixel 499,799		x[%f] y[%f] z[%f]\n", scene.rays[499][799].x, scene.rays[499][799].y, scene.rays[499][799].z);
 	// print_scene(&scene);
 	// print_viewport(&scene);
-	run_mlx(scene);
-	free(scene.rays[0]);
-	free(scene.rays);
+	run_mlx(&scene);
+	free_rays(&scene);
 	clear_list_exit_program(scene.objects);
 	return (SUCCESS);
 }
