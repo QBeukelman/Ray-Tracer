@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/08 23:52:11 by hein          #+#    #+#                 */
-/*   Updated: 2025/03/09 20:02:42 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/03/10 13:55:53 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,41 @@ static t_rgb	ambient_light(t_ambi *ambi)
 	return (ambient);
 }
 
-int	calculate_shading(t_collision *object, t_light *light, t_ambi *ambi)
+bool	object_in_shadow(t_shading light_data, t_object *objects)
 {
-	const t_rgb	ambient = ambient_light(ambi);
-	t_vector		light_direction;
+	t_collision	hit;
+
+	if (is_collision(objects, light_data.direction, &hit) == true)
+	{
+		if (hit.distance <= light_data.distance)
+			return (true);
+	}
+	return (false);
+}
+
+t_shading	set_light_data(t_light *light, t_vector collision_point)
+{
+	t_shading light_data;
+
+	light_data.vector = vec_sub(light->position, collision_point);
+	light_data.distance = vec_length(light_data.vector);
+	light_data.direction = vec_normalize(light_data.vector);
+}
+
+int	calculate_shading(t_collision *col, t_light *light, t_ambi *ambi, t_object *obj)
+{
+	const t_rgb		ambient = ambient_light(ambi);
+	const t_shading	light_data = set_light_data(light, col->collision_point);
 	t_colour		colour;
 	double			angle_diffusion;
 
-	light_direction = vec_normalize(vec_sub(light->position, object->collision_point));
-	angle_diffusion = fmax(0.0, vec_dot(object->surface_normal, light_direction));
-	colour.r = object->closest_obj->colour.r * (ambient.r + (light->brightness * angle_diffusion));
-	colour.g = object->closest_obj->colour.g * (ambient.g + (light->brightness * angle_diffusion));
-	colour.b = object->closest_obj->colour.b * (ambient.b + (light->brightness * angle_diffusion));
+	if (object_in_shadow(light_data, obj) == true)
+	{
+		// apply only ambient light
+	}
+	angle_diffusion = fmax(0.0, vec_dot(col->surface_normal, light_data.direction));
+	colour.r = col->closest_obj->colour.r * (ambient.r + (light->brightness * angle_diffusion));
+	colour.g = col->closest_obj->colour.g * (ambient.g + (light->brightness * angle_diffusion));
+	colour.b = col->closest_obj->colour.b * (ambient.b + (light->brightness * angle_diffusion));
 	return (colour_to_int(&colour, 255));
 }

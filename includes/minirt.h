@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/03/09 19:57:41 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/03/10 13:49:54 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,13 @@ typedef struct s_ambient
 	double	g;
 	double	b;
 }	t_ambient;
+
+typedef struct s_shading
+{
+	t_vector 	vector;
+	t_vector	direction;
+	double		distance;
+}	t_shading;
 
 typedef struct s_all_data
 {

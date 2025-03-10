@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/30 15:15:23 by hein          #+#    #+#                 */
-/*   Updated: 2025/03/09 19:47:44 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/03/10 13:21:38 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static bool collision_for_object(t_object *object, t_ray ray, t_collision *colli
 	return (0);
 }
 
-static bool is_collision(t_scene *scene, t_ray ray, t_collision *collision)
+static bool is_collision(t_object *objects, t_ray ray, t_collision *collision)
 {
 	t_object		*current_object;
 	t_collision		temp_collision;
@@ -50,7 +50,7 @@ static bool is_collision(t_scene *scene, t_ray ray, t_collision *collision)
 
 	found_collision = false;
 	min_distance = __DBL_MAX__;
-	current_object = scene->objects;
+	current_object = objects;
 	while (current_object)
 	{
 		if (collision_for_object(current_object, ray, &temp_collision) &&
@@ -81,7 +81,7 @@ void	render_image(t_mlx_data *mlx, t_scene *scene)
 		{
 			// current_ray = calculate_world_ray(scene->camera, &(scene->rays)[pixel.y][pixel.x]);
 			current_ray.direction = scene->rays[pixel.y][pixel.x];
-			if (is_collision(scene, current_ray, &collision))
+			if (is_collision(scene->objects, current_ray, &collision))
 				colour = calculate_shading(&collision, &(scene->light), &(scene->ambi));
 			else
 				colour = background(&(scene->camera), current_ray.direction.y);
