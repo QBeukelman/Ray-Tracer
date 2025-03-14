@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/30 15:15:23 by hein          #+#    #+#                 */
-/*   Updated: 2025/03/10 13:21:38 by hein          ########   odam.nl         */
+/*   Updated: 2025/03/10 18:56:42 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ extern int	background(t_camera *c, double ray_y);
 // 	return (new_ray);
 // }
 
-static bool collision_for_object(t_object *object, t_ray ray, t_collision *collision)
+bool collision_for_object(t_object *object, t_ray ray, t_collision *collision)
 {
 	switch (object->type)
 	{
@@ -41,7 +41,7 @@ static bool collision_for_object(t_object *object, t_ray ray, t_collision *colli
 	return (0);
 }
 
-static bool is_collision(t_object *objects, t_ray ray, t_collision *collision)
+bool is_collision(t_object *objects, t_ray ray, t_collision *collision)
 {
 	t_object		*current_object;
 	t_collision		temp_collision;
@@ -82,7 +82,7 @@ void	render_image(t_mlx_data *mlx, t_scene *scene)
 			// current_ray = calculate_world_ray(scene->camera, &(scene->rays)[pixel.y][pixel.x]);
 			current_ray.direction = scene->rays[pixel.y][pixel.x];
 			if (is_collision(scene->objects, current_ray, &collision))
-				colour = calculate_shading(&collision, &(scene->light), &(scene->ambi));
+				colour = calculate_shading(&collision, &(scene->light), &(scene->ambi), scene->objects);
 			else
 				colour = background(&(scene->camera), current_ray.direction.y);
 			mlx_put_pixel(mlx->img, pixel.x, pixel.y, colour);
