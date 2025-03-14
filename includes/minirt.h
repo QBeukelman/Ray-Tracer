@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/03/10 13:49:54 by hein          ########   odam.nl         */
+/*   Updated: 2025/03/10 15:05:04 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,8 @@ typedef struct s_ambient
 
 typedef struct s_shading
 {
-	t_vector 	vector;
-	t_vector	direction;
-	double		distance;
+	t_ray		ray;
+	double		ray_length;
 }	t_shading;
 
 typedef struct s_all_data
@@ -183,7 +182,7 @@ bool	parse_position(t_vector *vector, char *token, float limit);
 // ------------------------------------------------------------: raytracer/shading
 
 // shading.g
-int	calculate_shading(t_collision *object, t_light *light, t_ambi *ambi);
+int	calculate_shading(t_collision *col, t_light *light, t_ambi *ambi, t_object *obj);
 
 // background.c
 int	background(t_camera *c, double ray_y);
@@ -200,6 +199,9 @@ bool	initialize_rays(t_scene *scene);
 
 
 // ------------------------------------------------------------: raytracer/collision
+bool is_collision(t_object *objects, t_ray ray, t_collision *collision);
+bool collision_for_object(t_object *object, t_ray ray, t_collision *collision);
+
 // plane.c
 bool plane_collision(t_object *plane, t_ray ray, t_collision *collision);
 
