@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   pixel_loop.c                                       :+:    :+:            */
+/*   render_image.c                                     :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/30 15:15:23 by hein          #+#    #+#                 */
-/*   Updated: 2025/03/05 00:13:36 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/03/10 13:21:38 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minirt.h"
+#include "../../../includes/minirt.h"
 
-t_ray	calculate_ray(t_camera *c, int x, int y)
-{
-	t_vector	current_x_offset;
-	t_vector	current_y_offset;
-	t_vector	three_d_pixel;
-	t_ray		new_ray;
+extern int	background(t_camera *c, double ray_y);
 
-	new_ray.origin = c->position;
-	current_x_offset = vec_scale(c->right, (x * c->viewport.x_off));
-	current_y_offset = vec_scale(c->up, ((HEIGHT - y) * c->viewport.y_off));
-	three_d_pixel = vec_add(c->viewport.bottomleft, current_x_offset);
-	three_d_pixel = vec_add(three_d_pixel, current_y_offset);
-	new_ray.raw_direction = vec_sub(three_d_pixel, c->position);
-	new_ray.direction = vec_normalize(new_ray.raw_direction);
-	return (new_ray);
-}
+
+// t_ray	calculate_world_ray(t_camera camera, t_vector *ray)
+// {
+// 	t_ray		new_ray;
+
+// 	new_ray.origin = camera.position;
+// 	new_ray.direction.x = ray->x * camera.right.x + ray->y * camera.up.x + ray->z * camera.orientation.x;
+// 	new_ray.direction.y = ray->x * camera.right.y + ray->y * camera.up.y + ray->z * camera.orientation.y;
+// 	new_ray.direction.z = ray->x * camera.right.z + ray->y * camera.up.z + ray->z * -camera.orientation.z;
+// 	new_ray.direction = vec_normalize(new_ray.direction);
+// 	return (new_ray);
+// }
 
 static bool collision_for_object(t_object *object, t_ray ray, t_collision *collision)
 {
@@ -43,7 +41,7 @@ static bool collision_for_object(t_object *object, t_ray ray, t_collision *colli
 	return (0);
 }
 
-static bool is_collision(t_scene *scene, t_ray ray, t_collision *collision)
+static bool is_collision(t_object *objects, t_ray ray, t_collision *collision)
 {
 	t_object		*current_object;
 	t_collision		temp_collision;
@@ -52,7 +50,7 @@ static bool is_collision(t_scene *scene, t_ray ray, t_collision *collision)
 
 	found_collision = false;
 	min_distance = __DBL_MAX__;
-	current_object = scene->objects;
+	current_object = objects;
 	while (current_object)
 	{
 		if (collision_for_object(current_object, ray, &temp_collision) &&
@@ -76,21 +74,17 @@ void	render_image(t_mlx_data *mlx, t_scene *scene)
 	t_collision		collision;
 
 	pixel.y = 0;
-	initialize_viewport(&(scene->camera));
-	print_viewport(scene);
-
 	while (pixel.y < HEIGHT)
 	{
 		pixel.x = 0;
 		while (pixel.x < WIDTH)
 		{
-			current_ray = calculate_ray(&(scene->camera), pixel.x, pixel.y);
-
-			if (is_collision(scene, current_ray, &collision))
-				colour = colour_to_int(&(collision.closest_obj->colour), 255);
+			// current_ray = calculate_world_ray(scene->camera, &(scene->rays)[pixel.y][pixel.x]);
+			current_ray.direction = scene->rays[pixel.y][pixel.x];
+			if (is_collision(scene->objects, current_ray, &collision))
+				colour = calculate_shading(&collision, &(scene->light), &(scene->ambi));
 			else
 				colour = background(&(scene->camera), current_ray.direction.y);
-			
 			mlx_put_pixel(mlx->img, pixel.x, pixel.y, colour);
 			pixel.x++;
 		}

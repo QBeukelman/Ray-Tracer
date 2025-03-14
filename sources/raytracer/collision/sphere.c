@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/22 12:38:49 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2025/03/05 00:30:48 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/03/08 23:51:48 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ bool	sphere_collision(t_object *sphere, t_ray ray, t_collision *collision)
 		return (false);
 
 	const double t = collision_dst(a, b, discriminant);
+
+    if (t <= 0)
+        return (false);
     
     collision->distance = t;
     collision->collision_point = vec_add(ray.origin, vec_scale(ray.direction, t));

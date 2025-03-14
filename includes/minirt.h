@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   minirt.h                                           :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/03/04 22:43:12 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/03/10 13:49:54 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,18 @@ typedef struct s_object
 	t_vector		orientation;
 	double			diameter;
 	double 			height;
-	t_colour			colour;
+	t_colour		colour;
 	struct s_object	*next;
 }	t_object;
 
 
 typedef struct s_scene
 {
-	t_ambi		ambi;
-	t_camera	camera;
-	t_light		light;
+	t_ambi				ambi;
+	t_camera			camera;
+	t_light				light;
 	struct s_object		*objects;
+	t_vector			**rays;
 } t_scene;
 
 typedef struct s_collision
@@ -77,8 +78,12 @@ typedef struct s_collision
 
 typedef struct s_pixel
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
+	double	ndc_x;
+	double	ndc_y;
+	double	camera_x;
+	double	camera_y;
 } t_pixel;
 
 typedef struct s_rgb
@@ -87,6 +92,20 @@ typedef struct s_rgb
 	double	g;
 	double	b;
 }	t_rgb;
+
+typedef struct s_ambient
+{
+	double	r;
+	double	g;
+	double	b;
+}	t_ambient;
+
+typedef struct s_shading
+{
+	t_vector 	vector;
+	t_vector	direction;
+	double		distance;
+}	t_shading;
 
 typedef struct s_all_data
 {
@@ -143,6 +162,7 @@ bool	add_sphere(t_scene *scene, char **tokens);
 // ------------------------------------------------------------: parse/clean_up
 // memory_cleanup.c
 void	free_split(char **split);
+void	free_rays(t_scene *scene);
 void	free_scene(t_scene *scene);
 
 
@@ -160,16 +180,23 @@ bool	parse_point_value(float *float_value, char *token);
 bool	parse_position(t_vector *vector, char *token, float limit);
 
 
-// ------------------------------------------------------------: raytracer
-// background.c
-int		background(t_camera *c, double ray_y);
+// ------------------------------------------------------------: raytracer/shading
 
-// pixel_loop.c
-t_ray	calculate_ray(t_camera *c, int x, int y);
+// shading.g
+int	calculate_shading(t_collision *object, t_light *light, t_ambi *ambi);
+
+// background.c
+int	background(t_camera *c, double ray_y);
+
+
+// ------------------------------------------------------------: raytracer/rendering
+
+// rendering.c
 void	render_image(t_mlx_data *mlx, t_scene *scene);
 
-// viewport.c
-void	initialize_viewport(t_camera *camera);
+// rays.c
+void	generate_rays(t_vector **rays, t_camera *c);
+bool	initialize_rays(t_scene *scene);
 
 
 // ------------------------------------------------------------: raytracer/collision

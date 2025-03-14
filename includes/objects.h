@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:18 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/02/23 11:06:47 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/03/04 19:10:55 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,11 @@ typedef struct s_viewport
 	t_vector	center;
 	double		height;
 	double		width;
-	double		x_off;
-	double		y_off;
-	t_vector	bottomleft;
+	t_vector	horizontal;
+	t_vector	vertical;
+	t_vector	x_off;
+	t_vector	y_off;
+	t_vector	topleft;
 } t_viewport;
 
 typedef struct s_camera

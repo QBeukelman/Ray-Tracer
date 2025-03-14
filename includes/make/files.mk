@@ -3,10 +3,10 @@
 #                                                         ::::::::             #
 #    files.mk                                           :+:    :+:             #
 #                                                      +:+                     #
-#    By: qbeukelm <qbeukelm@student.42.fr>            +#+                      #
+#    By: hesmolde <hesmolde@student.42.fr>            +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/12/09 17:55:12 by quentinbeuk   #+#    #+#                  #
-#    Updated: 2025/03/04 22:40:15 by quentinbeuk   ########   odam.nl          #
+#    Updated: 2025/03/09 20:17:31 by hesmolde      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,12 +35,17 @@ SOURCES_PARSER_COMP			= build_colour.c \
 								build_point_value.c \
 								build_position.c \
 
-SOURCES_RAYTRACER			= pixel_loop.c \
+SOURCES_RAYTRACER_RENDERING	= render_image.c \
 								background.c \
-								viewport.c \
+								rays.c \
+								world_matrix.c \
 
 SOURCES_RAYTRACER_COLLISION = plane.c \
 								sphere.c \
+
+SOURCES_RAYTRACER_SHADING	= shading.c \
+								shadow_ray.c \
+
 
 SOURCES_RAYTRACER_VECTOR	= vector_maths.c \
 								vector_operations.c \
@@ -61,6 +66,8 @@ DIR_SOURCES_PARSER_VALIDATE	= sources/parser/build_objects
 DIR_SOURCES_PARSER_COMP		= sources/parser/parse_components
 DIR_SOURCES_RAYTRACER		= sources/raytracer
 DIR_SOURCES_RAYTRACER_COLLISION = sources/raytracer/collision
+DIR_SOURCES_RAYTRACER_SHADING = sources/raytracer/shading
+DIR_SOURCES_RAYTRACER_RENDERING = sources/raytracer/rendering
 DIR_SOURCES_RAYTRACER_VEC	= sources/raytracer/vector
 DIR_SOURCES_UTILS			= sources/utils
 
@@ -74,4 +81,6 @@ OBJ = $(addprefix $(DIR_OBJ)/, $(SOURCES:.c=.o)) \
 	$(addprefix $(DIR_OBJ)/, $(SOURCES_RAYTRACER:.c=.o)) \
 	$(addprefix $(DIR_OBJ)/, $(SOURCES_RAYTRACER_VECTOR:.c=.o)) \
 	$(addprefix $(DIR_OBJ)/, $(SOURCES_RAYTRACER_COLLISION:.c=.o)) \
+	$(addprefix $(DIR_OBJ)/, $(SOURCES_RAYTRACER_SHADING:.c=.o)) \
+	$(addprefix $(DIR_OBJ)/, $(SOURCES_RAYTRACER_RENDERING:.c=.o)) \
 	$(addprefix $(DIR_OBJ)/, $(SOURCES_UTILS:.c=.o)) \
