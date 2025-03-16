@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/03/10 15:05:04 by hein          ########   odam.nl         */
+/*   Updated: 2025/03/14 16:31:42 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,6 +220,7 @@ void	*safe_malloc(size_t size, char *func_name);
 // print_scene.c
 void	print_scene(t_scene *scene);
 void	print_viewport(t_scene *scene);
+void	print_vec(t_vector v, char *s);
 
 // build_object_list.c
 void	free_object_list(t_object *object);
