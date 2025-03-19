@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:42:04 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/03/16 19:32:47 by hein          ########   odam.nl         */
+/*   Updated: 2025/03/19 21:47:13 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int	main(int argc, char **argv)
 	if (parse_scene(&scene, scene_file) == false \
 		|| initialize_rays(&scene) == false)
 		clear_list_exit_program(scene.objects);
+
+	t_matrix x = create_translation_matrix(-90, 0);
 	// print_scene(&scene);
 	// print_viewport(&scene);
 	run_mlx(&scene);

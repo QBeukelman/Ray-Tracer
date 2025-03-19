@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/03/14 16:31:42 by hein          ########   odam.nl         */
+/*   Updated: 2025/03/19 21:09:00 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,20 @@ typedef struct s_shading
 	double		ray_length;
 }	t_shading;
 
+typedef struct s_matrix
+{
+	double x[3];
+	double y[3];
+	double z[3];
+}	t_matrix;
+
+typedef struct s_FRU
+{
+	t_vector	forward;
+	t_vector	right;
+	t_vector	up;
+}	t_FRU;
+
 typedef struct s_all_data
 {
 	t_mlx_data	*mlx_data;
@@ -188,6 +202,11 @@ int	calculate_shading(t_collision *col, t_light *light, t_ambi *ambi, t_object *
 int	background(t_camera *c, double ray_y);
 
 
+// ------------------------------------------------------------: raytracer/world_matrix
+
+t_matrix	create_translation_matrix(int yaw, int pitch);
+t_vector	transform_ray_direction(t_vector *ray, t_matrix m);
+
 // ------------------------------------------------------------: raytracer/rendering
 
 // rendering.c
@@ -226,5 +245,9 @@ void	print_vec(t_vector v, char *s);
 void	free_object_list(t_object *object);
 void	clear_list_exit_program(t_object *object);
 void	append_object(t_scene *scene, t_object *new_object);
+
+// radians_math.c
+double	degrees_to_radians(double angle);
+double	radians_to_degree(double radians);
 
 #endif

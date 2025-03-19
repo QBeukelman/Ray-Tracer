@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/25 22:09:42 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/03/14 16:31:29 by hein          ########   odam.nl         */
+/*   Updated: 2025/03/19 21:07:51 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,12 +138,12 @@ void	print_scene(t_scene *scene)
 // 	printf("ray.x[%f] ray.y[%f] ray.z[%f]\n", new.direction.x, new.direction.y, new.direction.z);
 // }
 
-void	print_vec(t_vector v, char *s)
-{
-	printf("%s = x[%f]y[%f]z[%f]\n", v.x, v.y, v.y, s);
-}
+// void	print_vec(t_vector v, char *s)
+// {
+// 	printf("%s = x[%f]y[%f]z[%f]\n", v.x, v.y, v.y, s);
+// }
 
-void	print_ray(t_ray ray, int y, int x)
-{
-	printf("ray for pixel y[%d] x[%d] = x[%f] y[%f] z[%f]\n",y, x, ray.direction.x, ray.direction.y, ray.direction.z);
-}
+// void	print_ray(t_ray ray, int y, int x)
+// {
+// 	printf("ray for pixel y[%d] x[%d] = x[%f] y[%f] z[%f]\n",y, x, ray.direction.x, ray.direction.y, ray.direction.z);
+// }

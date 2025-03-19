@@ -6,7 +6,7 @@
 #    By: hesmolde <hesmolde@student.42.fr>            +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/12/09 17:55:12 by quentinbeuk   #+#    #+#                  #
-#    Updated: 2025/03/09 20:17:31 by hesmolde      ########   odam.nl          #
+#    Updated: 2025/03/19 18:50:46 by hesmolde      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,7 @@ SOURCES_UTILS				= colour_utils.c \
 								function_protection.c \
 								print_scene.c \
 								utils.c \
+								radians_math.c \
 
 
 # ===== Manage Directories =====
