@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/17 23:28:14 by hein          #+#    #+#                 */
-/*   Updated: 2025/03/19 21:41:00 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/03/19 22:01:41 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,9 @@ t_matrix	create_translation_matrix(int yaw, int pitch)
 {
 	t_matrix	matrix;
 	const t_FRU	camera = set_FRU_orientations(yaw, pitch);
-	printf("Fx[%f]Fy[%f]Fz[%f]\n", camera.forward.x, camera.forward.y, camera.forward.z);
+	printf("Forward x[%f]Forward y[%f]Forward z[%f]\n", camera.forward.x, camera.forward.y, camera.forward.z);
+	printf("Right x[%f]Right y[%f]Right z[%f]\n", camera.right.x, camera.right.y, camera.right.z);
+	printf("Up x[%f]Up y[%f]Up z[%f]\n", camera.up.x, camera.up.y, camera.up.z);
 	exit(1);
 	matrix.x[0] = camera.right.x;
 	matrix.x[1] = camera.up.x;
