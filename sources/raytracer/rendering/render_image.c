@@ -6,26 +6,11 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/30 15:15:23 by hein          #+#    #+#                 */
-/*   Updated: 2025/03/10 18:56:42 by hein          ########   odam.nl         */
+/*   Updated: 2025/03/20 20:35:37 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minirt.h"
-
-extern int	background(t_camera *c, double ray_y);
-
-
-// t_ray	calculate_world_ray(t_camera camera, t_vector *ray)
-// {
-// 	t_ray		new_ray;
-
-// 	new_ray.origin = camera.position;
-// 	new_ray.direction.x = ray->x * camera.right.x + ray->y * camera.up.x + ray->z * camera.orientation.x;
-// 	new_ray.direction.y = ray->x * camera.right.y + ray->y * camera.up.y + ray->z * camera.orientation.y;
-// 	new_ray.direction.z = ray->x * camera.right.z + ray->y * camera.up.z + ray->z * -camera.orientation.z;
-// 	new_ray.direction = vec_normalize(new_ray.direction);
-// 	return (new_ray);
-// }
 
 bool collision_for_object(t_object *object, t_ray ray, t_collision *collision)
 {
@@ -68,26 +53,27 @@ bool is_collision(t_object *objects, t_ray ray, t_collision *collision)
 
 void	render_image(t_mlx_data *mlx, t_scene *scene)
 {
-	t_pixel			pixel;
-	t_ray			current_ray;
+	t_pixel			p;
+	t_ray			ray;
 	int				colour;
 	t_collision		collision;
+	const t_matrix	matrix = set_translation_matrix(scene->camera.yaw, scene->camera.pitch);
 
-	pixel.y = 0;
-	while (pixel.y < HEIGHT)
+	p.y = 0;
+	while (p.y < HEIGHT)
 	{
-		pixel.x = 0;
-		while (pixel.x < WIDTH)
+		p.x = 0;
+		while (p.x < WIDTH)
 		{
-			// current_ray = calculate_world_ray(scene->camera, &(scene->rays)[pixel.y][pixel.x]);
-			current_ray.direction = scene->rays[pixel.y][pixel.x];
-			if (is_collision(scene->objects, current_ray, &collision))
+			ray.direction = set_ray_direction(scene->rays[p.y][p.x], matrix);
+			ray.origin = scene->camera.position;
+			if (is_collision(scene->objects, ray, &collision))
 				colour = calculate_shading(&collision, &(scene->light), &(scene->ambi), scene->objects);
 			else
-				colour = background(&(scene->camera), current_ray.direction.y);
-			mlx_put_pixel(mlx->img, pixel.x, pixel.y, colour);
-			pixel.x++;
+				colour = background(&(scene->camera), ray.direction.y);
+			mlx_put_pixel(mlx->img, p.x, p.y, colour);
+			p.x++;
 		}
-		pixel.y++;
+		p.y++;
 	}
 }
