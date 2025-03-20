@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:42:04 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/03/19 22:00:10 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/03/20 21:00:46 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,16 @@ static int	run_mlx(t_scene *scene)
 int	main(int argc, char **argv)
 {
 	t_scene			scene;
-	const char		*scene_file = "assets/scene_02.rt";
+	const char		*scene_file = "assets/scene_04.rt";
 
 	(void)argc;
 	(void)argv;
 	if (parse_scene(&scene, scene_file) == false \
 		|| initialize_rays(&scene) == false)
 		clear_list_exit_program(scene.objects);
-
-	t_matrix x = create_translation_matrix(0, 0);
 	// print_scene(&scene);
-	// print_viewport(&scene);
 	run_mlx(&scene);
-	free_rays(&scene);
 	clear_list_exit_program(scene.objects);
+	free_rays(&scene);
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/03/19 21:09:00 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/03/20 20:06:56 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,8 +204,8 @@ int	background(t_camera *c, double ray_y);
 
 // ------------------------------------------------------------: raytracer/world_matrix
 
-t_matrix	create_translation_matrix(int yaw, int pitch);
-t_vector	transform_ray_direction(t_vector *ray, t_matrix m);
+t_matrix	set_translation_matrix(int yaw, int pitch);
+t_vector	set_ray_direction(t_vector ray, t_matrix m);
 
 // ------------------------------------------------------------: raytracer/rendering
 
@@ -248,6 +248,6 @@ void	append_object(t_scene *scene, t_object *new_object);
 
 // radians_math.c
 double	degrees_to_radians(double angle);
-double	radians_to_degree(double radians);
+double	radians_to_degrees(double radians);
 
 #endif

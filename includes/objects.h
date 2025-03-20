@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:18 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/03/04 19:10:55 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/03/20 20:11:07 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,6 @@ typedef struct s_ambi
 	t_colour		colour;
 } t_ambi;
 
-typedef struct s_viewport
-{
-	double		distance;
-	t_vector	center;
-	double		height;
-	double		width;
-	t_vector	horizontal;
-	t_vector	vertical;
-	t_vector	x_off;
-	t_vector	y_off;
-	t_vector	topleft;
-} t_viewport;
-
 typedef struct s_camera
 {
 	e_object	type;
@@ -71,11 +58,8 @@ typedef struct s_camera
 	int			fov;
 	double		fov_radians;
 	t_vector	position;
-	t_vector	global_up;
-	t_vector	orientation;
-	t_vector	right;
-	t_vector	up;
-	t_viewport	viewport;
+	int			yaw;
+	int			pitch;
 } t_camera;
 
 typedef struct s_light

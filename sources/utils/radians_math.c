@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/19 18:45:23 by hesmolde      #+#    #+#                 */
-/*   Updated: 2025/03/19 19:30:57 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/03/20 20:06:41 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ double	degrees_to_radians(double angle)
 	return (angle * RADIANS_CONST);
 }
 
-double	radians_to_degree(double radians)
+double	radians_to_degrees(double radians)
 {
 	return (radians * DEGREES_CONST);
 }

@@ -6,20 +6,30 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/25 22:22:28 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/02/17 23:29:44 by hein          ########   odam.nl         */
+/*   Updated: 2025/03/20 21:01:16 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minirt.h"
 
+static void	set_yaw_pitch(t_vector orientation, int *yaw, int *pitch)
+{
+	orientation = vec_normalize(orientation);
+	*yaw = radians_to_degrees(atan2f(orientation.x, -orientation.z));
+	*pitch = radians_to_degrees(asinf(orientation.y));
+}
+
 static bool	build_camera(t_scene *scene, char **tokens)
 {
+	t_vector	orientation;
+
 	if (!parse_position(&(scene->camera.position), tokens[1], 0.0) \
-		|| !parse_position(&(scene->camera.orientation), tokens[2], 1.0)
+		|| !parse_position(&orientation, tokens[2], 1.0)
 		|| !parse_int(&(scene->camera.fov), tokens[3]))
 	{
 		return (FAILURE);
 	}
+	set_yaw_pitch(orientation, &(scene->camera.yaw), &(scene->camera.pitch));
 	scene->camera.type = CAMERA;
 	return (SUCCESS);
 }

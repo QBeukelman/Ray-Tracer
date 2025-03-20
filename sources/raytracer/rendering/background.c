@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/02 18:00:13 by hesmolde      #+#    #+#                 */
-/*   Updated: 2025/03/09 00:50:19 by hein          ########   odam.nl         */
+/*   Updated: 2025/03/20 21:02:52 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int	background(t_camera *c, double ray_y)
 
 	normalized_y = normalize_ray_y(c, ray_y);
 	blend = 0.5 * (normalized_y + 1.0);
-	colour.r = (int)(255.999 * ((1.0 - blend) * white.r + blend * blue.r));
-	colour.g = (int)(255.999 * ((1.0 - blend) * white.g + blend * blue.g));
-	colour.b = (int)(255.999 * ((1.0 - blend) * white.b + blend * blue.b));
+	colour.r = fmin(255, (int)(255.999 * ((1.0 - blend) * white.r + blend * blue.r)));
+	colour.g = fmin(255, (int)(255.999 * ((1.0 - blend) * white.g + blend * blue.g)));
+	colour.b = fmin(255, (int)(255.999 * ((1.0 - blend) * white.b + blend * blue.b)));	
 	return (rgba_to_int(colour.r, colour.g, colour.b, 255));
 }
