@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/30 15:15:23 by hein          #+#    #+#                 */
-/*   Updated: 2025/03/20 20:35:37 by hein          ########   odam.nl         */
+/*   Updated: 2025/03/22 13:24:54 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	render_image(t_mlx_data *mlx, t_scene *scene)
 	t_ray			ray;
 	int				colour;
 	t_collision		collision;
-	const t_matrix	matrix = set_translation_matrix(scene->camera.yaw, scene->camera.pitch);
+	const t_matrix	matrix = set_translation_matrix(scene->camera.yaw, -scene->camera.pitch);
 
 	p.y = 0;
 	while (p.y < HEIGHT)
