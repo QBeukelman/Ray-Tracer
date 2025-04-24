@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/03/20 20:06:56 by hein          ########   odam.nl         */
+/*   Updated: 2025/04/24 15:29:02 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@
 # define RESET_COLOR "\033[0m"
 
 // ------------------------------------------------------------: window
-# define HEIGHT 500
-# define WIDTH 800
+# define HEIGHT 1000
+# define WIDTH 1600
 
 // ------------------------------------------------------------: data
 typedef struct s_mlx_data

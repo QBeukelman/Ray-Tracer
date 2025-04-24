@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/30 15:15:23 by hein          #+#    #+#                 */
-/*   Updated: 2025/03/22 13:24:54 by hein          ########   odam.nl         */
+/*   Updated: 2025/04/24 15:16:56 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ void	render_image(t_mlx_data *mlx, t_scene *scene)
 			if (is_collision(scene->objects, ray, &collision))
 				colour = calculate_shading(&collision, &(scene->light), &(scene->ambi), scene->objects);
 			else
-				colour = background(&(scene->camera), ray.direction.y);
+				// colour = background(&(scene->camera), ray.direction.y);
+				colour = 0XFF;
 			mlx_put_pixel(mlx->img, p.x, p.y, colour);
 			p.x++;
 		}

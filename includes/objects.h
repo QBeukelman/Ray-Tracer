@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:18 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/03/20 20:11:07 by hein          ########   odam.nl         */
+/*   Updated: 2025/04/24 17:29:17 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,12 @@ typedef struct s_light
 	t_vector	position;
 	float		brightness;
 } t_light;
+
+typedef struct s_cylinder
+{
+	t_vector	top;
+	t_vector	bottom;
+}
 
 // ------------------------------------------------------------: parse
 // scene_objects.c
