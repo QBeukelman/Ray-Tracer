@@ -1,30 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   key_enter.c                                        :+:    :+:            */
+/*   print_plane.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/04/28 13:12:52 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/04/28 21:29:22 by quentinbeuk   ########   odam.nl         */
+/*   Created: 2025/04/28 22:59:51 by quentinbeuk   #+#    #+#                 */
+/*   Updated: 2025/04/28 23:00:52 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minirt.h"
-#include <time.h>
 
-void	key_enter(t_mlx_data *mlx_data, t_scene *scene)
+void	print_plane(t_object *object, t_edit edit)
 {
-		int		msec;
-		clock_t time_before;
-		clock_t time_diference;
-
-		msec = 0;
-		time_before = clock();
-		
-		render_image(mlx_data, scene);
-		
-		time_diference = clock() - time_before;
-		msec = time_diference * 1000 / CLOCKS_PER_SEC;
-		printf("RENDER [s%d ms%d]\n", msec/1000, msec%1000);
+	printf("[%d] Plane\n", object->index);
 }

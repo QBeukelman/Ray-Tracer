@@ -6,7 +6,7 @@
 #    By: qbeukelm <qbeukelm@student.42.fr>            +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/12/09 17:42:12 by quentinbeuk   #+#    #+#                  #
-#    Updated: 2025/03/09 00:30:27 by hein          ########   odam.nl          #
+#    Updated: 2025/04/28 22:48:26 by quentinbeuk   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,9 @@ $(NAME_EXECUTABLE): submodules-checked $(OBJ)
 $(DIR_OBJ)/%.o: $(DIR_SOURCES)/%.c | $(DIR_OBJ)
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 	
+$(DIR_OBJ)/%.o: $(DIR_SOURCES_CONTROLS)/%.c | $(DIR_OBJ)
+	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
+
 $(DIR_OBJ)/%.o: $(DIR_SOURCES_MLX)/%.c | $(DIR_OBJ)
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
@@ -73,10 +76,13 @@ $(DIR_OBJ)/%.o: $(DIR_SOURCES_MLX_HOOKS)/%.c | $(DIR_OBJ)
 $(DIR_OBJ)/%.o: $(DIR_SOURCES_PARSER)/%.c | $(DIR_OBJ)
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
-$(DIR_OBJ)/%.o: $(DIR_SOURCES_PARSER_VALIDATE)/%.c | $(DIR_OBJ)
+$(DIR_OBJ)/%.o: $(DIR_SOURCES_PARSER_BUILD)/%.c | $(DIR_OBJ)
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 $(DIR_OBJ)/%.o: $(DIR_SOURCES_PARSER_COMP)/%.c | $(DIR_OBJ)
+	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
+
+$(DIR_OBJ)/%.o: $(DIR_SOURCES_PARSER_VALIDATE)/%.c | $(DIR_OBJ)
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 $(DIR_OBJ)/%.o: $(DIR_SOURCES_RAYTRACER)/%.c | $(DIR_OBJ)
@@ -97,6 +103,8 @@ $(DIR_OBJ)/%.o: $(DIR_SOURCES_RAYTRACER_VEC)/%.c | $(DIR_OBJ)
 $(DIR_OBJ)/%.o: $(DIR_SOURCES_UTILS)/%.c | $(DIR_OBJ)
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
+$(DIR_OBJ)/%.o: $(DIR_SOURCERS_UTILS_PRINT)/%.c | $(DIR_OBJ)
+	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 $(DIR_OBJ):
 	@mkdir -p $@

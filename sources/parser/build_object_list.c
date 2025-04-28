@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   build_object_list.c                                :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/07 21:01:58 by hesmolde          #+#    #+#             */
-/*   Updated: 2025/02/15 13:08:12 by qbeukelm         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   build_object_list.c                                :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/02/07 21:01:58 by hesmolde      #+#    #+#                 */
+/*   Updated: 2025/04/28 09:45:53 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,6 @@ void	free_object_list(t_object *object)
 		free(object);
 		object = temp;
 	}
-}
-
-void	clear_list_exit_program(t_object *object)
-{
-	free_object_list(object);
-	exit(1);
 }
 
 static	t_object	*list_last(t_object *object)

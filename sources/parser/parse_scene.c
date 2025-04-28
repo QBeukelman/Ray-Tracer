@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/16 19:18:55 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/03/04 20:55:21 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/04/28 12:34:16 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	count_tokens(char **tokens)
 	return (i);
 }
 
-bool	parse_scene(t_scene *scene, const char *file_name)
+static bool	parse_scene(t_scene *scene, const char *file_name)
 {
 	int		fd;
 	char	*line;
@@ -81,4 +81,31 @@ bool	parse_scene(t_scene *scene, const char *file_name)
 	}
 	close (fd);
 	return (SUCCESS);
+}
+
+bool	parser(t_scene *scene, const char *file_name)
+{
+	// TODO Pre parser checks
+	// scene file extension
+	if (is_valid_filename(file_name) == false)
+		return (false);
+
+	if (parse_scene(scene, file_name) == false)
+	{
+		free_object_list(scene->objects);
+		return (false);
+	}
+	
+	// TODO Post parser checks
+	// camera and lights
+	if (validate_non_objects(scene) == false)
+	{
+		free_object_list(scene->objects);
+		return (false);
+	}
+
+	// TODO Index objects
+	index_objects(scene);
+
+	return (true);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/10 14:32:23 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/01/19 16:34:04 by qbeukelm         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   error.c                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/12/10 14:32:23 by quentinbeuk   #+#    #+#                 */
+/*   Updated: 2025/04/28 09:25:52 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ int	show_error(char *error, char *arg)
 	return (FAILURE);
 }
 
+/*
+ * Do not use: will cause leak
+*/
 int	exit_with_message(char *error, char *arg, int exit_code)
 {
 	write(STDERR_FILENO, C_RED, ft_strlen(C_RED));

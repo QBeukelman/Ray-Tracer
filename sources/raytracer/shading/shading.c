@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/08 23:52:11 by hein          #+#    #+#                 */
-/*   Updated: 2025/03/16 19:35:30 by hein          ########   odam.nl         */
+/*   Updated: 2025/04/28 22:44:21 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ bool	object_in_shadow(t_shading shadow, t_object *objects)
 	return (false);
 }
 
-t_shading	set_light_data(t_light *light, t_vector collision_point)
+static t_shading	set_light_data(t_light *light, t_vector collision_point)
 {
 	t_shading	shadow;
 	t_vector	origin_offset;

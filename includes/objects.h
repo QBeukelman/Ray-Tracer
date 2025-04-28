@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:18 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/03/20 20:11:07 by hein          ########   odam.nl         */
+/*   Updated: 2025/04/28 17:28:58 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 # define TOKEN_COUNT_P		4
 # define TOKEN_COUNT_CY		6
 
+# define INDEX_CAMERA 0
+# define INDEX_LIGHT 1
+# define INDEX_AMBI 2
 
 typedef enum {
 	AMBIENT_LIGHT,
@@ -44,15 +47,9 @@ typedef struct s_colour
 
 
 // ------------------------------------------------------------: objects
-typedef struct s_ambi
-{
-	e_object		type;
-	float			ratio;
-	t_colour		colour;
-} t_ambi;
-
 typedef struct s_camera
 {
+	int			index;
 	e_object	type;
 	double		aspect_ratio;
 	int			fov;
@@ -60,14 +57,27 @@ typedef struct s_camera
 	t_vector	position;
 	int			yaw;
 	int			pitch;
+	bool		initialized;
 } t_camera;
 
 typedef struct s_light
 {
+	int			index;
 	e_object	type;
 	t_vector	position;
 	float		brightness;
+	bool		initialized;
 } t_light;
+
+typedef struct s_ambi
+{
+	int				index;
+	e_object		type;
+	float			ratio;
+	t_colour		colour;
+	bool			initialized;
+
+} t_ambi;
 
 // ------------------------------------------------------------: parse
 // scene_objects.c

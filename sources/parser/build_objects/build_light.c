@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   build_light.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/10 12:50:34 by qbeukelm          #+#    #+#             */
-/*   Updated: 2025/02/15 12:27:36 by qbeukelm         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   build_light.c                                      :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/10 12:50:34 by qbeukelm      #+#    #+#                 */
+/*   Updated: 2025/04/28 10:25:33 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,7 @@ bool	add_light(t_scene *scene, char **tokens)
 	}
 	if (build_light(scene, tokens) == false)
 		return (FAILURE);
+	scene->light.index = INDEX_LIGHT;
+	scene->light.initialized = true;
 	return (SUCCESS);
 }

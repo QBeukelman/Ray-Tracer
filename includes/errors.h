@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:26 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/02/23 11:05:53 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/04/28 10:20:16 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef enum
 # define E_INVALID_POS	"Invalid position format: "
 # define E_OUT_OF_RANGE	"Value out of range: "
 # define E_OBJ_COUNT	"Invalid object count: "
+# define E_INVALID_FILE	"Invalid file name: "
+# define E_MISSING_OBJ	"Scene must contain: "
 
 
 // ------------------------------------------------------------: utils
