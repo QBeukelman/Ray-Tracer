@@ -6,31 +6,15 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/28 16:36:10 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/04/29 00:58:07 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/04/29 20:58:14 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minirt.h"
 
-static void	print_label(const char *label, bool is_hilighted)
-{
-	if (is_hilighted)
-		printf(C_YELLOW);
-	printf("\t%s\n", label);
-	printf(RESET_COLOR);
-}
-
-static void	print_value(float value, bool is_hilighted)
-{
-	if (is_hilighted)
-		printf(C_YELLOW);
-	printf("\t\t%.1f\n", value);
-	printf(RESET_COLOR);
-}
-
 void	print_cylinder(t_object *object, t_edit edit)
 {
-	printf("[%d] Cylinder\n", object->index);
+	printf("[%d] Cyliner\n", object->index);
 
 	// Position
 	print_label("Pos:", edit.editing_prop == O_POSITION);
@@ -53,6 +37,6 @@ void	print_cylinder(t_object *object, t_edit edit)
 
 	// Height
 	print_label("height:", edit.editing_prop == O_HEIGHT);
-	print_value(object->diameter, edit.editing_prop == O_HEIGHT);
+	print_value(object->height, edit.editing_prop == O_HEIGHT);
 	printf("\n");
 }

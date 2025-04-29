@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/28 19:08:13 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/04/29 00:56:35 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/04/29 20:57:41 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,14 @@ void	increment_sphere_property(t_scene *scene)
 {
 	if (scene->edit.editing_prop == O_POSITION)
 		scene->edit.editing_prop = O_DIAMETER;
+	else
+		scene->edit.editing_prop = O_POSITION;
+}
+
+void	increment_plane_property(t_scene *scene)
+{
+	if (scene->edit.editing_prop == O_POSITION)
+		scene->edit.editing_prop = O_ORIENTATION;
 	else
 		scene->edit.editing_prop = O_POSITION;
 }
@@ -44,6 +52,8 @@ bool increment_property(t_mlx_data *mlx_data, t_scene *scene)
 
 	if (selected_object->type == SPHERE)
 		increment_sphere_property(scene);
+	if (selected_object->type == PLANE)
+		increment_plane_property(scene);
 	else if (selected_object->type == CYLINDER)
 		increment_cylinder_property(scene);
 

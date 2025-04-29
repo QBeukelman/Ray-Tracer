@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:18 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/04/28 17:28:58 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/04/29 21:50:50 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_colour
 
 
 // ------------------------------------------------------------: objects
+// TODO: Camera orientation as 3D normalized vector
 typedef struct s_camera
 {
 	int			index;

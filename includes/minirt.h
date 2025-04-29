@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/04/28 23:00:18 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/04/29 21:53:50 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -302,6 +302,11 @@ double	radians_to_degrees(double radians);
 // print_cylinder.c
 void	print_cylinder(t_object *object, t_edit edit);
 
+// print_lights_camera.c
+void	print_camera(t_camera *camera, t_edit edit);
+void	print_light(t_light *light, t_edit edit);
+void	print_ambi(t_ambi *ambi);
+
 // print_plane.c
 void	print_plane(t_object *object, t_edit edit);
 
@@ -312,6 +317,8 @@ void	print_sphere(t_object *sphere, t_edit edit);
 void	print_scene(t_scene *scene);
 
 // print_utils.c
+void	print_label(const char *label, bool is_hilighted);
+void	print_value(float value, bool is_hilighted);
 void 	print_colour(t_colour colour);
 
 

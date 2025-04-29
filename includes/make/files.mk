@@ -6,7 +6,7 @@
 #    By: hesmolde <hesmolde@student.42.fr>            +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/12/09 17:55:12 by quentinbeuk   #+#    #+#                  #
-#    Updated: 2025/04/28 22:56:56 by quentinbeuk   ########   odam.nl          #
+#    Updated: 2025/04/29 21:54:31 by quentinbeuk   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,9 @@ SOURCES_UTILS				= colour_utils.c \
 								radians_math.c \
 
 SOURCERS_UTILS_PRINT		= print_cylinder.c \
+								print_lights_camera.c \
 								print_sphere.c \
+								print_plane.c \
 								print_scene.c \
 								print_utils.c \
 
