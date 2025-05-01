@@ -6,11 +6,11 @@
 #    By: qbeukelm <qbeukelm@student.42.fr>            +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/12/09 17:42:12 by quentinbeuk   #+#    #+#                  #
-#    Updated: 2025/04/28 22:48:26 by quentinbeuk   ########   odam.nl          #
+#    Updated: 2025/05/01 19:03:19 by quentinbeuk   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-include includes/make/colours.mk
+include includes/make/colors.mk
 include includes/make/files.mk
 
 

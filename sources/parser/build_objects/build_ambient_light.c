@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/16 19:31:43 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/04/30 21:26:16 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/01 19:04:09 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static bool	build_ambi(t_scene *scene, char **tokens)
 {
 	if (!parse_point_value(&(scene->ambi.ratio), tokens[1]) \
-		|| !parse_colour(&(scene->ambi.colour), tokens[2]))
+		|| !parse_color(&(scene->ambi.color), tokens[2]))
 		return (FAILURE);
 	scene->ambi.type = AMBIENT_LIGHT;
 	return (SUCCESS);

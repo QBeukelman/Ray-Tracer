@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/09 00:11:22 by hein          #+#    #+#                 */
-/*   Updated: 2025/03/19 21:47:06 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/05/01 19:32:54 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static t_vector	**allocate_rays()
 	return (rays);
 }
 
-void	generate_rays(t_vector **rays, t_camera *c)
+static void	generate_rays(t_vector **rays, t_camera *c)
 {
 	const double	aspect_ratio = (double)WIDTH / (double)HEIGHT; 
 	const double	fov_radians = tan((c->fov * RADIAN_CONST) / 2);

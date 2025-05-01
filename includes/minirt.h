@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/01 18:04:54 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/01 19:46:54 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,20 +67,6 @@ typedef struct s_mlx_data
 } t_mlx_data;
 
 // ------------------------------------------------------------: scene
-typedef struct s_object
-{
-	int				index;
-	e_object		type;
-	bool			c_ray_relevant;
-	t_vector		position;
-	t_vector		axis;
-	t_vector		orientation;
-	double			diameter;
-	double 			height;
-	t_color			color;
-	struct s_object	*next;
-}	t_object;
-
 typedef struct s_scene
 {
 	int					index_max;
@@ -90,12 +76,32 @@ typedef struct s_scene
 	t_camera			camera;
 	t_light				light;
 	struct s_object		*objects;
+	t_vector			**rays;
 } t_scene;
+
+typedef struct s_collision
+ {
+ 	t_object	*closest_obj;
+ 	double		distance;
+ 	t_vector	collision_point;
+ 	t_vector	surface_normal;
+ } t_collision;
+ 
+ typedef struct s_quadratic
+ {
+ 	double	a;
+ 	double	b;
+ 	double	c;
+ }	t_quadratic;
 
 typedef struct s_pixel
 {
-	int	x;
-	int	y;
+	int		ndc_x;
+	int		ndc_y;
+	int		camera_x;
+	int		camera_y;
+	int		x;
+	int		y;
 } t_pixel;
 
 typedef struct s_rgb
@@ -127,12 +133,12 @@ typedef struct s_matrix
 }	t_matrix;
 
 // TODO: Why caps?
-typedef struct s_FRU
+typedef struct s_fru
 {
 	t_vector	forward;
 	t_vector	right;
 	t_vector	up;
-}	t_FRU;
+}	t_fru;
 
 typedef struct s_all_data
 {
@@ -243,12 +249,16 @@ bool	is_valid_filename(const char *file_name);
 
 
 // ------------------------------------------------------------: raytracer/collision
+// cylinder.c
+bool	cylinder_collision(t_object *cylinder, t_ray ray, t_collision *col);
+
 // plane.c
+double	hit_flat_plane(double *t, t_ray ray, t_vector p, t_vector orientation);
 bool	plane_collision(t_object *plane, t_ray ray, t_collision *collision);
 
 // sphere.c
 bool	sphere_collision(t_object *sphere, t_ray ray, t_collision *collision);
-
+double	collision_dst(double a, double b, double discriminant);
 
 // ------------------------------------------------------------: raytracer/shading
 // shading.c
@@ -256,12 +266,15 @@ int	calculate_shading(t_collision *col, t_light *light, t_ambi *ambi, t_object *
 
 
 // ------------------------------------------------------------: raytracer/rendering
-// background.c
-// int	background(t_camera *c, double ray_y);
-
 // render_image.c
-bool 	is_collision(t_object *objects, t_ray ray, t_collision *collision);
-bool 	collision_for_object(t_object *object, t_ray ray, t_collision *collision);
+bool			collision_for_object(t_object *object, t_ray ray, t_collision *collision);
+typedef bool	(*t_collision_func)(t_object *, t_ray, t_collision *);
+bool 			is_collision(t_object *objects, t_ray ray, t_collision *collision);
+
+// rays.c
+bool	initialize_rays(t_scene *scene);
+
+
 // ------------------------------------------------------------: raytracer
 // background.c
 int		background(t_camera *c, double ray_y);
@@ -283,9 +296,9 @@ t_vector	set_ray_direction(t_vector ray, t_matrix m);
 
 
 // ------------------------------------------------------------: utils
-// colour_utils.c
+// color_utils.c
 int		rgba_to_int(int r, int g, int b, int a);
-int		colour_to_int(t_colour *colour, int a);
+int		color_to_int(t_color *color, int a);
 
 // build_object_list.c
 void	free_object_list(t_object *object);
@@ -294,6 +307,9 @@ void	append_object(t_scene *scene, t_object *new_object);
 // radians_math.c
 double	degrees_to_radians(double angle);
 double	radians_to_degrees(double radians);
+
+// utils.c
+void	free_rays(t_scene *scene);
 
 
 // ------------------------------------------------------------: utils/print_utils
@@ -317,7 +333,7 @@ void	print_scene(t_scene *scene);
 // print_utils.c
 void	print_label(const char *label, bool is_hilighted);
 void	print_value(float value, bool is_hilighted);
-void 	print_colour(t_colour colour);
+void 	print_color(t_color color);
 
 
 #endif

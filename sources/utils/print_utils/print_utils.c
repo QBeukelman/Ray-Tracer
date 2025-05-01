@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/28 16:33:16 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/04/29 20:54:16 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/01 19:05:51 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	print_value(float value, bool is_hilighted)
 	printf(RESET_COLOR);
 }
 
-void print_colour(t_colour colour)
+void print_color(t_color color)
 {
-	printf("\tCol: \t%d, %d, %d\n", colour.r, colour.g, colour.b);
+	printf("\tCol: \t%d, %d, %d\n", color.r, color.g, color.b);
 }

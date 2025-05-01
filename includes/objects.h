@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:18 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/01 18:05:50 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/01 19:30:44 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,6 @@ typedef struct s_color
 
 
 // ------------------------------------------------------------: objects
-typedef struct s_ambi
-{
-	e_object		type;
-	float			ratio;
-	t_color			color;
-} t_ambi;
-
 typedef struct s_viewport
 {
 	double		distance;
@@ -73,6 +66,8 @@ typedef struct s_camera
 	int			fov;
 	double		fov_radians;
 	t_vector	position;
+	int			yaw;
+	int			pitch;
 	t_vector	global_up;
 	t_vector	orientation;
 	t_vector	right;
@@ -93,10 +88,44 @@ typedef struct s_ambi
 {
 	e_object		type;
 	float			ratio;
-	t_colour		colour;
+	t_color			color;
 	bool			initialized;
-
 } t_ambi;
+
+typedef struct s_cap
+{
+	double 		distance;
+	double 		denominator;
+	t_vector	intersection;
+}	t_cap;
+
+typedef struct s_cylinder
+{
+	t_vector	top_center;
+	t_vector	bottom_center;
+	t_vector	ray_to_axis_cross;
+	t_vector	center_to_origin;
+	t_vector	orientation_cross;
+	t_vector	hit_point;
+	t_vector	body_from_center;
+	double		axis_distance;
+} t_cylinder;
+
+typedef struct s_object
+{
+	int				index;
+	e_object		type;
+	bool			c_ray_relevant;
+	t_vector		position;
+	t_vector		axis;
+	t_vector		orientation;
+	double			diameter;
+	double			radius;
+	double 			height;
+	t_color			color;
+	struct s_object	*next;
+}	t_object;
+
 
 // ------------------------------------------------------------: parse
 // scene_objects.c

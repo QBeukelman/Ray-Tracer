@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/08 23:52:11 by hein          #+#    #+#                 */
-/*   Updated: 2025/04/28 22:44:21 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/01 19:05:49 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ static t_rgb	ambient_light(t_ambi *ambi)
 {
 	t_rgb	ambient;
 
-	ambient.r = ambi->colour.r * ambi->ratio / 255.0;
-	ambient.g = ambi->colour.g * ambi->ratio / 255.0;
-	ambient.b = ambi->colour.b * ambi->ratio / 255.0;
+	ambient.r = ambi->color.r * ambi->ratio / 255.0;
+	ambient.g = ambi->color.g * ambi->ratio / 255.0;
+	ambient.b = ambi->color.b * ambi->ratio / 255.0;
 	return (ambient);
 }
 
@@ -52,19 +52,19 @@ int	calculate_shading(t_collision *col, t_light *light, t_ambi *ambi, t_object *
 {
 	const t_rgb		ambient = ambient_light(ambi);
 	const t_shading	shadow = set_light_data(light, col->collision_point);
-	t_colour		colour;
+	t_color		color;
 	double			angle_diffusion;
 
 	if (object_in_shadow(shadow, obj) == true)
 	{
-		colour.r = col->closest_obj->colour.r * ambient.r;
-		colour.g = col->closest_obj->colour.g * ambient.g;
-		colour.b = col->closest_obj->colour.b * ambient.b;
-		return (colour_to_int(&colour, 255));
+		color.r = col->closest_obj->color.r * ambient.r;
+		color.g = col->closest_obj->color.g * ambient.g;
+		color.b = col->closest_obj->color.b * ambient.b;
+		return (color_to_int(&color, 255));
 	}
 	angle_diffusion = fmax(0.0, vec_dot(col->surface_normal, shadow.ray.direction));
-	colour.r = fmin(255, fmax(0, col->closest_obj->colour.r * (ambient.r + fmax(0, light->brightness * angle_diffusion - ambient.r))));
-	colour.g = fmin(255, fmax(0, col->closest_obj->colour.g * (ambient.g + fmax(0, light->brightness * angle_diffusion - ambient.g))));
-	colour.b = fmin(255, fmax(0, col->closest_obj->colour.b * (ambient.b + fmax(0, light->brightness * angle_diffusion - ambient.b))));
-	return (colour_to_int(&colour, 255));
+	color.r = fmin(255, fmax(0, col->closest_obj->color.r * (ambient.r + fmax(0, light->brightness * angle_diffusion - ambient.r))));
+	color.g = fmin(255, fmax(0, col->closest_obj->color.g * (ambient.g + fmax(0, light->brightness * angle_diffusion - ambient.g))));
+	color.b = fmin(255, fmax(0, col->closest_obj->color.b * (ambient.b + fmax(0, light->brightness * angle_diffusion - ambient.b))));
+	return (color_to_int(&color, 255));
 }

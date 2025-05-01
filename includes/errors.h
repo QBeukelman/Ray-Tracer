@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:26 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/04/28 10:20:16 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/01 19:03:26 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef enum
 # define E_SPLIT		"Failed to split tokens in line: "
 # define E_INVALID_OBJ	"Invalid scene object with identifier: "
 # define E_TOKEN_COUNT	"Invalid token count for: "
-# define E_INVALID_CLR	"Invalid colour format: "
+# define E_INVALID_CLR	"Invalid color format: "
 # define E_INVALID_PT	"Invalid point value format: "
 # define E_INVALID_POS	"Invalid position format: "
 # define E_OUT_OF_RANGE	"Value out of range: "
