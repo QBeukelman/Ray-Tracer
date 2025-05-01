@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/30 15:15:23 by hein          #+#    #+#                 */
-/*   Updated: 2025/05/01 16:41:00 by hein          ########   odam.nl         */
+/*   Updated: 2025/05/01 19:05:49 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	render_image(t_mlx_data *mlx, t_scene *scene)
 {
 	t_pixel			p;
 	t_ray			ray;
-	int				colour;
+	int				color;
 	t_collision		collision;
 	const t_matrix	matrix = set_translation_matrix(scene->camera.yaw, -scene->camera.pitch);
 
@@ -70,11 +70,10 @@ void	render_image(t_mlx_data *mlx, t_scene *scene)
 			ray.direction = set_ray_direction(scene->rays[p.y][p.x], matrix);
 			ray.origin = scene->camera.position;
 			if (is_collision(scene->objects, ray, &collision))
-				colour = calculate_shading(&collision, &(scene->light), &(scene->ambi), scene->objects);
+				color = calculate_shading(&collision, &(scene->light), &(scene->ambi), scene->objects);
 			else
-				// colour = background(&(scene->camera), ray.direction.y);
-				colour = 0XFF;
-			mlx_put_pixel(mlx->img, p.x, p.y, colour);
+				color = 0;
+			mlx_put_pixel(mlx->img, p.x, p.y, color);
 			p.x++;
 		}
 		p.y++;

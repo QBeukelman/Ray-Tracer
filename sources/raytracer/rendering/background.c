@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/02 18:00:13 by hesmolde      #+#    #+#                 */
-/*   Updated: 2025/03/20 21:02:52 by hein          ########   odam.nl         */
+/*   Updated: 2025/05/01 19:05:48 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,18 @@ static double	normalize_ray_y(t_camera *c, double ray_y)
 	return (normalized_y);
 }
 
-int	background(t_camera *c, double ray_y)
-{
-	const t_rgb	white = {1.0, 1.0, 1.0};
-	const t_rgb	blue = {0.5, 0.7, 1.0};
-	double		blend;
-	double		normalized_y;
-	t_rgb		colour;
+// int	background(t_camera *c, double ray_y)
+// {
+// 	const t_rgb	white = {1.0, 1.0, 1.0};
+// 	const t_rgb	blue = {0.5, 0.7, 1.0};
+// 	double		blend;
+// 	double		normalized_y;
+// 	t_rgb		color;
 
-	normalized_y = normalize_ray_y(c, ray_y);
-	blend = 0.5 * (normalized_y + 1.0);
-	colour.r = fmin(255, (int)(255.999 * ((1.0 - blend) * white.r + blend * blue.r)));
-	colour.g = fmin(255, (int)(255.999 * ((1.0 - blend) * white.g + blend * blue.g)));
-	colour.b = fmin(255, (int)(255.999 * ((1.0 - blend) * white.b + blend * blue.b)));	
-	return (rgba_to_int(colour.r, colour.g, colour.b, 255));
-}
+// 	normalized_y = normalize_ray_y(c, ray_y);
+// 	blend = 0.5 * (normalized_y + 1.0);
+// 	color.r = fmin(255, (int)(255.999 * ((1.0 - blend) * white.r + blend * blue.r)));
+// 	color.g = fmin(255, (int)(255.999 * ((1.0 - blend) * white.g + blend * blue.g)));
+// 	color.b = fmin(255, (int)(255.999 * ((1.0 - blend) * white.b + blend * blue.b)));	
+// 	return (rgba_to_int(color.r, color.g, color.b, 255));
+// }

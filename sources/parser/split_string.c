@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/11 22:00:28 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/02/08 01:12:51 by hein          ########   odam.nl         */
+/*   Updated: 2025/04/28 22:47:09 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,12 @@ char	**split_string(char *str)
 
 	len = ft_strlen(str);
 	count = count_substrings(str, len);
-	split = safe_malloc((sizeof(char *) * (count + 1)), "split_string()");
+	split = malloc((sizeof(char *) * (count + 1)));
+	if (split == NULL)
+	{
+		show_error(E_MALLOC, "split_string()");
+		return (NULL);
+	}
 	split = assign_strings(split, str, len);
 	return (split);
 }

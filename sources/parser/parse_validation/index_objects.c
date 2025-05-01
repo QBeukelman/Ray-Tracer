@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   key_enter.c                                        :+:    :+:            */
+/*   index_objects.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/04/28 13:12:52 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/01 15:48:04 by quentinbeuk   ########   odam.nl         */
+/*   Created: 2025/04/28 08:27:10 by quentinbeuk   #+#    #+#                 */
+/*   Updated: 2025/04/30 21:22:51 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minirt.h"
-#include <time.h>
 
-void	enter_key_hook(t_mlx_data *mlx_data, t_scene *scene)
+/*
+ * 0 - 2 index for camera, light, ambi
+*/
+void index_objects(t_scene *scene)
 {
-		int		msec;
-		clock_t time_before;
-		clock_t time_diference;
+	int			index;
+	t_object	*current;
 
-		msec = 0;
-		time_before = clock();
-		
-		render_image(mlx_data, scene);
-		
-		time_diference = clock() - time_before;
-		msec = time_diference * 1000 / CLOCKS_PER_SEC;
-		printf("RENDER [s%d ms%d]\n", msec/1000, msec%1000);
+	index = 3;
+	current = scene->objects;
+	if (current == NULL)
+		return ;
+	while (current != NULL)
+	{
+		current->index = index;
+		index++;
+		current = current->next;
+	}
+	scene->index_selected = 0;
+	scene->index_max = index - 1;
+	scene->edit.editing_prop = O_POSITION;
+	scene->edit.editing_vec = V_X;
 }

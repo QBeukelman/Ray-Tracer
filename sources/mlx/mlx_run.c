@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   colour_utils.c                                     :+:    :+:            */
+/*   mlx_run.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/02/23 11:10:09 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/02/23 11:13:42 by quentinbeuk   ########   odam.nl         */
+/*   Created: 2025/04/28 12:25:10 by quentinbeuk   #+#    #+#                 */
+/*   Updated: 2025/04/29 20:40:14 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-int	rgba_to_int(int r, int g, int b, int a)
+int	run_mlx(t_scene *scene)
 {
-	return (r << 24 | g << 16 | b << 8 | a);
-}
+	t_mlx_data		mlx_data;
+	t_all_data		all_data;
 
-int	colour_to_int(t_colour *colour, int a)
-{
-	return (colour->r << 24 | colour->g << 16 | colour->b << 8 | a);
+	if (ft_mlx_init(&mlx_data) == FAILURE)
+		return (FAILURE);
+
+	render_image(&mlx_data, scene);
+	mlx_image_to_window(mlx_data.mlx, mlx_data.img, 0, 0);
+	
+	anounce_selection(scene);
+	
+	all_data.mlx_data = &mlx_data;
+	all_data.scene = scene;
+	mlx_key_hook(mlx_data.mlx, &ft_keyhook, &all_data);
+	mlx_loop(mlx_data.mlx);
+	ft_mlx_terminate(mlx_data);
+	return (SUCCESS);
 }

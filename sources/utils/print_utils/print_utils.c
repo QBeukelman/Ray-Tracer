@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   key_enter.c                                        :+:    :+:            */
+/*   print_utils.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/04/28 13:12:52 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/01 15:48:04 by quentinbeuk   ########   odam.nl         */
+/*   Created: 2025/04/28 16:33:16 by quentinbeuk   #+#    #+#                 */
+/*   Updated: 2025/05/01 19:05:51 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minirt.h"
-#include <time.h>
 
-void	enter_key_hook(t_mlx_data *mlx_data, t_scene *scene)
+void	print_label(const char *label, bool is_hilighted)
 {
-		int		msec;
-		clock_t time_before;
-		clock_t time_diference;
+	if (is_hilighted)
+		printf(C_YELLOW);
+	printf("\t%s\n", label);
+	printf(RESET_COLOR);
+}
 
-		msec = 0;
-		time_before = clock();
-		
-		render_image(mlx_data, scene);
-		
-		time_diference = clock() - time_before;
-		msec = time_diference * 1000 / CLOCKS_PER_SEC;
-		printf("RENDER [s%d ms%d]\n", msec/1000, msec%1000);
+void	print_value(float value, bool is_hilighted)
+{
+	if (is_hilighted)
+		printf(C_YELLOW);
+	printf("\t\t%.1f\n", value);
+	printf(RESET_COLOR);
+}
+
+void print_color(t_color color)
+{
+	printf("\tCol: \t%d, %d, %d\n", color.r, color.g, color.b);
 }
