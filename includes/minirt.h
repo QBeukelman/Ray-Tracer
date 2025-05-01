@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/04/24 15:29:02 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/05/01 17:05:33 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@
 # define RESET_COLOR "\033[0m"
 
 // ------------------------------------------------------------: window
-# define HEIGHT 1000
-# define WIDTH 1600
+# define HEIGHT 500
+# define WIDTH 800
 
 // ------------------------------------------------------------: data
 typedef struct s_mlx_data
@@ -48,11 +48,10 @@ typedef struct s_mlx_data
 typedef struct s_object
 {
 	e_object		type;
-	bool			c_ray_relevant;
 	t_vector		position;
-	t_vector		axis;
 	t_vector		orientation;
 	double			diameter;
+	double			radius;
 	double 			height;
 	t_colour		colour;
 	struct s_object	*next;
@@ -75,6 +74,13 @@ typedef struct s_collision
 	t_vector	collision_point;
 	t_vector	surface_normal;
 } t_collision;
+
+typedef struct s_quadratic
+{
+	double	a;
+	double	b;
+	double	c;
+}	t_quadratic;
 
 typedef struct s_pixel
 {
@@ -113,12 +119,12 @@ typedef struct s_matrix
 	double z[3];
 }	t_matrix;
 
-typedef struct s_FRU
+typedef struct s_fru
 {
 	t_vector	forward;
 	t_vector	right;
 	t_vector	up;
-}	t_FRU;
+}	t_fru;
 
 typedef struct s_all_data
 {
@@ -218,14 +224,23 @@ bool	initialize_rays(t_scene *scene);
 
 
 // ------------------------------------------------------------: raytracer/collision
+typedef bool	(*t_collision_func)(t_object *, t_ray, t_collision *);
+
 bool is_collision(t_object *objects, t_ray ray, t_collision *collision);
 bool collision_for_object(t_object *object, t_ray ray, t_collision *collision);
 
 // plane.c
+double	hit_flat_plane(double *t, t_ray ray, t_vector p, t_vector orientation);
 bool plane_collision(t_object *plane, t_ray ray, t_collision *collision);
 
 // sphere.c
 bool	sphere_collision(t_object *sphere, t_ray ray, t_collision *collision);
+double collision_dst(double a, double b, double discriminant);
+
+
+// cylinder.c
+bool	cylinder_collision(t_object *cylinder, t_ray ray, t_collision *col);
+
 
 
 // ------------------------------------------------------------: utils

@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/17 23:28:14 by hein          #+#    #+#                 */
-/*   Updated: 2025/03/20 21:02:13 by hein          ########   odam.nl         */
+/*   Updated: 2025/05/01 11:44:44 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ static t_vector	set_camera_forward(int yaw, int pitch)
 	return (vec_normalize(forward));
 }
 
-static t_FRU	set_FRU_orientations(int yaw, int pitch)
+static t_fru	set_FRU_orientations(int yaw, int pitch)
 {
-	t_FRU		camera;
+	t_fru		camera;
 	t_vector	worldUp;
 
 	camera.forward = set_camera_forward(yaw, pitch);
@@ -47,7 +47,7 @@ static t_FRU	set_FRU_orientations(int yaw, int pitch)
 t_matrix	set_translation_matrix(int yaw, int pitch)
 {
 	t_matrix	matrix;
-	const t_FRU	camera = set_FRU_orientations(yaw, pitch);
+	const t_fru	camera = set_FRU_orientations(yaw, pitch);
 	matrix.x[0] = camera.right.x;
 	matrix.x[1] = camera.up.x;
 	matrix.x[2] = camera.forward.x;

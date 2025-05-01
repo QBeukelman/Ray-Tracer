@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/17 19:16:02 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2025/02/23 11:11:02 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/01 14:32:10 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static t_object	*build_cylinder(char **tokens)
 	ft_memset(new, 0, sizeof(t_object));
 	new->type = CYLINDER;
 	if (!parse_position(&(new->position), tokens[1], 0.0) \
-		|| !parse_position(&(new->axis), tokens[2], 1.0) \
+		|| !parse_position(&(new->orientation), tokens[2], 1.0) \
 		|| !parse_colour(&(new->colour), tokens[5]))
 	{
 		free(new);
@@ -49,6 +49,8 @@ bool	add_cylinder(t_scene *scene, char **tokens)
 	new = build_cylinder(tokens);
 	if (new == NULL)
 		return (FAILURE);
+	new->orientation = vec_normalize(new->orientation);
+	new->radius = new->diameter / 2;
 	append_object(scene, new);
 	return (SUCCESS);
 }

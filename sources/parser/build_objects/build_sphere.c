@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/17 18:33:11 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2025/02/23 11:11:15 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/01 14:32:05 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ bool	add_sphere(t_scene *scene, char **tokens)
 	new = build_sphere(tokens);
 	if (new == NULL)
 		return (FAILURE);
+	new->radius = new->diameter / 2;
 	append_object(scene, new);
 	return (SUCCESS);
 }

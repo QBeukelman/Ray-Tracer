@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/25 22:09:42 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/03/20 21:02:36 by hein          ########   odam.nl         */
+/*   Updated: 2025/05/01 14:31:34 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static void	print_cylinder(t_object *cylinder)
 	printf("\tPos: \t");
 	print_vector(cylinder->position);
 	printf("\tAxis: \t");
-	print_vector(cylinder->axis);
+	print_vector(cylinder->orientation);
 	printf("\tDiam: \t%.1f\n",(cylinder->diameter));
 	printf("\tHeig: \t%.1f\n",(cylinder->height));
 	print_colour(cylinder->colour);

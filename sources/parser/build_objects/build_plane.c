@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 13:11:34 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2025/02/23 11:11:07 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/04/30 13:35:32 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ bool	add_plane(t_scene *scene, char **tokens)
 	new = build_plane(tokens);
 	if (new == NULL)
 		return (FAILURE);
+	new->orientation = vec_normalize(new->orientation);
 	append_object(scene, new);
 	return (SUCCESS);
 }

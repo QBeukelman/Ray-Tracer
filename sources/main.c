@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:42:04 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/04/24 15:28:12 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/05/01 16:55:17 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	run_mlx(t_scene *scene)
 int	main(int argc, char **argv)
 {
 	t_scene			scene;
-	const char		*scene_file = "assets/scene_01.rt";
+	const char		*scene_file = "assets/scene_05.rt";
 
 	(void)argc;
 	(void)argv;
