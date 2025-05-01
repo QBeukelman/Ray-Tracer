@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:18 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/03/20 20:11:07 by hein          ########   odam.nl         */
+/*   Updated: 2025/05/01 16:06:20 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,26 @@ typedef struct s_light
 	t_vector	position;
 	float		brightness;
 } t_light;
+
+typedef struct s_cap
+{
+	double 		distance;
+	double 		denominator;
+	t_vector	intersection;
+}	t_cap;
+
+typedef struct s_cylinder
+{
+	t_vector	top_center;
+	t_vector	bottom_center;
+	t_vector	ray_to_axis_cross;
+	t_vector	center_to_origin;
+	t_vector	orientation_cross;
+	t_vector	hit_point;
+	t_vector	body_from_center;
+	double		axis_distance;
+	
+}	t_cylinder;
 
 // ------------------------------------------------------------: parse
 // scene_objects.c

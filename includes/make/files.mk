@@ -6,7 +6,7 @@
 #    By: hesmolde <hesmolde@student.42.fr>            +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/12/09 17:55:12 by quentinbeuk   #+#    #+#                  #
-#    Updated: 2025/03/19 18:50:46 by hesmolde      ########   odam.nl          #
+#    Updated: 2025/05/01 16:38:48 by hein          ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SOURCES_RAYTRACER_RENDERING	= render_image.c \
 
 SOURCES_RAYTRACER_COLLISION = plane.c \
 								sphere.c \
+								cylinder.c \
 
 SOURCES_RAYTRACER_SHADING	= shading.c \
 								shadow_ray.c \
