@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/16 19:31:43 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/04/28 10:25:25 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/04/30 21:26:16 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ bool	add_ambient_light(t_scene *scene, char **tokens)
 	}
 	if (build_ambi(scene, tokens) == false)
 		return (FAILURE);
-	scene->ambi.index = INDEX_AMBI;
 	scene->ambi.initialized = true;
 	return (SUCCESS);
 }

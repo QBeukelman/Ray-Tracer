@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/25 22:22:28 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/04/28 10:25:09 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/04/30 21:26:03 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ bool	add_camera(t_scene *scene, char **tokens)
 	}
 	if (build_camera(scene, tokens) == false)
 		return (FAILURE);
-	scene->camera.index = INDEX_CAMERA;
 	scene->camera.initialized = true;
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/25 22:09:42 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/04/28 22:51:18 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/04/30 21:26:55 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	util_print_vector(t_vector vec)
 // ------------------ Camera --------------
 static void util_print_camera(t_camera *camera)
 {
-	printf("[%d][%s]\n", camera->index, objects_to_name(camera->type));
+	printf("[%d][%s]\n", 0, objects_to_name(camera->type));
 	printf("\tPos: \t");
 	util_print_vector(camera->position);
 	printf("\tFov: \t%d\n", camera->fov);
@@ -32,7 +32,7 @@ static void util_print_camera(t_camera *camera)
 // ------------------- Light --------------
 static void	util_print_light(t_light *light)
 {
-	printf("[%d][%s]\n", light->index, objects_to_name(light->type));
+	printf("[%d][%s]\n", 1, objects_to_name(light->type));
 	printf("\tPos: \t");
 	util_print_vector(light->position);
 	printf("\tBri: \t%.1f\n\n", light->brightness);
@@ -41,7 +41,7 @@ static void	util_print_light(t_light *light)
 // ---------------- Ambient Light --------------
 static void util_print_ambi(t_ambi *ambi)
 {
-	printf("[%d][%s]\n", ambi->index, objects_to_name(ambi->type));
+	printf("[%d][%s]\n", 2, objects_to_name(ambi->type));
 	printf("\tAmbi: \t%.1f\n", ambi->ratio);
 	print_colour(ambi->colour);
 	printf("\n");

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   perser_post_validation.c                           :+:    :+:            */
+/*   parser_post_validation.c                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/28 10:11:31 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/04/28 10:21:14 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/04/30 21:23:53 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 

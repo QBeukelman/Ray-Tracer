@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/04/29 21:53:50 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/01 15:48:11 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,23 +157,23 @@ typedef bool	(*t_add_func)(t_scene*, char **);
 
 // ------------------------------------------------------------: controls
 // adjust_value.c
-void	increment_value(t_mlx_data *mlx_data, t_scene *scene);
-void	decrement_value(t_mlx_data *mlx_data, t_scene *scene);
+void	up_key_hook(t_mlx_data *mlx_data, t_scene *scene);
+void	down_key_hook(t_mlx_data *mlx_data, t_scene *scene);
 
 // select_object.c
 t_object	*obj_for_index(t_object *objects, int index);
 void		anounce_selection(t_scene *scene);
-bool		increment_select(t_mlx_data *mlx_data, t_scene *scene);
-bool		decrement_select(t_mlx_data *mlx_data, t_scene *scene);
-char		*index_to_name(t_scene *scene, int index);
+bool		right_bracket_key_hook(t_mlx_data *mlx_data, t_scene *scene);
+bool		left_bracket_key_hook(t_mlx_data *mlx_data, t_scene *scene);
+// char		*index_to_name(t_scene *scene, int index);
 
 // select_property.c
-bool	increment_property(t_mlx_data *mlx_data, t_scene *scene);
+void	tab_key_hook(t_mlx_data *mlx_data, t_scene *scene);
 
 // select_vec.c
-void	select_vec_x(t_mlx_data *mlx_data, t_scene *scene);
-void	select_vec_y(t_mlx_data *mlx_data, t_scene *scene);
-void	select_vec_z(t_mlx_data *mlx_data, t_scene *scene);
+void	x_key_hook(t_mlx_data *mlx_data, t_scene *scene);
+void	y_key_hook(t_mlx_data *mlx_data, t_scene *scene);
+void	z_key_hook(t_mlx_data *mlx_data, t_scene *scene);
 
 
 // ------------------------------------------------------------: mlx
@@ -187,7 +187,7 @@ void	ft_mlx_terminate(t_mlx_data mlx_data);
 
 // ------------------------------------------------------------: mlx/input_hooks
 // key_space.c
-void	key_enter(t_mlx_data *mlx_data, t_scene *scene);
+void	enter_key_hook(t_mlx_data *mlx_data, t_scene *scene);
 
 // key_hooks.c
 void	ft_keyhook(mlx_key_data_t keydata, void *data);
@@ -303,9 +303,9 @@ double	radians_to_degrees(double radians);
 void	print_cylinder(t_object *object, t_edit edit);
 
 // print_lights_camera.c
-void	print_camera(t_camera *camera, t_edit edit);
-void	print_light(t_light *light, t_edit edit);
-void	print_ambi(t_ambi *ambi);
+void	print_camera(t_camera camera, t_edit edit);
+void	print_light(t_light light, t_edit edit);
+void	print_ambi(t_ambi ambi);
 
 // print_plane.c
 void	print_plane(t_object *object, t_edit edit);

@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/28 22:59:51 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/04/29 20:55:06 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/01 15:59:27 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_plane(t_object *object, t_edit edit)
 {
-	printf("[%d] Cylinder\n", object->index);
+	printf("[%d] Plane\n", object->index);
 
 	// Position
 	print_label("Pos:", edit.editing_prop == O_POSITION);
