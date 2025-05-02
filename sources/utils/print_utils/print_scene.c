@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   print_scene.c                                      :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/12/25 22:09:42 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/01 19:05:50 by quentinbeuk   ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   print_scene.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/25 22:09:42 by quentinbeuk       #+#    #+#             */
+/*   Updated: 2025/05/02 14:39:59 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,14 +84,29 @@ static void	util_print_cylinder(t_object *cylinder)
 	printf("\n");
 }
 
+// ------------------- Cone --------------
+static void	util_print_cone(t_object *cone)
+{
+	printf("[%d][%s]\n", cone->index, objects_to_name(cone->type));
+	printf("\tPos: \t");
+	util_print_vector(cone->position);
+	printf("\tAxis: \t");
+	util_print_vector(cone->axis);
+	printf("\tDiam: \t%.1f\n",(cone->diameter));
+	printf("\tHeig: \t%.1f\n",(cone->height));
+	print_color(cone->color);
+	printf("\n");
+}
+
 // ----------------- Print Scene --------------
 static void print_objects(t_object *objects)
 {
 	t_object	*current;
-	static const print_object print_func[3] = {
+	static const print_object print_func[4] = {
 		util_print_sphere,
 		util_print_plane,
-		util_print_cylinder
+		util_print_cylinder,
+		util_print_cone
 	};
 
 	current = objects;

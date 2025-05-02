@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   scene_objects.c                                    :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/12/12 00:21:54 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/02/08 01:56:55 by hein          ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   scene_objects.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/12 00:21:54 by quentinbeuk       #+#    #+#             */
+/*   Updated: 2025/05/02 14:34:08 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,14 @@
 
 char	*objects_to_string(e_object object)
 {
-	const char	*scene_object_keys[7] = {
+	const char	*scene_object_keys[8] = {
 		"A",
 		"L",
 		"C",
 		"sp",
 		"pl",
 		"cy",
+		"cn",
 		"UNKONOWN"
 	};
 
@@ -33,13 +34,14 @@ char	*objects_to_string(e_object object)
 
 char	*objects_to_name(e_object object)
 {
-	static char	*scene_object_names[7] = {
+	static char	*scene_object_names[8] = {
 		"Ambient Light",
 		"Light",
 		"Camera",
 		"Sphere",
 		"Plane",
 		"Cylinder",
+		"Cone",
 		"Unknown Object"
 	};
 
@@ -50,13 +52,14 @@ char	*objects_to_name(e_object object)
 
 e_object	string_to_objects(char *str)
 {
-	const char	*scene_object_keys[7] = {
+	const char	*scene_object_keys[8] = {
 		"A",
 		"L",
 		"C",
 		"sp",
 		"pl",
 		"cy",
+		"cn"
 		"UNKONOWN"
 	};
 	int			i;

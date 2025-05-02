@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   parse_scene.c                                      :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/12/16 19:18:55 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/04/28 12:34:16 by quentinbeuk   ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   parse_scene.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/16 19:18:55 by quentinbeuk       #+#    #+#             */
+/*   Updated: 2025/05/02 14:30:44 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void	init_add_object_funcs(t_add_func add_object[NUM_OBJECTS])
 	add_object[SPHERE] = add_sphere;
 	add_object[PLANE] = add_plane;
 	add_object[CYLINDER] = add_cylinder;
+	add_object[CONE] = add_cone;
 }
 
 static bool	process_line(t_scene *scene, char *line)

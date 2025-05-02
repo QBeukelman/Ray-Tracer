@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   objects.h                                          :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/12/09 17:46:18 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/01 19:30:44 by quentinbeuk   ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   objects.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/09 17:46:18 by quentinbeuk       #+#    #+#             */
+/*   Updated: 2025/05/02 14:33:16 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@
 # define TOKEN_COUNT_SP		4
 # define TOKEN_COUNT_P		4
 # define TOKEN_COUNT_CY		6
+# define TOKEN_COUNT_CN		6
 
 # define INDEX_CAMERA 0
 # define INDEX_LIGHT 1
 # define INDEX_AMBI 2
 
+// TODO: Make sphere 0?
 typedef enum {
 	AMBIENT_LIGHT,
 	LIGHT,
@@ -34,6 +36,7 @@ typedef enum {
 	SPHERE,
 	PLANE,
 	CYLINDER,
+	CONE,
 	NUM_OBJECTS
 } e_object;
 

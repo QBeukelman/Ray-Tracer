@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   minirt.h                                           :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/02 13:32:28 by hein          ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   minirt.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/09 17:46:23 by quentinbeuk       #+#    #+#             */
+/*   Updated: 2025/05/02 14:44:41 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,6 +204,9 @@ bool	add_ambient_light(t_scene *scene, char **tokens);
 // build_camera.c
 bool	add_camera(t_scene *scene, char **tokens);
 
+// build_cone.c
+bool	add_cone(t_scene *scene, char **tokens);
+
 // build_cylinder.c
 bool	add_cylinder(t_scene *scene, char **tokens);
 
@@ -249,6 +252,9 @@ bool	is_valid_filename(const char *file_name);
 
 
 // ------------------------------------------------------------: raytracer/collision
+// cone.c
+bool	cone_collision(t_object *cylinder, t_ray ray, t_collision *col);
+
 // cylinder.c
 bool	cylinder_collision(t_object *cylinder, t_ray ray, t_collision *col);
 
