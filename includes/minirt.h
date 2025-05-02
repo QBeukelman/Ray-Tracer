@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/01 19:46:54 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/02 13:32:28 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,12 +96,12 @@ typedef struct s_collision
 
 typedef struct s_pixel
 {
-	int		ndc_x;
-	int		ndc_y;
-	int		camera_x;
-	int		camera_y;
 	int		x;
 	int		y;
+	double	ndc_x;
+	double	ndc_y;
+	double	camera_x;
+	double	camera_y;
 } t_pixel;
 
 typedef struct s_rgb
