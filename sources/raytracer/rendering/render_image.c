@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   render_image.c                                     :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/30 15:15:23 by hein          #+#    #+#                 */
-/*   Updated: 2025/05/02 13:43:54 by hein          ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   render_image.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/30 15:15:23 by hein              #+#    #+#             */
+/*   Updated: 2025/05/02 14:44:28 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 
 bool is_collision(t_object *objects, t_ray ray, t_collision *collision)
 {
-	const t_collision_func f[3] = {sphere_collision, plane_collision, cylinder_collision};
+	const t_collision_func f[4] = {sphere_collision, plane_collision, cylinder_collision, cone_collision};
 	t_object				*current_object;
 	t_collision				temp_collision;
 	bool					found_collision;

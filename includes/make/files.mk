@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         ::::::::             #
-#    files.mk                                           :+:    :+:             #
-#                                                      +:+                     #
-#    By: hesmolde <hesmolde@student.42.fr>            +#+                      #
-#                                                    +#+                       #
-#    Created: 2024/12/09 17:55:12 by quentinbeuk   #+#    #+#                  #
-#    Updated: 2025/05/01 19:49:05 by quentinbeuk   ########   odam.nl          #
+#                                                         :::      ::::::::    #
+#    files.mk                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/12/09 17:55:12 by quentinbeuk       #+#    #+#              #
+#    Updated: 2025/05/02 14:43:21 by qbeukelm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SOURCES_PARSER 				= build_object_list.c \
 
 SOURCES_PARSER_BUILD		= build_ambient_light.c \
 								build_camera.c \
+								build_cone.c \
 								build_cylinder.c \
 								build_light.c \
 								build_plane.c \
@@ -50,7 +51,8 @@ SOURCES_RAYTRACER_RENDERING	= background.c \
 								render_image.c \
 								world_matrix.c \
 
-SOURCES_RAYTRACER_COLLISION = cylinder.c \
+SOURCES_RAYTRACER_COLLISION = cone.c \
+								cylinder.c \
 								plane.c \
 								sphere.c \
 
