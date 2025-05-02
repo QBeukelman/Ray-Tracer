@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/30 15:15:23 by hein          #+#    #+#                 */
-/*   Updated: 2025/05/01 19:05:49 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/02 13:43:54 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ bool is_collision(t_object *objects, t_ray ray, t_collision *collision)
 
 	found_collision = false;
 	min_distance = __DBL_MAX__;
+	temp_collision.distance = min_distance;
 	current_object = objects;
 	while (current_object)
 	{
@@ -72,7 +73,7 @@ void	render_image(t_mlx_data *mlx, t_scene *scene)
 			if (is_collision(scene->objects, ray, &collision))
 				color = calculate_shading(&collision, &(scene->light), &(scene->ambi), scene->objects);
 			else
-				color = 0;
+				color = 0XFF;
 			mlx_put_pixel(mlx->img, p.x, p.y, color);
 			p.x++;
 		}
