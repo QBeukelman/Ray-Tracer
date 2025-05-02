@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/24 16:43:15 by hesmolde      #+#    #+#                 */
-/*   Updated: 2025/05/01 17:20:17 by hein          ########   odam.nl         */
+/*   Updated: 2025/05/02 09:32:20 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static bool	hit_top(t_cylinder c, t_object *cylinder, t_ray ray, t_collision *co
 	double		t;
 	double		denominator;
 
+	t = 0;
 	denominator = hit_flat_plane(&t, ray, c.top_center, cylinder->orientation);
 	if (denominator == 0.0 || t < 0)
 		return (false);
@@ -54,6 +55,7 @@ static bool	hit_bottom(t_cylinder c, t_object *cylinder, t_ray ray, t_collision 
 	double		t;
 	double		denominator;
 
+	t = 0;
 	denominator = hit_flat_plane(&t, ray, c.bottom_center, cylinder->orientation);
 	if (denominator == 0.0 || t < 0 || t > col->distance)
 		return (false);
@@ -77,6 +79,7 @@ static bool	hit_body(t_cylinder c, t_object *cylinder, t_ray ray, t_collision *c
 	double			discriminant;
 	double			t;
 
+	t = 0;
 	q.a = vec_dot(c.ray_to_axis_cross, c.ray_to_axis_cross);
 	q.b = CONST_2 * vec_dot(c.ray_to_axis_cross, c.orientation_cross);
 	q.c = vec_dot(c.orientation_cross, c.orientation_cross) - (cylinder->radius * cylinder->radius);
@@ -101,16 +104,20 @@ static bool	hit_body(t_cylinder c, t_object *cylinder, t_ray ray, t_collision *c
 bool	cylinder_collision(t_object *cylinder, t_ray ray, t_collision *col)
 {
 	t_cylinder	c;
+	t_collision	temp_col;
 	bool		hit;
 
 	ft_memset(&c, 0, sizeof(c));
 	set_calculation_data(&c, cylinder, ray);
 	hit = false;
-	if (hit_top(c, cylinder, ray, col))
+	temp_col.distance = __DBL_MAX__;
+	if (hit_top(c, cylinder, ray, &temp_col))
 		hit = true;
-	if (hit_bottom(c, cylinder, ray, col))
+	if (hit_bottom(c, cylinder, ray, &temp_col))
 		hit = true;
-	if (hit_body(c, cylinder, ray, col))
+	if (hit_body(c, cylinder, ray, &temp_col))
 		hit = true;
+	if (hit)
+		*col = temp_col;
 	return (hit);
 }
