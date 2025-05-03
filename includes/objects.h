@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   objects.h                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/09 17:46:18 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/05/02 14:33:16 by qbeukelm         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   objects.h                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/12/09 17:46:18 by quentinbeuk   #+#    #+#                 */
+/*   Updated: 2025/05/03 15:55:20 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@
 # define INDEX_CAMERA 0
 # define INDEX_LIGHT 1
 # define INDEX_AMBI 2
+
+# define CONST_2 2.0
+# define CONST_MIN_2 -2.0
+# define CONST_4 4
 
 // TODO: Make sphere 0?
 typedef enum {
@@ -95,23 +99,22 @@ typedef struct s_ambi
 	bool			initialized;
 } t_ambi;
 
-typedef struct s_cap
+typedef struct s_cone
 {
-	double 		distance;
-	double 		denominator;
-	t_vector	intersection;
-}	t_cap;
+	t_vector	tip;
+	t_vector	base;
+	double		tipray_dot_axis;
+	double		ray_dot_axis;
+	double		tan_theta_sqr;
+	double		origin_to_axis;
+}	t_cone;
 
 typedef struct s_cylinder
 {
 	t_vector	top_center;
 	t_vector	bottom_center;
-	t_vector	ray_to_axis_cross;
 	t_vector	center_to_origin;
-	t_vector	orientation_cross;
-	t_vector	hit_point;
-	t_vector	body_from_center;
-	double		axis_distance;
+	t_vector	hit;
 } t_cylinder;
 
 typedef struct s_object

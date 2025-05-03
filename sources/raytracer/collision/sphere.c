@@ -6,25 +6,20 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/22 12:38:49 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2025/05/01 16:40:11 by hein          ########   odam.nl         */
+/*   Updated: 2025/05/03 15:26:45 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minirt.h"
-
-# define CONST_2 2.0
-# define CONST_MIN_2 -2.0
-# define CONST_4 4
 
 double collision_dst(double a, double b, double discriminant)
 {
     const double sqrt_d = sqrt(discriminant);
     double t1 = (b - sqrt_d) / (CONST_2 * a);
     double t2 = (b + sqrt_d) / (CONST_2 * a);
-    
+
     if (t1 < 0 && t2 < 0)
         return (-1);
-    
     return ((t1 > 0) ? t1 : t2);
 }
 
