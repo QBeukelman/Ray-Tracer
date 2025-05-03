@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   build_cone.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/02 14:31:30 by qbeukelm          #+#    #+#             */
-/*   Updated: 2025/05/02 14:38:47 by qbeukelm         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   build_cone.c                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/05/02 14:31:30 by qbeukelm      #+#    #+#                 */
+/*   Updated: 2025/05/03 14:24:13 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ bool add_cone(t_scene *scene, char **tokens)
 	new = build_cone(tokens);
 	if (new == NULL)
 		return (FAILURE);
-	new->orientation = vec_normalize(new->orientation);
+	new->orientation = vec_normalize(vec_negate(new->orientation));
 	new->radius = new->diameter / 2;
 	append_object(scene, new);
 	return (SUCCESS);
