@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   print_cylinder.c                                   :+:    :+:            */
+/*   print_cone.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/04/28 16:36:10 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/03 13:16:01 by quentinbeuk   ########   odam.nl         */
+/*   Created: 2025/05/03 12:08:13 by quentinbeuk   #+#    #+#                 */
+/*   Updated: 2025/05/03 13:16:41 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minirt.h"
 
-void	print_cylinder(t_object *object, t_edit edit)
+void	print_cone(t_object *object, t_edit edit)
 {
-	printf("[%d] Cyliner\n", object->index);
+	printf("[%d] Cone\n", object->index);
 
 	// Position
 	print_label("Pos:", edit.editing_prop == O_POSITION);

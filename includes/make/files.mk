@@ -1,19 +1,20 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         :::      ::::::::    #
-#    files.mk                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/12/09 17:55:12 by quentinbeuk       #+#    #+#              #
-#    Updated: 2025/05/02 14:43:21 by qbeukelm         ###   ########.fr        #
+#                                                         ::::::::             #
+#    files.mk                                           :+:    :+:             #
+#                                                      +:+                     #
+#    By: qbeukelm <qbeukelm@student.42.fr>            +#+                      #
+#                                                    +#+                       #
+#    Created: 2024/12/09 17:55:12 by quentinbeuk   #+#    #+#                  #
+#    Updated: 2025/05/03 14:20:27 by quentinbeuk   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 # ===== Sources =====
 SOURCES						= main.c \
 
-SOURCES_CONTROLS			= adjust_value.c \
+SOURCES_CONTROLS			= adjust_value_camera.c \
+								adjust_value.c \
 								select_object.c \
 								select_property.c \
 								select_vec.c \
@@ -67,9 +68,11 @@ SOURCES_UTILS				= color_utils.c \
 								radians_math.c \
 								utils.c \
 
-SOURCERS_UTILS_PRINT		= print_cylinder.c \
+SOURCERS_UTILS_PRINT		= print_cone.c \
+								print_cylinder.c \
 								print_lights_camera.c \
 								print_sphere.c \
+								print_objects.c \
 								print_plane.c \
 								print_scene.c \
 								print_utils.c \

@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:42:04 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/02 22:48:32 by hein          ########   odam.nl         */
+/*   Updated: 2025/05/03 16:52:31 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
 	if (parser(&scene, file_name) == false)
 		return (FAILURE);
 	
-	print_scene(&scene);
+	// print_scene(&scene);
 
 	if (initialize_rays(&scene) == false)
 		free_object_list(scene.objects);
