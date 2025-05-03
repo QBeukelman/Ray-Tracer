@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/09 17:42:04 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/05/02 14:41:31 by qbeukelm         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   main.c                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/12/09 17:42:04 by quentinbeuk   #+#    #+#                 */
+/*   Updated: 2025/05/02 22:48:32 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int argc, char **argv)
 {
 	t_mlx_data		mlx;
 	t_scene			scene;
-	const char		*file_name = "assets/scene_06.rt";
+	const char		*file_name = "assets/scene_05.rt";
 
 	(void)argc;
 	(void)argv;
