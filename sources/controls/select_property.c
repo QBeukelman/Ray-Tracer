@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/28 19:08:13 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/01 15:45:14 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/03 14:18:44 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,31 @@ void	increment_cylinder_property(t_scene *scene)
 		scene->edit.editing_prop = O_POSITION;
 }
 
+void	increment_camera_property(t_scene *scene)
+{
+	if (scene->edit.editing_prop == O_POSITION)
+		scene->edit.editing_prop = O_CAMERA_PITCH;
+	else if (scene->edit.editing_prop == O_CAMERA_PITCH)
+		scene->edit.editing_prop = O_CAMERA_YAW;
+	else if (scene->edit.editing_prop == O_CAMERA_YAW)
+		scene->edit.editing_prop = O_CAMERA_FOV;
+	else if (scene->edit.editing_prop == O_CAMERA_FOV)
+		scene->edit.editing_prop = O_POSITION;
+	anounce_selection(scene);
+}
+
 void	tab_key_hook(t_mlx_data *mlx_data, t_scene *scene)
 {
 	t_object *selected_object;
 
-	if (scene->index_selected <= 2)
-		return ;
+	selected_object = NULL;
+	if (scene->index_selected == 0)
+		increment_camera_property(scene);
 
-	// TODO: Handle NULL
-	selected_object = obj_for_index(scene->objects, scene->index_selected);
+	if (scene->index_selected >= 3)
+		selected_object = obj_for_index(scene->objects, scene->index_selected);
+	if (selected_object == NULL)
+		return ;
 
 	if (selected_object->type == SPHERE)
 		increment_sphere_property(scene);

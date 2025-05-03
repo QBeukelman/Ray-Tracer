@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/09 17:46:23 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/05/02 14:44:41 by qbeukelm         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   minirt.h                                           :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
+/*   Updated: 2025/05/03 14:22:25 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ typedef enum
 {
 	O_POSITION,
 	O_ORIENTATION,
+	O_CAMERA_PITCH,
+	O_CAMERA_YAW,
+	O_CAMERA_FOV,
 	O_DIAMETER,
 	O_HEIGHT
 } e_edit;
@@ -50,7 +53,8 @@ typedef enum
 {
 	V_X,
 	V_Y,
-	V_Z
+	V_Z,
+	V_NONE
 } e_edit_vec;
 
 typedef struct s_edit
@@ -149,12 +153,14 @@ typedef struct s_all_data
 typedef bool	(*t_add_func)(t_scene*, char **);
 
 // ------------------------------------------------------------: controls
+// adjust_value_camera.c
+void	adjust_value_camera(t_scene *scene, int delta);
+
 // adjust_value.c
 void	up_key_hook(t_mlx_data *mlx_data, t_scene *scene);
 void	down_key_hook(t_mlx_data *mlx_data, t_scene *scene);
 
 // select_object.c
-t_object	*obj_for_index(t_object *objects, int index);
 void		anounce_selection(t_scene *scene);
 bool		right_bracket_key_hook(t_mlx_data *mlx_data, t_scene *scene);
 bool		left_bracket_key_hook(t_mlx_data *mlx_data, t_scene *scene);
@@ -227,7 +233,6 @@ void	free_split(char **split);
 
 // ------------------------------------------------------------: parse/parse_components
 // build_color.c
-int		color_rgba_to_int(int r, int g, int b, int a);
 bool	parse_color(t_color *color, char *token);
 
 // build_int.c
@@ -266,39 +271,24 @@ bool	plane_collision(t_object *plane, t_ray ray, t_collision *collision);
 bool	sphere_collision(t_object *sphere, t_ray ray, t_collision *collision);
 double	collision_dst(double a, double b, double discriminant);
 
-// ------------------------------------------------------------: raytracer/shading
-// shading.c
-int	calculate_shading(t_collision *col, t_light *light, t_ambi *ambi, t_object *obj);
-
 
 // ------------------------------------------------------------: raytracer/rendering
 // render_image.c
-bool			collision_for_object(t_object *object, t_ray ray, t_collision *collision);
 typedef bool	(*t_collision_func)(t_object *, t_ray, t_collision *);
 bool 			is_collision(t_object *objects, t_ray ray, t_collision *collision);
+void			render_image(t_mlx_data *mlx, t_scene *scene);
 
 // rays.c
 bool	initialize_rays(t_scene *scene);
 
-
-// ------------------------------------------------------------: raytracer
-// background.c
-int		background(t_camera *c, double ray_y);
-
-// pixel_loop.c
-t_ray	calculate_ray(t_camera *c, int x, int y);
-void	render_image(t_mlx_data *mlx, t_scene *scene);
-
-// viewport.c
-void	initialize_viewport(t_camera *camera);
-
-
-// ------------------------------------------------------------: raytracer/collision
-// sphere.c
-bool hit_sphere(t_object *sphere, t_ray *ray, double *t_nearest);
 // world_martix.c
 t_matrix	set_translation_matrix(int yaw, int pitch);
 t_vector	set_ray_direction(t_vector ray, t_matrix m);
+
+
+// ------------------------------------------------------------: raytracer/shading
+// shading.c
+int	calculate_shading(t_collision *col, t_light *light, t_ambi *ambi, t_object *obj);
 
 
 // ------------------------------------------------------------: utils
@@ -319,6 +309,9 @@ void	free_rays(t_scene *scene);
 
 
 // ------------------------------------------------------------: utils/print_utils
+// print_cone.c
+void	print_cone(t_object *object, t_edit edit);
+
 // print_cylinder.c
 void	print_cylinder(t_object *object, t_edit edit);
 
@@ -326,6 +319,10 @@ void	print_cylinder(t_object *object, t_edit edit);
 void	print_camera(t_camera camera, t_edit edit);
 void	print_light(t_light light, t_edit edit);
 void	print_ambi(t_ambi ambi);
+
+// print_objects.c
+t_object	*obj_for_index(t_object *objects, int index);
+void		print_obj_for_index(t_scene *scene);
 
 // print_plane.c
 void	print_plane(t_object *object, t_edit edit);
@@ -338,7 +335,7 @@ void	print_scene(t_scene *scene);
 
 // print_utils.c
 void	print_label(const char *label, bool is_hilighted);
-void	print_value(float value, bool is_hilighted);
+void	print_value(float value, bool is_hilighted, e_edit_vec vec);
 void 	print_color(t_color color);
 
 

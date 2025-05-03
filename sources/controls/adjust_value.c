@@ -6,12 +6,13 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/28 21:18:24 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/01 16:04:31 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/03 14:24:04 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
-#define DISPATCH_TABLE_SIZE 8
+
+#define DISPATCH_TABLE_SIZE 12
 
 typedef struct s_adjust_entry {
 	int		object_type;
@@ -21,7 +22,6 @@ typedef struct s_adjust_entry {
 
 static void	adjust_position(t_object *object, t_edit edit, int delta)
 {
-	printf("Position: [%d], edit: [%d]\n", object->index, edit.editing_prop);
 	if (edit.editing_vec == V_X)
 		object->position.x += delta;
 	else if (edit.editing_vec == V_Y)
@@ -40,58 +40,62 @@ static void	adjust_orientation(t_object *object, t_edit edit, int delta)
 		object->orientation.z += delta;
 }
 
-static void	adjust_diameter(t_object *object, int delta)
+static void	adjust_diameter(t_object *object, t_edit edit, int delta)
 {
-	printf("Diam: [%d]\n", object->index);
+	(void)edit;
 	object->diameter += delta;
 }
 
-static void	adjust_height(t_object *object, int delta)
+static void	adjust_height(t_object *object, t_edit edit, int delta)
 {
+	(void)edit;
 	object->height += delta;
 }
 
 const t_adjust_entry	*fill_dispatch_table()
 {
 	static const t_adjust_entry	dispatch_table[] = {
+	
 	{SPHERE, O_POSITION, adjust_position},
-	{SPHERE, O_DIAMETER, (void *)adjust_diameter},
+	{SPHERE, O_DIAMETER, adjust_diameter},
+
 	{PLANE, O_POSITION, adjust_position},
 	{PLANE, O_ORIENTATION, adjust_orientation},
+	
 	{CYLINDER, O_POSITION, adjust_position},
 	{CYLINDER, O_ORIENTATION, adjust_orientation},
-	{CYLINDER, O_DIAMETER, (void *)adjust_diameter},
-	{CYLINDER, O_HEIGHT, (void *)adjust_height},
+	{CYLINDER, O_DIAMETER, adjust_diameter},
+	{CYLINDER, O_HEIGHT, adjust_height},
+	
+	{CONE, O_POSITION, adjust_position},
+	{CONE, O_ORIENTATION, adjust_orientation},
+	{CONE, O_DIAMETER, adjust_diameter},
+	{CONE, O_HEIGHT, adjust_height},
 	};
 	return (dispatch_table);
 }
 
-static void adjust_object_value(t_scene *scene, int delta)
+static void adjust_value_object(t_scene *scene, int delta)
 {
-	int						obj_type;
-	int						prop_type;
+	int						i;
 	t_object				*selected_object;
 	const t_adjust_entry	*dispatch_table;
 
-	// TODO: Handle NULL
 	selected_object = obj_for_index(scene->objects, scene->index_selected);
 	if (selected_object == NULL)
-	{
-		printf("Adjust property: Selected object == NULL\n");
-	}
-
-	obj_type = selected_object->type;
-	prop_type = scene->edit.editing_prop;
+		return ;
 	dispatch_table = fill_dispatch_table();
 	
-	for (size_t i = 0; i < DISPATCH_TABLE_SIZE; i++)
+	i = 0;
+	while (i < DISPATCH_TABLE_SIZE)
 	{
-		if (dispatch_table[i].object_type == obj_type &&
-			dispatch_table[i].property_type == prop_type)
+		if (dispatch_table[i].object_type == selected_object->type &&
+			dispatch_table[i].property_type == scene->edit.editing_prop)
 		{
 			dispatch_table[i].func(selected_object, scene->edit, delta);
 			return ;
 		}
+		i++;
 	}
 }
 
@@ -100,12 +104,12 @@ void	up_key_hook(t_mlx_data *mlx_data, t_scene *scene)
 	if (scene->index_selected <= 2)
 	{
 		// TODO: Value for non Objects
-		printf("Up arrow: index < 2\n");
+		if (scene->index_selected == 0)
+			adjust_value_camera(scene, 1);
 	}
 	else
 	{
-		printf("Key up: for object\n");
-		adjust_object_value(scene, 1);
+		adjust_value_object(scene, 1);
 	}
 	anounce_selection(scene);
 }
@@ -115,12 +119,12 @@ void down_key_hook(t_mlx_data *mlx_data, t_scene *scene)
 	if (scene->index_selected <= 2)
 	{
 		// TODO: Value for non Objects
-		printf("Down arrow: index < 2\n");
+		if (scene->index_selected == 0)
+			adjust_value_camera(scene, -1);
 	}
 	else
 	{
-		printf("Key down: for object\n");
-		adjust_object_value(scene, -1);
+		adjust_value_object(scene, -1);
 	}
 	anounce_selection(scene);
 }
