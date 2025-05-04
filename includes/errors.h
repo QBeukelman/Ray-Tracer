@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:26 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/01 19:03:26 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/04 18:18:48 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef enum
 
 // ------------------------------------------------------------: error messages
 # define E_ERROR		"Error: "
+# define E_PROGRAM_IN	"Invalid program input."
 # define E_OPEN			"Failed to open file: "
 # define E_MALLOC		"Memory allocation failed in function: "
 # define E_PARSE		"Could not parse scene: "
