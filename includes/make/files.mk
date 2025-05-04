@@ -6,7 +6,7 @@
 #    By: qbeukelm <qbeukelm@student.42.fr>            +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/12/09 17:55:12 by quentinbeuk   #+#    #+#                  #
-#    Updated: 2025/05/03 14:20:27 by quentinbeuk   ########   odam.nl          #
+#    Updated: 2025/05/04 16:36:42 by quentinbeuk   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@
 SOURCES						= main.c \
 
 SOURCES_CONTROLS			= adjust_value_camera.c \
+								adjust_value_lights.c \
 								adjust_value.c \
 								select_object.c \
 								select_property.c \

@@ -6,11 +6,20 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/07 22:36:47 by hesmolde      #+#    #+#                 */
-/*   Updated: 2025/05/01 19:48:29 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/04 17:54:01 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
+
+double	in_range(double value, double min, double max)
+{
+	if (value < min)
+		value = min;
+	if (value > max)
+		value = max;
+	return (value);
+}
 
 void	free_split(char **split)
 {

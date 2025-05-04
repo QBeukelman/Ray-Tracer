@@ -31,7 +31,7 @@ int	main(int argc, char **argv)
 		return (FAILURE);
 	if (parser(&scene, argv[1]) == false)
 		return (FAILURE);
-	
+
 	// print_scene(&scene);
 
 	if (initialize_rays(&scene) == false)
