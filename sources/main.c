@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:42:04 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/03 16:52:31 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/04 18:03:52 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 	(void)argv;
 	if (parser(&scene, file_name) == false)
 		return (FAILURE);
-	
+
 	// print_scene(&scene);
 
 	if (initialize_rays(&scene) == false)

@@ -6,13 +6,13 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/28 19:08:13 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/03 14:18:44 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/04 17:02:02 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-void	increment_sphere_property(t_scene *scene)
+static void	increment_sphere_property(t_scene *scene)
 {
 	if (scene->edit.editing_prop == O_POSITION)
 		scene->edit.editing_prop = O_DIAMETER;
@@ -20,7 +20,7 @@ void	increment_sphere_property(t_scene *scene)
 		scene->edit.editing_prop = O_POSITION;
 }
 
-void	increment_plane_property(t_scene *scene)
+static void	increment_plane_property(t_scene *scene)
 {
 	if (scene->edit.editing_prop == O_POSITION)
 		scene->edit.editing_prop = O_ORIENTATION;
@@ -28,7 +28,10 @@ void	increment_plane_property(t_scene *scene)
 		scene->edit.editing_prop = O_POSITION;
 }
 
-void	increment_cylinder_property(t_scene *scene)
+/*
+ * Increment for objetcs with 6 properties
+*/
+static void	increment_hex_property(t_scene *scene)
 {
 	if (scene->edit.editing_prop == O_POSITION)
 		scene->edit.editing_prop = O_ORIENTATION;
@@ -40,7 +43,7 @@ void	increment_cylinder_property(t_scene *scene)
 		scene->edit.editing_prop = O_POSITION;
 }
 
-void	increment_camera_property(t_scene *scene)
+static void	increment_camera_property(t_scene *scene)
 {
 	if (scene->edit.editing_prop == O_POSITION)
 		scene->edit.editing_prop = O_CAMERA_PITCH;
@@ -58,8 +61,12 @@ void	tab_key_hook(t_mlx_data *mlx_data, t_scene *scene)
 	t_object *selected_object;
 
 	selected_object = NULL;
+	scene->edit.editing_vec = V_X;
 	if (scene->index_selected == 0)
+	{
 		increment_camera_property(scene);
+		return ;
+	}
 
 	if (scene->index_selected >= 3)
 		selected_object = obj_for_index(scene->objects, scene->index_selected);
@@ -68,10 +75,12 @@ void	tab_key_hook(t_mlx_data *mlx_data, t_scene *scene)
 
 	if (selected_object->type == SPHERE)
 		increment_sphere_property(scene);
-	if (selected_object->type == PLANE)
+	else if (selected_object->type == PLANE)
 		increment_plane_property(scene);
 	else if (selected_object->type == CYLINDER)
-		increment_cylinder_property(scene);
+		increment_hex_property(scene);
+	else if (selected_object->type == CONE)
+		increment_hex_property(scene);
 
 	anounce_selection(scene);
 }
