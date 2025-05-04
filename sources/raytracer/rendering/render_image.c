@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   render_image.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/30 15:15:23 by hein              #+#    #+#             */
-/*   Updated: 2025/05/02 14:44:28 by qbeukelm         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   render_image.c                                     :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/30 15:15:23 by hein          #+#    #+#                 */
+/*   Updated: 2025/05/04 16:04:05 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	render_image(t_mlx_data *mlx, t_scene *scene)
 			ray.direction = set_ray_direction(scene->rays[p.y][p.x], matrix);
 			ray.origin = scene->camera.position;
 			if (is_collision(scene->objects, ray, &collision))
-				color = calculate_shading(&collision, &(scene->light), &(scene->ambi), scene->objects);
+				color = calculate_shading(&collision, scene, ray);
 			else
 				color = 0XFF;
 			mlx_put_pixel(mlx->img, p.x, p.y, color);

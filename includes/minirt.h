@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/03 14:22:25 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/04 20:39:01 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,8 @@ typedef struct s_shading
 {
 	t_ray		ray;
 	double		ray_length;
+	double		ambi_intensity;
+	double		light_energy;
 }	t_shading;
 
 typedef struct s_matrix
@@ -288,8 +290,12 @@ t_vector	set_ray_direction(t_vector ray, t_matrix m);
 
 // ------------------------------------------------------------: raytracer/shading
 // shading.c
-int	calculate_shading(t_collision *col, t_light *light, t_ambi *ambi, t_object *obj);
+int	calculate_shading(t_collision *col, t_scene *scene, t_ray ray);
 
+//light.c
+t_rgb	ambient_light(t_ambi ambi);
+t_rgb	diffuse_light(t_collision *col, float bright, t_shading r, t_rgb ambi);
+double	specular_light(t_collision *col, t_ray ray, t_shading r);
 
 // ------------------------------------------------------------: utils
 // color_utils.c

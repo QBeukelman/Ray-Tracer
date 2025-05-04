@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/27 17:14:14 by hesmolde      #+#    #+#                 */
-/*   Updated: 2025/03/04 18:53:35 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/05/04 16:14:22 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ t_vector	vec_cross(t_vector a, t_vector b);
 t_vector	vec_normalize(t_vector v);
 double		vec_dot(t_vector a, t_vector b);
 double		vec_length(t_vector v);
+t_vector	vec_reflect(t_vector incomming, t_vector normal);
 
 #endif

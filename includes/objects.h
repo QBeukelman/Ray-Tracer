@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:18 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/03 15:55:20 by hein          ########   odam.nl         */
+/*   Updated: 2025/05/04 20:21:28 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@
 # define CONST_2 2.0
 # define CONST_MIN_2 -2.0
 # define CONST_4 4
+
+# define SPECULAR 0.9
+# define SHININESS 20
+
+# define OFFSET 0.0001
 
 // TODO: Make sphere 0?
 typedef enum {
