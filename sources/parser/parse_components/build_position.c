@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/25 23:29:33 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/05 17:34:58 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 21:17:20 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,17 +93,22 @@ static bool	build_position(t_vector *vector, char **pos_vals, float limit)
 /**
  * parse_position - Parses a string representing a 3D position and validates it.
  * 
- * @param token: A string containing position values separated by a predefined delimiter.
- *               The token should consist of exactly three float values (e.g., "1.0,2.0,3.0").
- * @param limit: A float value specifying the maximum allowable magnitude for each position component.
+ * @param token: A string containing position values separated by a predefined 
+ * 				delimiter. The token should consist of exactly three float 
+ * 				values (e.g., "1.0,2.0,3.0").
+ * @param limit: A float value specifying the maximum allowable magnitude 
+ * 				for each position component.
  * 
- * @return A pointer to a `t_vect` structure containing the parsed x, y, and z coordinates, 
- *         or NULL if any validation or parsing fails.
+ * @return A pointer to a `t_vect` structure containing the parsed 
+ * 			x, y, and z coordinates, or NULL if any validation or parsing fails.
  * 
  * Errors:
- * - If the token format is invalid, `validate_position()` handles error logging.
- * - If `ft_split()` fails, an error is logged with `E_SPLIT` and the input token.
- * - If `build_position()` encounters an error, it logs the appropriate message internally.
+ * - If the token format is invalid, `validate_position()` handles error
+ * 	logging.
+ * - If `ft_split()` fails, an error is logged with `E_SPLIT` and the input 
+ * 	token.
+ * - If `build_position()` encounters an error, it logs the appropriate
+ * 	message internally.
  */
 bool	parse_position(t_vector *vector, char *token, float limit)
 {

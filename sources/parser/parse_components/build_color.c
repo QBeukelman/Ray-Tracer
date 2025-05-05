@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/23 11:08:38 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/01 19:06:24 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 21:19:30 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,17 +88,23 @@ static bool	build_color(t_color *color, char **color_values)
 }
 
 /**
- * @brief Allocates memory and constructs a `t_color` structure from an array of color values.
+ * @brief Allocates memory and constructs a `t_color` structure from an array
+ * 			of color values.
  * 
- * @param color_values An array of strings representing the color components, where:
- *                     color_values[0] is red, color_values[1] is green, and color_values[2] is blue.
+ * @param color_values An array of strings representing the color components,
+ * 						where: color_values[0] is red, color_values[1]
+ * 						is green, and color_values[2] is blue.
  * 
- * @return A pointer to a `t_color` structure if successful, or `NULL` if an error occurs.
+ * @return A pointer to a `t_color` structure if successful, or `NULL`
+ * 			if an error occurs.
  * 
  * Error Handling:
- * - If memory allocation fails, an error message is shown and `NULL` is returned.
- * - If the number of color values is not exactly 3, an error message is shown and `NULL` is returned.
- * - If any color value is out of the valid range, the function returns `FAILURE`.
+ * - If memory allocation fails, an error message is shown and `NULL` is 
+ * 	returned.
+ * - If the number of color values is not exactly 3, an error message is
+ * 	shown and `NULL` is returned.
+ * - If any color value is out of the valid range, the function returns
+ * 	`FAILURE`.
  */
 bool	parse_color(t_color *color, char *token)
 {

@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/09 00:11:22 by hein          #+#    #+#                 */
-/*   Updated: 2025/05/05 19:49:31 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 20:38:45 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #define RADIAN_CONST 0.0174533
 
-static t_vector	**allocate_rays()
+static t_vector	**allocate_rays(void)
 {
 	t_vector	**rays;
 	int			y;
@@ -41,7 +41,7 @@ static t_vector	**allocate_rays()
 
 static void	generate_rays(t_vector **rays, t_camera *c)
 {
-	const double	aspect_ratio = (double)WIDTH / (double) HEIGHT; 
+	const double	aspect_ratio = (double)WIDTH / (double) HEIGHT;
 	const double	fov_radians = tan((c->fov * RADIAN_CONST) / 2);
 	t_pixel			p;
 	t_vector		worldpixel;
