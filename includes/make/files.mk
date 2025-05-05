@@ -6,7 +6,7 @@
 #    By: qbeukelm <qbeukelm@student.42.fr>            +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/12/09 17:55:12 by quentinbeuk   #+#    #+#                  #
-#    Updated: 2025/05/04 16:36:42 by quentinbeuk   ########   odam.nl          #
+#    Updated: 2025/05/04 17:01:47 by hein          ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,7 @@ SOURCES_RAYTRACER_COLLISION = cone.c \
 								sphere.c \
 
 SOURCES_RAYTRACER_SHADING	= shading.c \
-								shadow_ray.c \
+								light.c \
 
 SOURCES_RAYTRACER_VECTOR	= vector_maths.c \
 								vector_operations.c \

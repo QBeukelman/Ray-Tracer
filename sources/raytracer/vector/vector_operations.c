@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/15 14:15:06 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2025/03/04 18:46:12 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/05/04 16:11:36 by hein          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,14 @@ t_vector	vec_normalize(t_vector v)
 		return ((t_vector){0, 0, 0});
 	}
 	return (vec_scale(v, 1.0 / length));
+}
+
+t_vector	vec_reflect(t_vector incomming, t_vector normal)
+{
+	double		dot;
+	t_vector	adjustment;
+	
+	dot = vec_dot(incomming, normal);
+	adjustment = vec_scale(normal, dot * 2);
+	return (vec_sub(incomming, adjustment));
 }
