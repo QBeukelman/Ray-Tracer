@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:26 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/04 18:18:48 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 15:08:43 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef enum
 # define X_FAILURE		EXIT_FAILURE
 
 // ------------------------------------------------------------: error messages
-# define E_ERROR		"Error: "
+# define E_ERROR		"Error: \n"
 # define E_PROGRAM_IN	"Invalid program input."
 # define E_OPEN			"Failed to open file: "
 # define E_MALLOC		"Memory allocation failed in function: "
@@ -43,6 +43,7 @@ typedef enum
 // ------------------------------------------------------------: utils
 // error.c
 int		show_error(char *error, char *arg);
+int		show_error_const(char *error, const char *arg);
 int		exit_with_message(char *error, char *arg, int exit_code); // ! Do not use
 
 #endif

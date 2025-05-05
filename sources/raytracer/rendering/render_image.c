@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/30 15:15:23 by hein          #+#    #+#                 */
-/*   Updated: 2025/05/04 16:04:05 by hein          ########   odam.nl         */
+/*   Updated: 2025/05/05 15:10:42 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	render_image(t_mlx_data *mlx, t_scene *scene)
 	const t_matrix	matrix = set_translation_matrix(scene->camera.yaw, -scene->camera.pitch);
 
 	p.y = 0;
+	scene->is_rendering = false;
 	while (p.y < HEIGHT)
 	{
 		p.x = 0;

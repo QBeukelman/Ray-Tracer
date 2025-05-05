@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/16 19:18:55 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/04 16:23:10 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 15:10:18 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,10 @@ static bool	parse_scene(t_scene *scene, const char *file_name)
 
 	fd = open(file_name, O_RDONLY);
 	if (fd <= 0)
+	{
+		show_error_const(E_OPEN, file_name);
 		return (FAILURE);
+	}
 	ft_memset(scene, 0, sizeof(t_scene));
 
 	line = get_next_line(fd);
@@ -88,27 +91,21 @@ bool	parser(t_scene *scene, const char *file_name)
 {
 	scene->rays = NULL;
 	
-	// TODO Pre parser checks
-	// scene file extension
 	if (is_valid_filename(file_name) == false)
 		return (false);
 
-	if (parse_scene(scene, file_name) == false)
+	if (parse_scene(scene, file_name) == FAILURE)
 	{
 		free_object_list(scene->objects);
 		return (false);
 	}
 	
-	// TODO Post parser checks
-	// camera and lights
 	if (validate_non_objects(scene) == false)
 	{
 		free_object_list(scene->objects);
 		return (false);
 	}
 
-	// TODO Index objects
 	index_objects(scene);
-	scene->is_rendering = false;
 	return (true);
 }
