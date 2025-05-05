@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/03 12:08:13 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/03 13:16:41 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/04 16:50:51 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	print_cone(t_object *object, t_edit edit)
 {
-	printf("[%d] Cone\n", object->index);
+	printf("[%d] Cone\n\n", object->index);
 
 	// Position
-	print_label("Pos:", edit.editing_prop == O_POSITION);
+	print_label("Position:", edit.editing_prop == O_POSITION);
 	print_value(object->position.x, edit.editing_prop == O_POSITION && edit.editing_vec == V_X, V_X);
 	print_value(object->position.y, edit.editing_prop == O_POSITION && edit.editing_vec == V_Y, V_Y);
 	print_value(object->position.z, edit.editing_prop == O_POSITION && edit.editing_vec == V_Z, V_Z);
@@ -30,9 +30,9 @@ void	print_cone(t_object *object, t_edit edit)
 	print_value(object->orientation.z, edit.editing_prop == O_ORIENTATION && edit.editing_vec == V_Z, V_Z);
 	printf("\n");
 
-	// Diamater
-	print_label("Diameter:", edit.editing_prop == O_DIAMETER);
-	print_value(object->diameter, edit.editing_prop == O_DIAMETER, V_NONE);
+	// Radius
+	print_label("Radius:", edit.editing_prop == O_DIAMETER);
+	print_value(object->radius, edit.editing_prop == O_DIAMETER, V_NONE);
 	printf("\n");
 
 	// Height

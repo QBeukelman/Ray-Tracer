@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/03 13:41:14 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/03 14:32:03 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/04 16:31:20 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,20 @@
 static void	adjust_position(t_camera *camera, t_edit edit, int delta)
 {
 	if (edit.editing_vec == V_X)
+	{
 		camera->position.x += delta;
+		camera->position.x = round(camera->position.x);
+	}
 	else if (edit.editing_vec == V_Y)
+	{
 		camera->position.y += delta;
+		camera->position.y = round(camera->position.y);
+	}
 	else if (edit.editing_vec == V_Z)
+	{
 		camera->position.z += delta;
+		camera->position.z = round(camera->position.z);
+	}
 }
 
 void	adjust_value_camera(t_scene *scene, int delta)
@@ -32,7 +41,9 @@ void	adjust_value_camera(t_scene *scene, int delta)
 	if (scene->edit.editing_prop == O_CAMERA_YAW)
 		scene->camera.yaw += delta;
 	
-	// TODO: Regenerate Rays
 	if (scene->edit.editing_prop == O_CAMERA_FOV)
+	{
 		scene->camera.fov += delta;
+		initialize_rays(scene);
+	}
 }

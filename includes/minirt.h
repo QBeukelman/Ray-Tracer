@@ -26,13 +26,20 @@
 # include <fcntl.h>
 # include <stdint.h>
 # include <math.h>
+# include <float.h>
 # include <stdint.h>
 # include <string.h>
 
 // ------------------------------------------------------------: colors
-# define C_YELLOW "\033[1;33m"
-# define C_RED "\x1B[1;31m"
-# define RESET_COLOR "\033[0m"
+#define RESET_COLOR "\033[0m"
+#define C_BOLD		"\033[1m"
+#define C_RED		"\033[1;31m"
+#define C_GREEN		"\033[1;32m"
+#define C_YELLOW	"\033[1;33m"
+#define C_BLUE		"\033[1;34m"
+#define C_MAGENTA	"\033[1;35m"
+#define C_CYAN		"\033[1;36m"
+#define C_WHITE		"\033[1;37m"
 
 // ------------------------------------------------------------: window
 # define HEIGHT 500
@@ -45,6 +52,7 @@ typedef enum
 	O_CAMERA_PITCH,
 	O_CAMERA_YAW,
 	O_CAMERA_FOV,
+	O_LIGHT_AMBI_RATIO,
 	O_DIAMETER,
 	O_HEIGHT
 } e_edit;
@@ -73,6 +81,7 @@ typedef struct s_mlx_data
 // ------------------------------------------------------------: scene
 typedef struct s_scene
 {
+	bool				is_rendering;
 	int					index_max;
 	int					index_selected;
 	struct s_edit		edit;
@@ -158,6 +167,10 @@ typedef bool	(*t_add_func)(t_scene*, char **);
 // adjust_value_camera.c
 void	adjust_value_camera(t_scene *scene, int delta);
 
+// adjust_value_lights.c
+void	adjust_value_point_light(t_scene *scene, int delta);
+void	adjust_value_ambi_light(t_scene *scene, double delta);
+
 // adjust_value.c
 void	up_key_hook(t_mlx_data *mlx_data, t_scene *scene);
 void	down_key_hook(t_mlx_data *mlx_data, t_scene *scene);
@@ -226,11 +239,6 @@ bool	add_plane(t_scene *scene, char **tokens);
 
 // build_sphere.c
 bool	add_sphere(t_scene *scene, char **tokens);
-
-
-// ------------------------------------------------------------: parse/clean_up
-// memory_cleanup.c
-void	free_split(char **split);
 
 
 // ------------------------------------------------------------: parse/parse_components
@@ -311,6 +319,8 @@ double	degrees_to_radians(double angle);
 double	radians_to_degrees(double radians);
 
 // utils.c
+double	in_range(double value, double min, double max);
+void	free_split(char **split);
 void	free_rays(t_scene *scene);
 
 

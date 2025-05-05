@@ -12,21 +12,6 @@
 
 #include "../../../includes/minirt.h"
 
-// bool collision_for_object(t_object *object, t_ray ray, t_collision *collision)
-// {
-// 	const t_collision_func f[3] = {sphere_collision, plane_collision, cylinder_collision};
-// 	switch (object->type)
-// 	{
-// 		case SPHERE:
-// 			return (sphere_collision(object, ray, collision));
-// 		case PLANE:
-// 			return (plane_collision(object, ray, collision));
-// 		default:
-// 			return (0);
-// 	}
-// 	return (0);
-// }
-
 bool is_collision(t_object *objects, t_ray ray, t_collision *collision)
 {
 	const t_collision_func f[4] = {sphere_collision, plane_collision, cylinder_collision, cone_collision};

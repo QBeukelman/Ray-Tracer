@@ -14,6 +14,7 @@
 SOURCES						= main.c \
 
 SOURCES_CONTROLS			= adjust_value_camera.c \
+								adjust_value_lights.c \
 								adjust_value.c \
 								select_object.c \
 								select_property.c \

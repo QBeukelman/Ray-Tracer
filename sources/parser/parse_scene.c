@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse_scene.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/16 19:18:55 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/05/02 14:30:44 by qbeukelm         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   parse_scene.c                                      :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/12/16 19:18:55 by quentinbeuk   #+#    #+#                 */
+/*   Updated: 2025/05/04 16:23:10 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ static bool	parse_scene(t_scene *scene, const char *file_name)
 
 bool	parser(t_scene *scene, const char *file_name)
 {
+	scene->rays = NULL;
+	
 	// TODO Pre parser checks
 	// scene file extension
 	if (is_valid_filename(file_name) == false)
@@ -107,6 +109,6 @@ bool	parser(t_scene *scene, const char *file_name)
 
 	// TODO Index objects
 	index_objects(scene);
-
+	scene->is_rendering = false;
 	return (true);
 }
