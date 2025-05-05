@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/24 16:43:15 by hesmolde      #+#    #+#                 */
-/*   Updated: 2025/05/03 15:55:07 by hein          ########   odam.nl         */
+/*   Updated: 2025/05/05 18:38:04 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static bool	solve_for_t(double *t, t_cylinder *c, t_object *cyl, t_ray ray)
 	if (discriminant < 0)
 		return (false);
 	*t = collision_dst(q.a, q.b, discriminant);
-	if (t <= 0)
+	if (*t <= 0)
 		return (false);
 	return (true);
 }

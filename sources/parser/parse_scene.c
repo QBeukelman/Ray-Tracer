@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/16 19:18:55 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/05 16:33:22 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 18:47:16 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static bool	parse_scene(t_scene *scene, const char *file_name)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		if (line[0] != '\n')
+		if (!ft_isspace(line[0]))
 		{
 			if (process_line(scene, line) == false)
 			{

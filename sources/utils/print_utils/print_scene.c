@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   print_scene.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/25 22:09:42 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/05/02 14:39:59 by qbeukelm         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   print_scene.c                                      :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/12/25 22:09:42 by quentinbeuk   #+#    #+#                 */
+/*   Updated: 2025/05/05 18:40:13 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,12 +119,11 @@ static void print_objects(t_object *objects)
 
 void	print_scene(t_scene *scene)
 {
-	// printf("\n========= [Scene] =========\n\n");
-	if (&(scene->camera))
+	if (scene->camera.initialized)
 		util_print_camera(&(scene->camera));
-	if (&(scene->light))
+	if (scene->light.initialized)
 		util_print_light(&(scene->light));
-	if (&(scene->ambi))
+	if (scene->ambi.initialized)
 		util_print_ambi(&(scene->ambi));
 	print_objects(scene->objects);
 }

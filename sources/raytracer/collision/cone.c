@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/02 14:43:24 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2025/05/03 15:48:10 by hein          ########   odam.nl         */
+/*   Updated: 2025/05/05 18:37:16 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static bool	solve_for_t(double *t, t_cone *c, t_object *cone, t_ray ray)
 	if (discriminant < 0)
 		return (false);
 	*t = collision_dst(q.a, q.b, discriminant);
-	if (t <= 0)
+	if (*t <= 0)
 		return (false);
 	return (true);
 }

@@ -6,7 +6,7 @@
 #    By: qbeukelm <qbeukelm@student.42.fr>            +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/12/09 17:42:12 by quentinbeuk   #+#    #+#                  #
-#    Updated: 2025/05/05 15:01:47 by quentinbeuk   ########   odam.nl          #
+#    Updated: 2025/05/05 18:42:54 by quentinbeuk   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ include includes/make/files.mk
 
 # ===== Names =====
 CC 				= cc
-CFLAGS 			= -Wall -Werror -Wextra -fsanitize=address
+CFLAGS 			= -Wall -Werror -Wextra # -fsanitize=address
 VALGRIND_CMD	= valgrind --leak-check=full --show-leak-kinds=all ./miniRT
 
 

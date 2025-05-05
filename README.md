@@ -4,6 +4,6 @@
 
 ```bash
 {
-	make && valgrind --leak-check=full --show-leak-kinds=all ./miniRT > output.txt 2>&1 | wc -w
+	make valgrind-run SCENE=assets/scene_00.rt
 }
 ```
