@@ -1,37 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   index_objects.c                                    :+:    :+:            */
+/*   vector_operations_reflect.c                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/04/28 08:27:10 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/05 21:23:02 by quentinbeuk   ########   odam.nl         */
+/*   Created: 2025/05/05 21:10:38 by quentinbeuk   #+#    #+#                 */
+/*   Updated: 2025/05/05 21:10:56 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minirt.h"
 
-/**
- * 0 - 2 index for camera, light, ambi
-*/
-void	index_objects(t_scene *scene)
+t_vector	vec_reflect(t_vector incomming, t_vector normal)
 {
-	int			index;
-	t_object	*current;
+	double		dot;
+	t_vector	adjustment;
 
-	index = 3;
-	current = scene->objects;
-	if (current == NULL)
-		return ;
-	while (current != NULL)
-	{
-		current->index = index;
-		index++;
-		current = current->next;
-	}
-	scene->index_selected = 0;
-	scene->index_max = index - 1;
-	scene->edit.editing_prop = O_POSITION;
-	scene->edit.editing_vec = V_X;
+	dot = vec_dot(incomming, normal);
+	adjustment = vec_scale(normal, dot * 2);
+	return (vec_sub(incomming, adjustment));
 }

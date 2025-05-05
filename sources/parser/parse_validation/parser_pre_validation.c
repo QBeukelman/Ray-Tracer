@@ -6,16 +6,16 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/28 08:28:03 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/04/28 09:51:25 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 21:23:15 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minirt.h"
 
-# define SUFFIX ".rt"
-# define SUFFIX_LEN 3
+#define SUFFIX			".rt"
+#define SUFFIX_LEN		3
 
-static bool is_valid_characters(const char *file_name)
+static bool	is_valid_characters(const char *file_name)
 {
 	int		i;
 	int		period_count;
@@ -26,7 +26,7 @@ static bool is_valid_characters(const char *file_name)
 	{
 		if (file_name[i] == '.')
 			period_count++;
-		if (!ft_isalnum(file_name[i]) && file_name[i] != '_' 
+		if (!ft_isalnum(file_name[i]) && file_name[i] != '_'
 			&& file_name[i] != '/' && file_name[i] != '.')
 		{
 			return (false);
@@ -54,10 +54,11 @@ static bool	is_valid_suffix(const char *file_name, int len)
 	return (true);
 }
 
-/*
+/**
  * Validates a file name:
  * - The file name must be at least 4 characters long.
- * - It must contain only alphanumeric characters, underscores ('_'), slashes ('/'), and exactly one period ('.').
+ * - It must contain only alphanumeric characters, underscores ('_'), slashes
+ * 		('/'), and exactly one period ('.').
  * - The file name must end with the ".rt" extension.
  *
  * Parameters:

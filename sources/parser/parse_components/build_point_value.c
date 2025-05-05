@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/25 20:47:11 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/05 17:33:37 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 21:18:46 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ static bool	build_point_value(float *float_value, char **point_values)
 /**
  * parse_point_value - Parses a point value string and converts it to a float.
  * 
- * @param token: A string containing the point value to parse. The string should
- *               adhere to a specific format defined by the delimiter.
+ * @param token: A string containing the point value to parse. The string
+ * 				should adhere to a specific format defined by the delimiter.
  * 
  * @return: The parsed float value if the input is valid. Returns NAN if the 
  *          validation fails or if an error occurs during parsing.

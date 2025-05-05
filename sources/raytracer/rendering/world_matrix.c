@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/17 23:28:14 by hein          #+#    #+#                 */
-/*   Updated: 2025/05/05 19:58:09 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 20:38:16 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ static t_fru	set_fru_orientations(int yaw, int pitch)
 	camera.right = vec_normalize(vec_cross(world_up, camera.forward));
 	camera.up = vec_normalize(vec_cross(camera.forward, camera.right));
 	return (camera);
-
 }
 
 t_matrix	set_translation_matrix(int yaw, int pitch)

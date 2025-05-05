@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/28 21:18:24 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/05 20:26:55 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 21:21:32 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,14 @@ typedef struct s_adjust_entry {
 const t_adjust_entry	*fill_dispatch_table(void)
 {
 	static const t_adjust_entry	dispatch_table[] = {
-
 	{SPHERE, O_POSITION, adjust_position},
 	{SPHERE, O_DIAMETER, adjust_radius},
-
 	{PLANE, O_POSITION, adjust_position},
 	{PLANE, O_ORIENTATION, adjust_orientation},
-
 	{CYLINDER, O_POSITION, adjust_position},
 	{CYLINDER, O_ORIENTATION, adjust_orientation},
 	{CYLINDER, O_DIAMETER, adjust_radius},
 	{CYLINDER, O_HEIGHT, adjust_height},
-
 	{CONE, O_POSITION, adjust_position},
 	{CONE, O_ORIENTATION, adjust_orientation},
 	{CONE, O_DIAMETER, adjust_radius},

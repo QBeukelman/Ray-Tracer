@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/16 19:18:55 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/05 20:27:19 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 21:15:43 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ bool	parser(t_scene *scene, const char *file_name)
 	scene->rays = NULL;
 	if (is_valid_filename(file_name) == false)
 		return (FAILURE);
-
 	if (parse_scene(scene, file_name) == FAILURE)
 	{
 		free_object_list(scene->objects);

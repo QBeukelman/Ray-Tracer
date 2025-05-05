@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/03 12:15:55 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/05 20:00:37 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 21:08:38 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@
  *     - or if no object with the given index exists in the list.
  *
  * Note:
- *   Assumes each t_object in the list has a unique 'index' field and a 'next' pointer.
+ *   Assumes each t_object in the list has a unique 'index' field and a 
+ * 	 'next' pointer.
  */
 t_object	*obj_for_index(t_object *objects, int index)
 {

@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/09 20:16:16 by hesmolde      #+#    #+#                 */
-/*   Updated: 2025/05/05 15:29:11 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 21:09:15 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,3 @@ double	specular_light(t_collision *col, t_ray ray, t_shading r)
 		* r.light_energy * SPECULAR * 255.0));
 	return (specular);
 }
-
