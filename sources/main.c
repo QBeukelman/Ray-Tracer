@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:42:04 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/05 14:43:20 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 15:23:10 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static bool validate_args(int argc)
 
 int	main(int argc, char **argv)
 {
-	t_mlx_data		mlx;
 	t_scene			scene;
 
 	if (validate_args(argc) == false)

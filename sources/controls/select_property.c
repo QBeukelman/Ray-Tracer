@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/28 19:08:13 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/04 17:02:02 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 15:27:43 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	tab_key_hook(t_mlx_data *mlx_data, t_scene *scene)
 {
 	t_object *selected_object;
 
+	(void)mlx_data;
 	selected_object = NULL;
 	scene->edit.editing_vec = V_X;
 	if (scene->index_selected == 0)

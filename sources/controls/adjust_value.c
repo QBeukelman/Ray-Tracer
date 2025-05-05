@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/28 21:18:24 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/04 18:03:42 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 15:27:06 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 #define DISPATCH_TABLE_SIZE 12
 
 typedef struct s_adjust_entry {
-	int		object_type;
-	int		property_type;
+	e_object	object_type;
+	e_edit		property_type;
 	void	(*func)(t_object *obj, t_edit edit, double delta);
 } t_adjust_entry;
 
@@ -124,6 +124,7 @@ void	up_key_hook(t_mlx_data *mlx_data, t_scene *scene)
 {
 	double		delta;
 
+	(void)mlx_data;
 	if (scene->index_selected == 2)
 		scene->edit.editing_prop = O_LIGHT_AMBI_RATIO;
 	
@@ -154,6 +155,7 @@ void down_key_hook(t_mlx_data *mlx_data, t_scene *scene)
 {
 	double		delta;
 
+	(void)mlx_data;
 	if (scene->index_selected == 2)
 		scene->edit.editing_prop = O_LIGHT_AMBI_RATIO;
 	

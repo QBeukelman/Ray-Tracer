@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   scene_objects.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/12 00:21:54 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/05/02 14:34:08 by qbeukelm         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   scene_objects.c                                    :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/12/12 00:21:54 by quentinbeuk   #+#    #+#                 */
+/*   Updated: 2025/05/05 15:28:38 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ e_object	string_to_objects(char *str)
 		"sp",
 		"pl",
 		"cy",
-		"cn"
+		"cn",
 		"UNKONOWN"
 	};
 	int			i;
