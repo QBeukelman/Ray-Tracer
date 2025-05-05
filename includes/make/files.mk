@@ -6,7 +6,7 @@
 #    By: qbeukelm <qbeukelm@student.42.fr>            +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/12/09 17:55:12 by quentinbeuk   #+#    #+#                  #
-#    Updated: 2025/05/05 20:05:56 by quentinbeuk   ########   odam.nl          #
+#    Updated: 2025/05/05 21:32:27 by quentinbeuk   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,7 @@ SOURCES_RAYTRACER_SHADING	= shading.c \
 								light.c \
 
 SOURCES_RAYTRACER_VECTOR	= vector_maths.c \
+								vector_operations_reflect.c \
 								vector_operations.c \
 
 SOURCES_UTILS				= color_utils.c \

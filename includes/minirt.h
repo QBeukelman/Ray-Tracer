@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/05 20:16:01 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 21:34:49 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,7 @@ void		adjust_radius(t_object *object, t_edit edit, double delta);
 void		adjust_height(t_object *object, t_edit edit, double delta);
 
 // select_object.c
+void		anounce_selection_and_instructions(t_scene *scene);
 void		anounce_selection(t_scene *scene);
 bool		right_bracket_key_hook(t_mlx_data *mlx_data, t_scene *scene);
 bool		left_bracket_key_hook(t_mlx_data *mlx_data, t_scene *scene);

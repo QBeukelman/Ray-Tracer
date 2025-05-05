@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:26 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/05 20:16:42 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 21:27:01 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ typedef enum e_validation
 # define E_INVALID_FILE	"Invalid file name: "
 # define E_MISSING_OBJ	"Scene must contain required object(s): "
 # define E_DUP_OBJ		"Scene contains duplicate object: "
-
 
 // ------------------------------------------------------------: utils
 // error.c

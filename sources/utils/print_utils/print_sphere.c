@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/28 22:55:41 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/05 20:11:03 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 21:43:59 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,4 @@ void	print_sphere(t_object *object, t_edit edit)
 	printf("\n");
 	print_label("Radius:", edit.editing_prop == O_DIAMETER);
 	print_value(object->radius, edit.editing_prop == O_DIAMETER, V_NONE);
-	printf("\n");
 }

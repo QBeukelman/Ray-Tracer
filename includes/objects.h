@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:18 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/05 20:31:16 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 21:27:19 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ typedef struct s_color
 	int		g;
 	int		b;
 }	t_color;
-
 
 // ------------------------------------------------------------: objects
 typedef struct s_viewport
@@ -135,7 +134,6 @@ typedef struct s_object
 	t_color			color;
 	struct s_object	*next;
 }	t_object;
-
 
 // ------------------------------------------------------------: parse
 // scene_objects.c

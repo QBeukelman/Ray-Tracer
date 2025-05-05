@@ -6,15 +6,45 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/28 13:12:30 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/05 19:22:28 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 21:41:22 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
+void	anounce_selection_and_instructions(t_scene *scene)
+{
+	printf("\033[2J\033[1;1H");
+	printf("--------------------------------\n");
+	printf(C_YELLOW);
+	printf("Select object:\n");
+	printf("\t`[` Previous object.\n");
+	printf("\t`]` Next object.\n");
+
+	printf("\nSelect edit property:\n");
+	printf("\t`tab` Select next edit property.\n");
+
+	printf("\nSelect vecor:\n");
+	printf("\t`x` Select x vector.\n");
+	printf("\t`y` Select y vector.\n");
+	printf("\t`z` Select z vector.\n");
+
+	printf("\nAdjust property value:\n");
+	printf("\t`↑` Increment value.\n");
+	printf("\t`↓` Increment value.\n");
+	printf(RESET_COLOR);
+	printf("--------------------------------\n\n");
+	print_obj_for_index(scene);
+	printf("\n--------------------------------\n");
+}
+
 void	anounce_selection(t_scene *scene)
 {
 	printf("\033[2J\033[1;1H");
+	printf("--------------------------------\n");
+	printf(C_YELLOW);
+	printf("Press [i] for instructions\n");
+	printf(RESET_COLOR);
 	printf("--------------------------------\n\n");
 	print_obj_for_index(scene);
 	printf("\n--------------------------------\n");

@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/29 21:47:28 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/05 20:00:30 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 21:43:35 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	print_light(t_light light, t_edit edit)
 		&& edit.editing_vec == V_Y, V_Y);
 	print_value(light.position.z, edit.editing_prop == O_POSITION
 		&& edit.editing_vec == V_Z, V_Z);
-	printf("\n");
 }
 
 void	print_ambi(t_ambi ambi)
