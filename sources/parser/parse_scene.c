@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/16 19:18:55 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/05 18:47:16 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 20:27:19 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	init_add_object_funcs(t_add_func add_object[NUM_OBJECTS])
 static bool	process_line(t_scene *scene, char *line)
 {
 	char					**tokens;
-	e_object				object_type;
+	t_object_type			object_type;
 	static t_add_func		add_object[NUM_OBJECTS] = {NULL};
 
 	if (add_object[0] == NULL)
@@ -66,12 +66,8 @@ static bool	parse_scene(t_scene *scene, const char *file_name)
 
 	fd = open(file_name, O_RDONLY);
 	if (fd <= 0)
-	{
-		show_error_const(E_OPEN, file_name);
-		return (FAILURE);
-	}
+		return (show_error_const(E_OPEN, file_name));
 	ft_memset(scene, 0, sizeof(t_scene));
-
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
@@ -93,7 +89,6 @@ static bool	parse_scene(t_scene *scene, const char *file_name)
 bool	parser(t_scene *scene, const char *file_name)
 {
 	scene->rays = NULL;
-	
 	if (is_valid_filename(file_name) == false)
 		return (FAILURE);
 
@@ -102,7 +97,6 @@ bool	parser(t_scene *scene, const char *file_name)
 		free_object_list(scene->objects);
 		return (FAILURE);
 	}
-	
 	if (validate_non_objects(scene) == false)
 	{
 		free_object_list(scene->objects);

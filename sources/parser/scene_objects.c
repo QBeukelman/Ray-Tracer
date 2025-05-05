@@ -6,17 +6,15 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/12 00:21:54 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/05 15:28:38 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 20:30:25 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-// Do not use global variable here
-
-char	*objects_to_string(e_object object)
+char	*objects_to_string(t_object_type type)
 {
-	const char	*scene_object_keys[8] = {
+	const char	*scent_object_keys[8] = {
 		"A",
 		"L",
 		"C",
@@ -27,14 +25,14 @@ char	*objects_to_string(e_object object)
 		"UNKONOWN"
 	};
 
-	if (object >= 0 && object < NUM_OBJECTS)
-		return ((char *)scene_object_keys[object]);
-	return ((char *)scene_object_keys[NUM_OBJECTS]);
+	if (type >= 0 && type < NUM_OBJECTS)
+		return ((char *)scent_object_keys[type]);
+	return ((char *)scent_object_keys[NUM_OBJECTS]);
 }
 
-char	*objects_to_name(e_object object)
+char	*objects_to_name(t_object_type type)
 {
-	static char	*scene_object_names[8] = {
+	static char	*scent_object_names[8] = {
 		"Ambient Light",
 		"Light",
 		"Camera",
@@ -45,14 +43,14 @@ char	*objects_to_name(e_object object)
 		"Unknown Object"
 	};
 
-	if (object >= 0 && object < NUM_OBJECTS)
-		return ((char *)scene_object_names[object]);
-	return ((char *)scene_object_names[NUM_OBJECTS]);
+	if (type >= 0 && type < NUM_OBJECTS)
+		return ((char *)scent_object_names[type]);
+	return ((char *)scent_object_names[NUM_OBJECTS]);
 }
 
-e_object	string_to_objects(char *str)
+t_object_type	string_to_objects(char *str)
 {
-	const char	*scene_object_keys[8] = {
+	const char	*scent_object_keys[8] = {
 		"A",
 		"L",
 		"C",
@@ -67,7 +65,7 @@ e_object	string_to_objects(char *str)
 	i = 0;
 	while (i < NUM_OBJECTS)
 	{
-		if (ft_strncmp(scene_object_keys[i], str, ft_strlen(str)) == 0)
+		if (ft_strncmp(scent_object_keys[i], str, ft_strlen(str)) == 0)
 			return (i);
 		i++;
 	}

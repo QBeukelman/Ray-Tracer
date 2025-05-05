@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/28 19:08:13 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/05 15:27:43 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 19:22:54 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	increment_camera_property(t_scene *scene)
 
 void	tab_key_hook(t_mlx_data *mlx_data, t_scene *scene)
 {
-	t_object *selected_object;
+	t_object	*selected_object;
 
 	(void)mlx_data;
 	selected_object = NULL;
@@ -68,12 +68,10 @@ void	tab_key_hook(t_mlx_data *mlx_data, t_scene *scene)
 		increment_camera_property(scene);
 		return ;
 	}
-
 	if (scene->index_selected >= 3)
 		selected_object = obj_for_index(scene->objects, scene->index_selected);
 	if (selected_object == NULL)
 		return ;
-
 	if (selected_object->type == SPHERE)
 		increment_sphere_property(scene);
 	else if (selected_object->type == PLANE)
@@ -82,7 +80,5 @@ void	tab_key_hook(t_mlx_data *mlx_data, t_scene *scene)
 		increment_hex_property(scene);
 	else if (selected_object->type == CONE)
 		increment_hex_property(scene);
-
 	anounce_selection(scene);
 }
-

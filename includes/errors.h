@@ -6,18 +6,18 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:26 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/05 17:57:09 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 20:16:42 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ERRORS_H
 # define ERRORS_H
 
-typedef enum
+typedef enum e_validation
 {
 	FAILURE,
 	SUCCESS
-}	e_validation;
+}	t_validation;
 
 // ------------------------------------------------------------: error codes
 # define X_FAILURE		EXIT_FAILURE
@@ -46,6 +46,5 @@ typedef enum
 // error.c
 int		show_error(char *error, char *arg);
 int		show_error_const(char *error, const char *arg);
-int		exit_with_message(char *error, char *arg, int exit_code); // ! Do not use
 
 #endif

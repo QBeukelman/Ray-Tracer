@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/17 23:28:14 by hein          #+#    #+#                 */
-/*   Updated: 2025/05/01 11:44:44 by hein          ########   odam.nl         */
+/*   Updated: 2025/05/05 19:58:09 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,30 @@
 static t_vector	set_camera_forward(int yaw, int pitch)
 {
 	t_vector		forward;
-	const double	yawRad = degrees_to_radians(yaw);
-	const double	pitchRad = degrees_to_radians(pitch);
+	const double	yaw_rad = degrees_to_radians(yaw);
+	const double	pitch_rad = degrees_to_radians(pitch);
 
-	forward.x = -sinf(yawRad) * cosf(pitchRad);
-	forward.y = sinf(pitchRad);
-	forward.z = cosf(yawRad) * cosf(pitchRad);
+	forward.x = -sinf(yaw_rad) * cosf(pitch_rad);
+	forward.y = sinf(pitch_rad);
+	forward.z = cosf(yaw_rad) * cosf(pitch_rad);
 	return (vec_normalize(forward));
 }
 
-static t_fru	set_FRU_orientations(int yaw, int pitch)
+static t_fru	set_fru_orientations(int yaw, int pitch)
 {
 	t_fru		camera;
-	t_vector	worldUp;
+	t_vector	world_up;
 
 	camera.forward = set_camera_forward(yaw, pitch);
 	if (camera.forward.y > 0.98)
 	{
-		worldUp = vec_set(0, 0, 1);
+		world_up = vec_set(0, 0, 1);
 	}
 	else
 	{
-		worldUp = vec_set(0, 1, 0);
+		world_up = vec_set(0, 1, 0);
 	}
-	camera.right = vec_normalize(vec_cross(worldUp, camera.forward));
+	camera.right = vec_normalize(vec_cross(world_up, camera.forward));
 	camera.up = vec_normalize(vec_cross(camera.forward, camera.right));
 	return (camera);
 
@@ -47,7 +47,8 @@ static t_fru	set_FRU_orientations(int yaw, int pitch)
 t_matrix	set_translation_matrix(int yaw, int pitch)
 {
 	t_matrix	matrix;
-	const t_fru	camera = set_FRU_orientations(yaw, pitch);
+	const t_fru	camera = set_fru_orientations(yaw, pitch);
+
 	matrix.x[0] = camera.right.x;
 	matrix.x[1] = camera.up.x;
 	matrix.x[2] = camera.forward.x;

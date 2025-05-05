@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/07 22:36:47 by hesmolde      #+#    #+#                 */
-/*   Updated: 2025/05/05 16:35:09 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 20:11:30 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ double	in_range(double value, double min, double max)
  * @split: A NULL-terminated array of dynamically allocated strings.
  *
  * Return: Always returns FAILURE (as a constant, likely defined as false or 0),
- *         which allows convenient use in return statements when cleaning up after an error.
+ *         which allows convenient use in return statements when cleaning up 
+ * 		   after an error.
 */
 bool	free_split(char **split)
 {

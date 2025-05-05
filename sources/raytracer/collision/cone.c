@@ -6,37 +6,11 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/02 14:43:24 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2025/05/05 18:37:16 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 19:41:56 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minirt.h"
-
-static bool	solve_for_t(double *t, t_cone *c, t_object *cone, t_ray ray)
-{
-	double			discriminant;
-	t_quadratic		q;
-	t_vector		half_height;
-	t_vector		tip_to_origin;
-
-	half_height = vec_scale(cone->orientation, cone->height * 0.5);
-	c->tip = vec_sub(cone->position, half_height);
-	c->base = vec_add(cone->position, half_height);
-	tip_to_origin = vec_sub(ray.origin, c->tip);
-	c->ray_dot_axis = vec_dot(ray.direction, cone->orientation);
-	c->tipray_dot_axis = vec_dot(tip_to_origin, cone->orientation);
-	c->tan_theta_sqr = pow(cone->radius, 2) / pow(cone->height, 2);
-	q.a = 1 - c->tan_theta_sqr * pow(c->ray_dot_axis,2) - pow(c->ray_dot_axis,2);
-	q.b = CONST_MIN_2 * (vec_dot(ray.direction, tip_to_origin) - c->tan_theta_sqr * c->ray_dot_axis * c->tipray_dot_axis - c->ray_dot_axis * c->tipray_dot_axis);
-	q.c = vec_dot(tip_to_origin, tip_to_origin) - c->tan_theta_sqr * pow(c->tipray_dot_axis, 2) - pow(c->tipray_dot_axis, 2);
-	discriminant = q.b * q.b - CONST_4 * q.a * q.c;
-	if (discriminant < 0)
-		return (false);
-	*t = collision_dst(q.a, q.b, discriminant);
-	if (*t <= 0)
-		return (false);
-	return (true);
-}
 
 static bool	hit_base(t_cone c, t_object *cone, t_ray ray, t_collision *col)
 {
@@ -67,7 +41,7 @@ static bool	hit_body(t_cone *c, t_object *cone, t_ray ray, t_collision *col)
 	t_vector		tip_to_hit;
 	double			hit_height;
 
-	if (solve_for_t(&t, c, cone, ray) == false || t > col->distance)
+	if (solve_for_t_cone(&t, c, cone, ray) == false || t > col->distance)
 		return (false);
 	hit = vec_add(ray.origin, vec_scale(ray.direction, t));
 	tip_to_hit = vec_sub(hit, c->tip);
@@ -76,7 +50,8 @@ static bool	hit_body(t_cone *c, t_object *cone, t_ray ray, t_collision *col)
 		return (false);
 	col->distance = t;
 	col->collision_point = hit;
-	col->surface_normal = vec_normalize(vec_sub(tip_to_hit, vec_scale(cone->orientation, hit_height)));
+	col->surface_normal = vec_normalize(vec_sub(tip_to_hit, \
+		vec_scale(cone->orientation, hit_height)));
 	if (vec_dot(col->surface_normal, ray.direction) > 0)
 		col->surface_normal = vec_negate(col->surface_normal);
 	col->closest_obj = cone;

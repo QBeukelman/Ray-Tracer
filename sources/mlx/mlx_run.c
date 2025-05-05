@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/28 12:25:10 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/04/29 20:40:14 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 19:25:20 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,9 @@ int	run_mlx(t_scene *scene)
 
 	if (ft_mlx_init(&mlx_data) == FAILURE)
 		return (FAILURE);
-
 	render_image(&mlx_data, scene);
 	mlx_image_to_window(mlx_data.mlx, mlx_data.img, 0, 0);
-	
 	anounce_selection(scene);
-	
 	all_data.mlx_data = &mlx_data;
 	all_data.scene = scene;
 	mlx_key_hook(mlx_data.mlx, &ft_keyhook, &all_data);

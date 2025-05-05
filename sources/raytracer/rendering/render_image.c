@@ -6,15 +6,27 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/30 15:15:23 by hein          #+#    #+#                 */
-/*   Updated: 2025/05/05 16:09:51 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 19:56:31 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minirt.h"
 
-bool is_collision(t_object *objects, t_ray ray, t_collision *collision)
+static t_collision_func	*init_collision_functions(void)
 {
-	const t_collision_func f[4] = {sphere_collision, plane_collision, cylinder_collision, cone_collision};
+	static t_collision_func	f[4] = {
+		sphere_collision,
+		plane_collision,
+		cylinder_collision,
+		cone_collision
+	};
+
+	return (f);
+}
+
+bool	is_collision(t_object *objects, t_ray ray, t_collision *collision)
+{
+	const t_collision_func	*f = init_collision_functions();
 	t_object				*current_object;
 	t_collision				temp_collision;
 	bool					found_collision;
@@ -45,7 +57,8 @@ void	render_image(t_mlx_data *mlx, t_scene *scene)
 	t_ray			ray;
 	int				color;
 	t_collision		collision;
-	const t_matrix	matrix = set_translation_matrix(scene->camera.yaw, -scene->camera.pitch);
+	const t_matrix	matrix = \
+		set_translation_matrix(scene->camera.yaw, -scene->camera.pitch);
 
 	p.y = 0;
 	while (p.y < HEIGHT)
