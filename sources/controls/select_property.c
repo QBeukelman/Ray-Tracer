@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/28 19:08:13 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/05 19:22:54 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 21:28:24 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	increment_plane_property(t_scene *scene)
 		scene->edit.editing_prop = O_POSITION;
 }
 
-/*
+/**
  * Increment for objetcs with 6 properties
 */
 static void	increment_hex_property(t_scene *scene)

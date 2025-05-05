@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/28 11:01:14 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2025/05/05 18:15:59 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 21:42:42 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	ft_keyhook(mlx_key_data_t keydata, void *data)
 	t_all_data	*all_data;
 
 	all_data = (t_all_data *) data;
+	if (keydata.key == MLX_KEY_I && keydata.action == MLX_RELEASE)
+		anounce_selection_and_instructions(all_data->scene);
 	if (keydata.key == MLX_KEY_ENTER && keydata.action == MLX_RELEASE)
 		enter_key_hook(all_data->mlx_data, all_data->scene);
 	if (keydata.key == MLX_KEY_RIGHT_BRACKET && keydata.action == MLX_RELEASE)

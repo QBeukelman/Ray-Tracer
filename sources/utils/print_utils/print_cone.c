@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/03 12:08:13 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/05 19:59:20 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 21:44:05 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,4 @@ void	print_cone(t_object *object, t_edit edit)
 	printf("\n");
 	print_label("height:", edit.editing_prop == O_HEIGHT);
 	print_value(object->height, edit.editing_prop == O_HEIGHT, V_NONE);
-	printf("\n");
 }
