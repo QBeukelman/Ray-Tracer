@@ -6,7 +6,7 @@
 #    By: qbeukelm <qbeukelm@student.42.fr>            +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/12/09 17:42:12 by quentinbeuk   #+#    #+#                  #
-#    Updated: 2025/05/01 19:03:19 by quentinbeuk   ########   odam.nl          #
+#    Updated: 2025/05/05 18:42:54 by quentinbeuk   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,9 @@ include includes/make/files.mk
 
 # ===== Names =====
 CC 				= cc
-# CFLAGS 			= -Wall -Werror -Wextra
-CFLAGS 			= -fsanitize=address
+CFLAGS 			= -Wall -Werror -Wextra # -fsanitize=address
+VALGRIND_CMD	= valgrind --leak-check=full --show-leak-kinds=all ./miniRT
+
 
 NAME_EXECUTABLE = miniRT
 
@@ -128,10 +129,8 @@ re: fclean all
 
 
 # ===== Valgrind =====
-valgrind: all
-	@echo "$(BLUE)\nTo create a Valgrind executable, run the following command:\n$(RESET)"
-	@echo "export EXEC_VALGRIND="valgrind --suppressions=MLX42.supp --leak-check=full --show-leak-kinds=all ./miniRT""
-	@echo "$(GREEN)\nRun $$EXEC_VALGRIND <file_name.rt> to execute with Valgrind.\n$(RESET)"
+valgrind-run:
+	$(VALGRIND_CMD) ./miniRT $(SCENE)
 
 .PHONY: all clean submodules
 

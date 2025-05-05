@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:18 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/04 20:21:28 by hein          ########   odam.nl         */
+/*   Updated: 2025/05/05 20:31:16 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@
 
 # define OFFSET 0.0001
 
-// TODO: Make sphere 0?
-typedef enum {
+typedef enum e_object_type
+{
 	AMBIENT_LIGHT,
 	LIGHT,
 	CAMERA,
@@ -47,7 +47,7 @@ typedef enum {
 	CYLINDER,
 	CONE,
 	NUM_OBJECTS
-} e_object;
+}	t_object_type;
 
 // ------------------------------------------------------------: components
 typedef struct s_color
@@ -55,7 +55,7 @@ typedef struct s_color
 	int		r;
 	int		g;
 	int		b;
-} t_color;
+}	t_color;
 
 
 // ------------------------------------------------------------: objects
@@ -68,41 +68,40 @@ typedef struct s_viewport
 	double		x_off;
 	double		y_off;
 	t_vector	bottomleft;
-} t_viewport;
+}	t_viewport;
 
-// TODO: Camera orientation as 3D normalized vector
 typedef struct s_camera
 {
-	e_object	type;
-	double		aspect_ratio;
-	int			fov;
-	double		fov_radians;
-	t_vector	position;
-	int			yaw;
-	int			pitch;
-	t_vector	global_up;
-	t_vector	orientation;
-	t_vector	right;
-	t_vector	up;
-	t_viewport	viewport;
-	bool		initialized;
-} t_camera;
+	t_object_type	type;
+	double			aspect_ratio;
+	int				fov;
+	double			fov_radians;
+	t_vector		position;
+	int				yaw;
+	int				pitch;
+	t_vector		global_up;
+	t_vector		orientation;
+	t_vector		right;
+	t_vector		up;
+	t_viewport		viewport;
+	bool			initialized;
+}	t_camera;
 
 typedef struct s_light
 {
-	e_object	type;
-	t_vector	position;
-	float		brightness;
-	bool		initialized;
-} t_light;
+	t_object_type	type;
+	t_vector		position;
+	float			brightness;
+	bool			initialized;
+}	t_light;
 
 typedef struct s_ambi
 {
-	e_object		type;
+	t_object_type	type;
 	float			ratio;
 	t_color			color;
 	bool			initialized;
-} t_ambi;
+}	t_ambi;
 
 typedef struct s_cone
 {
@@ -120,19 +119,19 @@ typedef struct s_cylinder
 	t_vector	bottom_center;
 	t_vector	center_to_origin;
 	t_vector	hit;
-} t_cylinder;
+}	t_cylinder;
 
 typedef struct s_object
 {
 	int				index;
-	e_object		type;
+	t_object_type	type;
 	bool			c_ray_relevant;
 	t_vector		position;
 	t_vector		axis;
 	t_vector		orientation;
 	double			diameter;
 	double			radius;
-	double 			height;
+	double			height;
 	t_color			color;
 	struct s_object	*next;
 }	t_object;
@@ -140,8 +139,8 @@ typedef struct s_object
 
 // ------------------------------------------------------------: parse
 // scene_objects.c
-char			*objects_to_string(e_object object);
-char			*objects_to_name(e_object object);
-e_object		string_to_objects(char *str);
+char			*objects_to_string(t_object_type type);
+char			*objects_to_name(t_object_type type);
+t_object_type	string_to_objects(char *str);
 
 #endif

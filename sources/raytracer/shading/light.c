@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/09 20:16:16 by hesmolde      #+#    #+#                 */
-/*   Updated: 2025/05/04 20:38:36 by hein          ########   odam.nl         */
+/*   Updated: 2025/05/05 15:29:11 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ t_rgb	diffuse_light(t_collision *col, float bright, t_shading r, t_rgb ambi)
 
 double	specular_light(t_collision *col, t_ray ray, t_shading r)
 {
-	t_rgb		color;
 	t_vector	reflection;
 	t_vector	view_direction;
 	double		angle;

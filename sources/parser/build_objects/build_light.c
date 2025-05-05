@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 12:50:34 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2025/04/30 21:26:11 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 17:55:03 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ static bool	build_light(t_scene *scene, char **tokens)
 
 bool	add_light(t_scene *scene, char **tokens)
 {
+	if (scene->light.initialized)
+	{
+		show_error(E_DUP_OBJ, objects_to_name(LIGHT));
+		return (FAILURE);
+	}
 	if (count_tokens(tokens) != TOKEN_COUNT_L)
 	{
 		show_error(E_TOKEN_COUNT, objects_to_name(LIGHT));

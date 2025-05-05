@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/24 16:43:15 by hesmolde      #+#    #+#                 */
-/*   Updated: 2025/05/03 15:55:07 by hein          ########   odam.nl         */
+/*   Updated: 2025/05/05 19:44:16 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,13 @@ static bool	solve_for_t(double *t, t_cylinder *c, t_object *cyl, t_ray ray)
 	orientation_cross = vec_cross(c->center_to_origin, cyl->orientation);
 	q.a = vec_dot(ray_to_axis_cross, ray_to_axis_cross);
 	q.b = CONST_2 * vec_dot(ray_to_axis_cross, orientation_cross);
-	q.c = vec_dot(orientation_cross, orientation_cross) - (cyl->radius * cyl->radius);
+	q.c = vec_dot(orientation_cross, orientation_cross) \
+		- (cyl->radius * cyl->radius);
 	discriminant = ((q.b * q.b) - CONST_4 * q.a * q.c);
 	if (discriminant < 0)
 		return (false);
 	*t = collision_dst(q.a, q.b, discriminant);
-	if (t <= 0)
+	if (*t <= 0)
 		return (false);
 	return (true);
 }
@@ -95,7 +96,8 @@ static bool	hit_body(t_cylinder *c, t_object *cyl, t_ray ray, t_collision *col)
 		return (false);
 	col->distance = t;
 	col->collision_point = c->hit;
-	col->surface_normal = vec_normalize(vec_sub(body_from_center, vec_scale(cyl->orientation, axis_distance)));
+	col->surface_normal = vec_normalize(vec_sub(body_from_center, \
+		vec_scale(cyl->orientation, axis_distance)));
 	col->closest_obj = cyl;
 	return (true);
 }

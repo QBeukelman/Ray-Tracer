@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/04 22:03:41 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/03 15:30:01 by hein          ########   odam.nl         */
+/*   Updated: 2025/05/05 19:44:31 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ double	hit_flat_plane(double *t, t_ray ray, t_vector p, t_vector orientation)
 	return (denominator);
 }
 
-bool plane_collision(t_object *plane, t_ray ray, t_collision *collision)
+bool	plane_collision(t_object *plane, t_ray ray, t_collision *collision)
 {
 	double	denominator;
 	double	t;
@@ -34,7 +34,8 @@ bool plane_collision(t_object *plane, t_ray ray, t_collision *collision)
 	if (denominator == 0.0 || t < 0)
 		return (false);
 	collision->distance = t;
-	collision->collision_point = vec_add(ray.origin, vec_scale(ray.direction, t));
+	collision->collision_point = vec_add(ray.origin, \
+		vec_scale(ray.direction, t));
 	if (denominator < 0)
 		collision->surface_normal = plane->orientation;
 	else

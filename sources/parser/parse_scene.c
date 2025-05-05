@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/16 19:18:55 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/04 16:23:10 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 20:27:19 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,25 @@ static void	init_add_object_funcs(t_add_func add_object[NUM_OBJECTS])
 static bool	process_line(t_scene *scene, char *line)
 {
 	char					**tokens;
-	e_object				object_type;
+	t_object_type			object_type;
 	static t_add_func		add_object[NUM_OBJECTS] = {NULL};
 
 	if (add_object[0] == NULL)
 		init_add_object_funcs(add_object);
 	tokens = split_string(line);
 	if (tokens == NULL || !tokens[0])
-		exit_with_message(E_SPLIT, line, X_FAILURE);
-	object_type = string_to_objects(tokens[0]);
-	if (object_type >= NUM_OBJECTS)
-		exit_with_message(E_INVALID_OBJ, tokens[0], X_FAILURE);
-	if (add_object[object_type](scene, tokens) == false)
 	{
-		free_split(tokens);
+		show_error(E_SPLIT, line);
 		return (FAILURE);
 	}
+	object_type = string_to_objects(tokens[0]);
+	if (object_type >= NUM_OBJECTS)
+	{
+		show_error(E_INVALID_OBJ, tokens[0]);
+		return (free_split(tokens));
+	}
+	if (add_object[object_type](scene, tokens) == false)
+		return (free_split(tokens));
 	free_split(tokens);
 	return (SUCCESS);
 }
@@ -63,13 +66,12 @@ static bool	parse_scene(t_scene *scene, const char *file_name)
 
 	fd = open(file_name, O_RDONLY);
 	if (fd <= 0)
-		return (FAILURE);
+		return (show_error_const(E_OPEN, file_name));
 	ft_memset(scene, 0, sizeof(t_scene));
-
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		if (line[0] != '\n')
+		if (!ft_isspace(line[0]))
 		{
 			if (process_line(scene, line) == false)
 			{
@@ -87,28 +89,20 @@ static bool	parse_scene(t_scene *scene, const char *file_name)
 bool	parser(t_scene *scene, const char *file_name)
 {
 	scene->rays = NULL;
-	
-	// TODO Pre parser checks
-	// scene file extension
 	if (is_valid_filename(file_name) == false)
-		return (false);
+		return (FAILURE);
 
-	if (parse_scene(scene, file_name) == false)
+	if (parse_scene(scene, file_name) == FAILURE)
 	{
 		free_object_list(scene->objects);
-		return (false);
+		return (FAILURE);
 	}
-	
-	// TODO Post parser checks
-	// camera and lights
 	if (validate_non_objects(scene) == false)
 	{
 		free_object_list(scene->objects);
-		return (false);
+		return (FAILURE);
 	}
-
-	// TODO Index objects
-	index_objects(scene);
 	scene->is_rendering = false;
-	return (true);
+	index_objects(scene);
+	return (SUCCESS);
 }

@@ -6,13 +6,13 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:42:04 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/04 18:17:41 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 20:12:00 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minirt.h"
 
-static bool validate_args(int argc)
+static bool	validate_args(int argc)
 {
 	if (argc != 2)
 	{
@@ -24,20 +24,16 @@ static bool validate_args(int argc)
 
 int	main(int argc, char **argv)
 {
-	t_mlx_data		mlx;
 	t_scene			scene;
 
 	if (validate_args(argc) == false)
 		return (FAILURE);
 	if (parser(&scene, argv[1]) == false)
 		return (FAILURE);
-
-	// print_scene(&scene);
-
 	if (initialize_rays(&scene) == false)
 		free_object_list(scene.objects);
 	run_mlx(&scene);
-		free_object_list(scene.objects);
+	free_object_list(scene.objects);
 	free_rays(&scene);
 	return (SUCCESS);
 }

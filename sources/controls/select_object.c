@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/28 13:12:30 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/04 18:01:33 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 19:22:28 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,31 +22,28 @@ void	anounce_selection(t_scene *scene)
 
 bool	right_bracket_key_hook(t_mlx_data *mlx_data, t_scene *scene)
 {
+	(void)mlx_data;
 	if (scene->index_selected == scene->index_max)
 		scene->index_selected = 0;
 	scene->index_selected++;
-
 	scene->edit.editing_prop = O_POSITION;
 	if (scene->index_selected == 2)
 		scene->edit.editing_prop = O_LIGHT_AMBI_RATIO;
-
 	scene->edit.editing_vec = V_X;
 	anounce_selection(scene);
 	return (true);
-	
 }
 
 bool	left_bracket_key_hook(t_mlx_data *mlx_data, t_scene *scene)
 {
+	(void)mlx_data;
 	if (scene->index_selected > 0)
 		scene->index_selected--;
 	else
 		scene->index_selected = scene->index_max;
-
 	scene->edit.editing_prop = O_POSITION;
 	if (scene->index_selected == 2)
 		scene->edit.editing_prop = O_LIGHT_AMBI_RATIO;
-
 	scene->edit.editing_vec = V_X;
 	anounce_selection(scene);
 	return (true);

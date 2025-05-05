@@ -6,7 +6,7 @@
 #    By: qbeukelm <qbeukelm@student.42.fr>            +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/12/09 17:55:12 by quentinbeuk   #+#    #+#                  #
-#    Updated: 2025/05/04 17:01:47 by hein          ########   odam.nl          #
+#    Updated: 2025/05/05 20:05:56 by quentinbeuk   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ SOURCES						= main.c \
 SOURCES_CONTROLS			= adjust_value_camera.c \
 								adjust_value_lights.c \
 								adjust_value.c \
+								adjust_values.c \
 								select_object.c \
 								select_property.c \
 								select_vec.c \
@@ -25,6 +26,7 @@ SOURCES_MLX					= mlx_run.c \
 
 SOURCES_MLX_HOOKS			= key_enter.c \
 								key_hooks.c \
+								key_up_down.c \
 
 SOURCES_PARSER 				= build_object_list.c \
 								parse_scene.c \
@@ -48,12 +50,12 @@ SOURCES_PARSER_VALIDATE		= index_objects.c \
 								parser_post_validation.c \
 								parser_pre_validation.c \
 
-SOURCES_RAYTRACER_RENDERING	= background.c \
-								rays.c \
+SOURCES_RAYTRACER_RENDERING	= rays.c \
 								render_image.c \
 								world_matrix.c \
 
 SOURCES_RAYTRACER_COLLISION = cone.c \
+								cone_distance.c \
 								cylinder.c \
 								plane.c \
 								sphere.c \
@@ -76,6 +78,7 @@ SOURCERS_UTILS_PRINT		= print_cone.c \
 								print_objects.c \
 								print_plane.c \
 								print_scene.c \
+								print_scene_objects.c \
 								print_utils.c \
 
 

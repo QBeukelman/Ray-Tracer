@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/02 14:31:30 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2025/05/03 14:24:13 by hein          ########   odam.nl         */
+/*   Updated: 2025/05/05 19:25:49 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ static t_object	*build_cone(char **tokens)
 	return (new);
 }
 
-bool add_cone(t_scene *scene, char **tokens)
+bool	add_cone(t_scene *scene, char **tokens)
 {
 	t_object	*new;
-	
+
 	if (count_tokens(tokens) != TOKEN_COUNT_CN)
 	{
 		show_error(E_TOKEN_COUNT, objects_to_name(CONE));

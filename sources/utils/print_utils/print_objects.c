@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/03 12:15:55 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/03 12:23:51 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 20:00:37 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ t_object	*obj_for_index(t_object *objects, int index)
 
 	if (index < 2)
 		return (NULL);
-		
 	current = objects;
 	while (current)
 	{

@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/10 14:32:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/04/28 09:25:52 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 20:16:49 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ int	show_error(char *error, char *arg)
 	return (FAILURE);
 }
 
-/*
- * Do not use: will cause leak
-*/
-int	exit_with_message(char *error, char *arg, int exit_code)
+int	show_error_const(char *error, const char *arg)
 {
 	write(STDERR_FILENO, C_RED, ft_strlen(C_RED));
 	write(STDERR_FILENO, E_ERROR, ft_strlen(E_ERROR));
@@ -34,6 +31,5 @@ int	exit_with_message(char *error, char *arg, int exit_code)
 	write(STDERR_FILENO, arg, ft_strlen(arg));
 	write(STDERR_FILENO, RESET_COLOR, ft_strlen(RESET_COLOR));
 	write(STDERR_FILENO, "\n", 1);
-	exit(exit_code);
 	return (FAILURE);
 }
