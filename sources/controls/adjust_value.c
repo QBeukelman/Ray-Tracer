@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/28 21:18:24 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/05 15:27:06 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 18:32:29 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ static void	adjust_position(t_object *object, t_edit edit, double delta)
 	}
 }
 
-// TODO: Normalize
 static void	adjust_orientation(t_object *object, t_edit edit, double delta)
 {
 	if (edit.editing_vec == V_X)
@@ -59,7 +58,6 @@ static void	adjust_orientation(t_object *object, t_edit edit, double delta)
 	}
 }
 
-// TODO: Size 0
 static void	adjust_radius(t_object *object, t_edit edit, double delta)
 {
 	(void)edit;
@@ -71,6 +69,7 @@ static void	adjust_height(t_object *object, t_edit edit, double delta)
 {
 	(void)edit;
 	object->height += (int)delta;
+	object->height = in_range(round(object->height), 0, DBL_MAX);
 }
 
 const t_adjust_entry	*fill_dispatch_table()
@@ -133,10 +132,8 @@ void	up_key_hook(t_mlx_data *mlx_data, t_scene *scene)
 	else
 		delta = 1;
 
-
 	if (scene->index_selected <= 2)
 	{
-		// TODO: Value for non Objects
 		if (scene->index_selected == 0)
 			adjust_value_camera(scene, delta);
 		if (scene->index_selected == 1)
@@ -166,7 +163,6 @@ void down_key_hook(t_mlx_data *mlx_data, t_scene *scene)
 
 	if (scene->index_selected <= 2)
 	{
-		// TODO: Value for non Objects
 		if (scene->index_selected == 0)
 			adjust_value_camera(scene, delta);
 		if (scene->index_selected == 1)

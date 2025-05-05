@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/29 21:47:28 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/04 16:50:22 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/04 18:25:08 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,13 @@ void	print_light(t_light light, t_edit edit)
 	printf("[%d] Point Light\n\n", 1);
 
 	// Position
-	print_label("Pos:", edit.editing_prop == O_POSITION);
+	print_label("Position:", edit.editing_prop == O_POSITION);
 	print_value(light.position.x, edit.editing_prop == O_POSITION && edit.editing_vec == V_X, V_X);
 	print_value(light.position.y, edit.editing_prop == O_POSITION && edit.editing_vec == V_Y, V_Y);
 	print_value(light.position.z, edit.editing_prop == O_POSITION && edit.editing_vec == V_Z, V_Z);
 	printf("\n");
 }
 
-// TODO: Ambient light ratio
 void	print_ambi(t_ambi ambi)
 {
 	printf("[%d] Ambient Light\n\n", 2);

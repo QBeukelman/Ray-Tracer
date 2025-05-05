@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:18 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/04 20:21:28 by hein          ########   odam.nl         */
+/*   Updated: 2025/05/05 18:32:17 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@
 
 # define OFFSET 0.0001
 
-// TODO: Make sphere 0?
 typedef enum {
 	AMBIENT_LIGHT,
 	LIGHT,

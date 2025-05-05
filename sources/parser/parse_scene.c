@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/16 19:18:55 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/05 15:10:18 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 16:33:22 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,18 @@ static bool	process_line(t_scene *scene, char *line)
 		init_add_object_funcs(add_object);
 	tokens = split_string(line);
 	if (tokens == NULL || !tokens[0])
-		exit_with_message(E_SPLIT, line, X_FAILURE);
-	object_type = string_to_objects(tokens[0]);
-	if (object_type >= NUM_OBJECTS)
-		exit_with_message(E_INVALID_OBJ, tokens[0], X_FAILURE);
-	if (add_object[object_type](scene, tokens) == false)
 	{
-		free_split(tokens);
+		show_error(E_SPLIT, line);
 		return (FAILURE);
 	}
+	object_type = string_to_objects(tokens[0]);
+	if (object_type >= NUM_OBJECTS)
+	{
+		show_error(E_INVALID_OBJ, tokens[0]);
+		return (free_split(tokens));
+	}
+	if (add_object[object_type](scene, tokens) == false)
+		return (free_split(tokens));
 	free_split(tokens);
 	return (SUCCESS);
 }
@@ -92,20 +95,20 @@ bool	parser(t_scene *scene, const char *file_name)
 	scene->rays = NULL;
 	
 	if (is_valid_filename(file_name) == false)
-		return (false);
+		return (FAILURE);
 
 	if (parse_scene(scene, file_name) == FAILURE)
 	{
 		free_object_list(scene->objects);
-		return (false);
+		return (FAILURE);
 	}
 	
 	if (validate_non_objects(scene) == false)
 	{
 		free_object_list(scene->objects);
-		return (false);
+		return (FAILURE);
 	}
-
+	scene->is_rendering = false;
 	index_objects(scene);
-	return (true);
+	return (SUCCESS);
 }

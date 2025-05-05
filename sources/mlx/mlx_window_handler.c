@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/28 12:25:37 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/04/28 12:25:42 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 18:09:34 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,5 @@ void	ft_mlx_terminate(t_mlx_data mlx_data)
 {
 	mlx_delete_image(mlx_data.mlx, mlx_data.img);
 	mlx_terminate(mlx_data.mlx);
+	mlx_close_window(mlx_data.mlx);
 }

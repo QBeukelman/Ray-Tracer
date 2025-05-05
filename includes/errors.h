@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:26 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/05 15:08:43 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/05 17:57:09 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,12 @@ typedef enum
 # define E_INVALID_CLR	"Invalid color format: "
 # define E_INVALID_PT	"Invalid point value format: "
 # define E_INVALID_POS	"Invalid position format: "
+# define E_INVALID_C	"Invalid character found: "
 # define E_OUT_OF_RANGE	"Value out of range: "
 # define E_OBJ_COUNT	"Invalid object count: "
 # define E_INVALID_FILE	"Invalid file name: "
-# define E_MISSING_OBJ	"Scene must contain: "
+# define E_MISSING_OBJ	"Scene must contain required object(s): "
+# define E_DUP_OBJ		"Scene contains duplicate object: "
 
 
 // ------------------------------------------------------------: utils

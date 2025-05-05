@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/04 20:39:01 by hein          ########   odam.nl         */
+/*   Updated: 2025/05/05 18:31:48 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 # include <float.h>
 # include <stdint.h>
 # include <string.h>
+# include <limits.h>
+# include <errno.h>
 
 // ------------------------------------------------------------: colors
 #define RESET_COLOR "\033[0m"
@@ -124,14 +126,6 @@ typedef struct s_rgb
 	double	b;
 }	t_rgb;
 
-// TODO: Why not rgb?
-typedef struct s_ambient
-{
-	double	r;
-	double	g;
-	double	b;
-}	t_ambient;
-
 typedef struct s_shading
 {
 	t_ray		ray;
@@ -147,7 +141,6 @@ typedef struct s_matrix
 	double z[3];
 }	t_matrix;
 
-// TODO: Why caps?
 typedef struct s_fru
 {
 	t_vector	forward;
@@ -179,7 +172,6 @@ void	down_key_hook(t_mlx_data *mlx_data, t_scene *scene);
 void		anounce_selection(t_scene *scene);
 bool		right_bracket_key_hook(t_mlx_data *mlx_data, t_scene *scene);
 bool		left_bracket_key_hook(t_mlx_data *mlx_data, t_scene *scene);
-// char		*index_to_name(t_scene *scene, int index);
 
 // select_property.c
 void	tab_key_hook(t_mlx_data *mlx_data, t_scene *scene);
@@ -200,7 +192,7 @@ void	ft_mlx_terminate(t_mlx_data mlx_data);
 
 
 // ------------------------------------------------------------: mlx/input_hooks
-// key_space.c
+// key_enter.c
 void	enter_key_hook(t_mlx_data *mlx_data, t_scene *scene);
 
 // key_hooks.c
@@ -320,7 +312,7 @@ double	radians_to_degrees(double radians);
 
 // utils.c
 double	in_range(double value, double min, double max);
-void	free_split(char **split);
+bool	free_split(char **split);
 void	free_rays(t_scene *scene);
 
 
