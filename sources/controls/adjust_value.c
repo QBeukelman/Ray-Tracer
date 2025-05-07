@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   adjust_value.c                                     :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/04/28 21:18:24 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/05 21:21:32 by quentinbeuk   ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   adjust_value.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/28 21:18:24 by quentinbeuk       #+#    #+#             */
+/*   Updated: 2025/05/07 11:27:25 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
 #define DISPATCH_TABLE_SIZE 12
-
-typedef struct s_adjust_entry {
-	t_object_type	object_type;
-	t_edit_prop		property_type;
-	void			(*func)(t_object *obj, t_edit edit, double delta);
-}	t_adjust_entry;
 
 const t_adjust_entry	*fill_dispatch_table(void)
 {

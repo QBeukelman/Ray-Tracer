@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   minirt.h                                           :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/05 21:34:49 by quentinbeuk   ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   minirt.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/09 17:46:23 by quentinbeuk       #+#    #+#             */
+/*   Updated: 2025/05/07 11:47:10 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,13 @@ void		adjust_value_point_light(t_scene *scene, int delta);
 void		adjust_value_ambi_light(t_scene *scene, double delta);
 
 // adjust_value.c
+typedef struct s_adjust_entry
+{
+	t_object_type	object_type;
+	t_edit_prop		property_type;
+	void			(*func)(t_object *obj, t_edit edit, double delta);
+}	t_adjust_entry;
+
 void		adjust_value_object(t_scene *scene, double delta);
 
 // adjust_values.c
@@ -340,6 +347,7 @@ void		print_obj_for_index(t_scene *scene);
 void		print_plane(t_object *object, t_edit edit);
 
 // print_scene_objects.c
+typedef void	(*t_print_object)(t_object*);
 void		print_objects(t_object *objects);
 
 // print_scene.c

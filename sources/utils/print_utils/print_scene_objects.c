@@ -1,18 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   print_scene_objects.c                              :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/05/05 20:02:44 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/05 20:09:55 by quentinbeuk   ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   print_scene_objects.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/05 20:02:44 by quentinbeuk       #+#    #+#             */
+/*   Updated: 2025/05/07 11:28:38 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minirt.h"
-
-typedef void	(*t_print_object)(t_object*);
 
 static void	util_print_plane(t_object *plane)
 {

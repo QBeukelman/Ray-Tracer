@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   key_enter.c                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/04/28 13:12:52 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/05 19:24:35 by quentinbeuk   ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   key_enter.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/28 13:12:52 by quentinbeuk       #+#    #+#             */
+/*   Updated: 2025/05/07 11:28:12 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	will_normalize_orientation(t_scene *scene)
 				return ;
 			selected_object->orientation = \
 				vec_normalize(selected_object->orientation);
-		}		
+		}
 	}
 }
 
