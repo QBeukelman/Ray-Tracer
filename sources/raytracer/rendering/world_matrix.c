@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/17 23:28:14 by hein          #+#    #+#                 */
-/*   Updated: 2025/05/05 20:38:16 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/07 12:45:52 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static t_vector	set_camera_forward(int yaw, int pitch)
 	const double	yaw_rad = degrees_to_radians(yaw);
 	const double	pitch_rad = degrees_to_radians(pitch);
 
-	forward.x = -sinf(yaw_rad) * cosf(pitch_rad);
-	forward.y = sinf(pitch_rad);
-	forward.z = cosf(yaw_rad) * cosf(pitch_rad);
+	forward.x = -sin(yaw_rad) * cos(pitch_rad);
+	forward.y = sin(pitch_rad);
+	forward.z = cos(yaw_rad) * cos(pitch_rad);
 	return (vec_normalize(forward));
 }
 
@@ -43,7 +43,7 @@ static t_fru	set_fru_orientations(int yaw, int pitch)
 	return (camera);
 }
 
-t_matrix	set_translation_matrix(int yaw, int pitch)
+t_matrix	set_rotation_matrix(int yaw, int pitch)
 {
 	t_matrix	matrix;
 	const t_fru	camera = set_fru_orientations(yaw, pitch);

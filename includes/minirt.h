@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/09 17:46:23 by quentinbeuk       #+#    #+#             */
-/*   Updated: 2025/05/07 11:47:10 by qbeukelm         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   minirt.h                                           :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
+/*   Updated: 2025/05/07 12:47:00 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -296,7 +296,7 @@ void		render_image(t_mlx_data *mlx, t_scene *scene);
 bool		initialize_rays(t_scene *scene);
 
 // world_martix.c
-t_matrix	set_translation_matrix(int yaw, int pitch);
+t_matrix	set_rotation_matrix(int yaw, int pitch);
 t_vector	set_ray_direction(t_vector ray, t_matrix m);
 
 // -----------------------------------------: raytracer/shading
