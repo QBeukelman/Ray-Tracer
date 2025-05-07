@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   render_image.c                                     :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/30 15:15:23 by hein          #+#    #+#                 */
-/*   Updated: 2025/05/05 19:56:31 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/07 12:46:14 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	render_image(t_mlx_data *mlx, t_scene *scene)
 	int				color;
 	t_collision		collision;
 	const t_matrix	matrix = \
-		set_translation_matrix(scene->camera.yaw, -scene->camera.pitch);
+		set_rotation_matrix(scene->camera.yaw, -scene->camera.pitch);
 
 	p.y = 0;
 	while (p.y < HEIGHT)

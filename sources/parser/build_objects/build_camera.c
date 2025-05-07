@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   build_camera.c                                     :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: qbeukelm <qbeukelm@student.42.fr>            +#+                     */
+/*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/25 22:22:28 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/05 17:54:28 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2025/05/07 12:45:08 by hesmolde      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 static void	set_yaw_pitch(t_vector orientation, int *yaw, int *pitch)
 {
 	orientation = vec_normalize(orientation);
-	*yaw = radians_to_degrees(atan2f(orientation.x, -orientation.z));
-	*pitch = radians_to_degrees(asinf(orientation.y));
+	*yaw = radians_to_degrees(atan2(orientation.x, -orientation.z));
+	*pitch = radians_to_degrees(asin(orientation.y));
 }
 
 static bool	build_camera(t_scene *scene, char **tokens)
