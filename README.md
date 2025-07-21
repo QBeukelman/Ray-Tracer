@@ -51,7 +51,7 @@ Use the following keys to interactively inspect and modify objects in the scene:
 <br/>
 
 
-|**Figure 2** This scene illustrates rim lighting and shadow silhouette effects when a light is placed behind a sphere. It shows: Directional lighting accuracy; proper dot product use in `max(dot(N, L), 0)`; realistic light falloff and shadowing on the viewer-facing side. Backlighting reveals whether your surface normals and lighting calculations behave correctly from all directions.
+**Figure 2** This scene illustrates rim lighting and shadow silhouette effects when a light is placed behind a sphere. It shows: Directional lighting accuracy; proper dot product use in `max(dot(N, L), 0)`; realistic light falloff and shadowing on the viewer-facing side. Backlighting reveals whether your surface normals and lighting calculations behave correctly from all directions.
 
 ![Alt text](sample_images/backlit_sphere.png)
 
@@ -123,28 +123,28 @@ This diagram illustrates the camera coordinate system and the viewport (image pl
 
 - Viewport (image plane): The rectangular grid of pixels `[ ]` represents the viewport positioned at some distance along the `w` axis from the camera center. Each pixel on this viewport corresponds to a ray cast from the camera through that pixel into the scene.
 
-```less
+<pre>
 			v (up)
 			↑
 			|
 			|
-	Camera  |		  
-	center  ● ------- → u (right)
+		Camera  |		  
+		center  ● ------- → u (right)
 			 \
 			  \
 			   \
-				●
+			    ●
 			    w (viewport)
-	 +---------------------+ ↑
-	 | [ ] [ ] [ ] [ ] [ ] | | Δv
-	 | [ ] [ ] [ ] [ ] [ ] | ↓
-	 | [ ] [ ] [ ] [ ] [ ] | 
-	 | [ ] [ ] [ ] [ ] [ ] |
-	 | [ ] [ ] [ ] [ ] [ ] |
-	 +---------------------+
-	  ← - →
-	   Δu
-```
+	 	+---------------------+ ↑
+	 	| [ ] [ ] [ ] [ ] [ ] | | Δv
+	 	| [ ] [ ] [ ] [ ] [ ] | ↓
+	 	| [ ] [ ] [ ] [ ] [ ] | 
+	 	| [ ] [ ] [ ] [ ] [ ] |
+	 	| [ ] [ ] [ ] [ ] [ ] |
+	 	+---------------------+
+	  	← - →
+	   	  Δu
+</pre>
 
 <div align="center"> Figure 5: Camera Gemoetry & Viewport </div>
 
@@ -195,7 +195,7 @@ The diagram below illustrates a ray intersecting a sphere, using a circle projec
 - The ray from the camera origin to the center of the sphere hits at ◉, the midpoint of the projection.
 - The other rays hitting the edges of the circle intersect the curved surface of the sphere at two points (enter and exit).
 
-```less
+<pre>
  +---------------------+
  | [ ] [ ] [ ] [ ] [ ] |
  | [ ] [ ] [●] [ ] [ ] |   ← top of sphere
@@ -203,7 +203,6 @@ The diagram below illustrates a ray intersecting a sphere, using a circle projec
  | [ ] [ ] [●] [ ] [ ] |   ← bottom of sphere
  | [ ] [ ] [ ] [ ] [ ] |
  +---------------------+
-
             ↑
             |
            [ ] Viewport
@@ -211,9 +210,10 @@ The diagram below illustrates a ray intersecting a sphere, using a circle projec
             |
             ● Camera origin
             |
-	        |
+            |
             ◉ Sphere center
-```
+</pre>
+
 <div align="center"> Figure 6: Viewport interception of sphere </div>
 
 ---
