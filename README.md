@@ -188,7 +188,6 @@ Select the smallest positive `t` for the nearest visible point.
 
 The diagram below illustrates a ray intersecting a sphere, using a circle projected onto the viewport grid to represent the intersection.
 
-- [ ] – pixel
 - ● – ray hits the sphere (intersection points on the viewport)
 - ◉ – ray hits the center of the sphere
 - The sphere appears as a circle projection on the viewport.
