@@ -6,7 +6,7 @@
 /*   By: hesmolde <hesmolde@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/09 17:46:23 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2025/05/07 12:47:00 by hesmolde      ########   odam.nl         */
+/*   Updated: 2025/07/19 22:01:39 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@
 # define C_WHITE	"\033[1;37m"
 
 // -----------------------------------------: window
-# define HEIGHT 500
-# define WIDTH 800
+# define HEIGHT 600
+# define WIDTH 1200
 
 typedef enum e_edit_prop
 {
