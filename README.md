@@ -1,6 +1,6 @@
 # Ray Tracer
 
-A ray tracer built in c as part of Codam's `miniRT` project. This project renders 3D scenes using ray casting, interction tests and shading models; Lambert Reflection for diffuse shading, and Phong Reflection Model for specular reflection.
+A ray tracer built in c as part of Codam's `miniRT` project. This project renders 3D scenes using ray casting, interception tests and shading models; Lambert Reflection for diffuse shading, and Phong Reflection Model for specular reflection.
 
 ## Getting Started
 
