@@ -264,6 +264,9 @@ color = ka * Ia			                     // Ambient
 - `V` Normalized vector from surface point to camera (viewer)
 - `α` (alpha) Shininess exponent (higher = sharper highlight)
 
+---
+<br/>
+
 
 ### 📐 Plane and Front/Back Faces
 
